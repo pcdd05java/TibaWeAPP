@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cvInformation="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:id="@+id/cvValidmain"
+    android:layout_margin="3dp"
+    android:background="@color/colorPrimary"
+    cvInformation:cardElevation="0dp"
+    cvInformation:cardCornerRadius="1dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:scaleType="centerInside"
+            android:id="@+id/cvivValidmainPic"
+            android:background="@color/colorPrimary" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cvtvValidmainTitle"
+            android:layout_gravity="center"
+            android:text="xxx"/>
+
+
+    </FrameLayout>
+
+
+</android.support.v7.widget.CardView>

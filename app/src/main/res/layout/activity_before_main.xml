@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BeforeMainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/container">
+
+        <ImageView
+            android:id="@+id/ivLogoIcon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_icon_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38"
+            android:alpha="0"/>
+
+        <ImageView
+            android:id="@+id/ivLogoTiba"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_tiba"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivLogoTibawe"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_tibawe_en"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499" />
+
+        <ImageView
+            android:id="@+id/ivLogoWe"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_we"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivLogoTibaweCH"
+            android:layout_width="144dp"
+            android:layout_height="144dp"
+            android:alpha="0"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_tibawe_ch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivLogoTop"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:alpha="0"
+            android:src="@drawable/logo_icon_t"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
+
+        <ImageView
+            android:id="@+id/ivLogoRight"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/logo_icon_r"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
+
+        <ImageView
+            android:id="@+id/ivLogoRightBottom"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/logo_icon_rb"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
+
+        <ImageView
+            android:id="@+id/ivLogoLeftBottom"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/logo_icon_lb"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
+
+        <ImageView
+            android:id="@+id/ivLogoLeft"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/logo_icon_l"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.38" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

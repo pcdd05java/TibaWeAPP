@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cvInformation="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:id="@+id/cvLatestNews"
+    android:layout_marginTop="20dp"
+    android:layout_margin="10dp"
+    cvInformation:cardElevation="2dp"
+    cvInformation:cardCornerRadius="2dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/cvtvNewsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="xxxx"
+            cvInformation:layout_constraintBottom_toBottomOf="parent"
+            cvInformation:layout_constraintEnd_toEndOf="parent"
+            cvInformation:layout_constraintHorizontal_bias="0.051"
+            cvInformation:layout_constraintStart_toStartOf="parent"
+            cvInformation:layout_constraintTop_toTopOf="parent"
+            cvInformation:layout_constraintVertical_bias="0.076" />
+
+        <ImageView
+            android:id="@+id/cvivNewsPic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1.0"
+            android:scaleType="centerCrop"
+            cvInformation:layout_constraintBottom_toBottomOf="parent"
+            cvInformation:layout_constraintEnd_toEndOf="parent"
+            cvInformation:layout_constraintHorizontal_bias="0.966"
+            cvInformation:layout_constraintStart_toEndOf="@id/cvtvNewsTitle"
+            cvInformation:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cvtvNewsContent"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextView"
+            cvInformation:layout_constraintBottom_toBottomOf="parent"
+            cvInformation:layout_constraintEnd_toEndOf="parent"
+            cvInformation:layout_constraintHorizontal_bias="0.0"
+            cvInformation:layout_constraintStart_toStartOf="@+id/cvtvNewsTitle"
+            cvInformation:layout_constraintTop_toBottomOf="@+id/cvtvNewsTitle"
+            cvInformation:layout_constraintVertical_bias="0.062" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.v7.widget.CardView>

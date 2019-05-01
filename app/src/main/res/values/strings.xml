@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">TibaWe</string>
+    <string name="qrcode_signin">QRCode簽到</string>
+    <string name="qrcode_siginin_text">開啟相機掃描QRCode</string>
+    <string name="information_detail">詳細資訊</string>
+    <string name="logout">登出</string>
+    <string name="logout_msg">確定登出帳號?</string>
+    <string name="logout_cancel">取消</string>
+    <string name="logout_cancel_text">取消登入</string>
+    <string name="login_auto">自動登入</string>
+    <string name="login_success">登入成功</string>
+
+    <string name="login_tab">登入系統</string>
+    <string name="latestnews_tab">校務公告</string>
+    <string name="information_tab">生活資訊</string>
+
+    <string name="validmain_menu_tab">主要選單</string>
+
+    <string name="campus_info_tab">校務專區</string>
+    <string name="campus_news">校務公告</string>
+    <string name="attendance">缺勤紀錄</string>
+    <string name="tvMorning">上午</string>
+    <string name="tvAfternoon">下午</string>
+    <string name="tvEvening">夜間</string>
+    <string name="dialog_title_recheck">申請補簽到</string>
+    <string name="dialog_title_option">請選擇</string>
+    <string name="absence_date">缺席日期</string>
+    <string name="absence_course">缺席課程</string>
+    <string name="absence_teacher">任課教師</string>
+    <string name="absence_type">申請假別</string>
+    <string name="absence_note">事由說明</string>
+    <string name="absence_note_hint">請輸入說明事由</string>
+    <string name="apply">送出申請</string>
+    <string name="cancel">取消申請</string>
+    <string name="teachinglog">教學日誌</string>
+    <string name="absence_apply">申請差假</string>
+    <string name="apply_date">申請日期</string>
+
+    <string name="classroom_reservation">教室預約</string>
+    <string name="classroom_reserve_tab">我要預約</string>
+    <string name="classroom_query_tab">查詢預約紀錄</string>
+    <string name="classroom_reserve_no">預約教室</string>
+    <string name="classroom_reserve_date">預約日期</string>
+    <string name="classroom_reserve_time_start">開始時間</string>
+    <string name="classroom_reserve_time_end">結束時間</string>
+
+    <string name="repair_apply">設備報修</string>
+    <string name="repair_applicant">申請人</string>
+    <string name="repair_loc">設備位置</string>
+    <string name="repair_object">故障設備</string>
+    <string name="repair_describe">故障情形</string>
+    <string name="repair_note">詳細說明</string>
+    <string name="repair_note_hint">請詳細說明設備故障情形</string>
+    <string name="repair_apply_tab">我要報修</string>
+    <string name="repair_query_tab">查詢報修紀錄</string>
+
+    <string name="class_info_tab">學務專區</string>
+    <string name="class_news">班級布告欄</string>
+    <string name="course_query">課表查詢</string>
+    <string name="course_query_quick">今日課表</string>
+    <string name="course_date">日期</string>
+    <string name="course_interval">時段</string>
+    <string name="course_name">課程</string>
+    <string name="course_teacher">任課教師</string>
+    <string name="course_classroom">教室</string>
+
+    <string name="phonebook">通訊錄</string>
+    <string name="seattable">座位表</string>
+    <string name="campusrule">校園規約</string>
+    <string name="learningmap">學習地圖</string>
+
+
+    <string name="life_info_tab">生活專區</string>
+    <string name="hot_article">熱門文章</string>
+    <string name="discussion_board">討論區</string>
+    <string name="store_menu">美食資訊</string>
+    <string name="DBD_order">便當訂單</string>
+    <string name="rhi">租屋資訊</string>
+
+
+    <string name="login_title">【登入說明】本系統供資策會中壢中心xTibaMe校園師生使用，請輸入您的帳號及密碼，如忘記請聯繫資訊管理人員。</string>
+    <string name="account_hint">帳號(預設為學號)</string>
+    <string name="password_hint">密碼(預設為身分證字號後4碼)</string>
+    <string name="login_btn">登入</string>
+    <string name="forgot">忘記帳號/密碼</string>
+
+
+    <string name="msg_InvalidUserOrPassword">帳號或密碼輸入錯誤</string>
+    <string name="msg_NoNetwork">無法連線</string>
+    <string name="msg_CourseNotFound">當日沒有課</string>
+    <string name="msg_selectAbsenceType">請選擇申請假別</string>
+    <string name="msg_selectRepairLoc">請選擇設備位置</string>
+    <string name="msg_selectRepairObject">請選擇故障設備</string>
+    <string name="msg_selectRepairDescribe">請選擇故障情形</string>
+
+
+</resources>

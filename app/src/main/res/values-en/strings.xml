@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TibaWe</string>
+    <string name="qrcode_signin">QRCode Signin</string>
+    <string name="qrcode_siginin_text">Open Camera for QRCode</string>
+    <string name="information_detail">Information Details</string>
+    <string name="logout">LOGOUT</string>
+    <string name="logout_msg">Do you want to LOGOUT?</string>
+    <string name="logout_cancel">CANCEL</string>
+    <string name="logout_cancel_text">Cancel Login</string>
+    <string name="login_auto">Auto Login</string>
+    <string name="login_success">Login Success</string>
+
+    <string name="login_tab">LOGIN</string>
+    <string name="latestnews_tab">LatestNews</string>
+    <string name="information_tab">Informations</string>
+
+    <string name="validmain_menu_tab">Main Menu</string>
+
+
+    <string name="campus_info_tab">Campus Informations</string>
+    <string name="campus_news">Campus News</string>
+    <string name="attendance">Attendance Records</string>
+    <string name="tvMorning">Morning</string>
+    <string name="tvAfternoon">Afternoon</string>
+    <string name="tvEvening">Evening</string>
+    <string name="dialog_title_recheck">ReCheck Apply</string>
+    <string name="dialog_title_option">Select One</string>
+    <string name="absence_date">Date</string>
+    <string name="absence_course">Course</string>
+    <string name="absence_teacher">Teacher</string>
+    <string name="absence_type">Type</string>
+    <string name="absence_note">Note</string>
+    <string name="absence_note_hint">Please fill out the reasons.</string>
+    <string name="apply">APPLY</string>
+    <string name="cancel">CANCEL</string>
+    <string name="teachinglog">Teaching Journals</string>
+    <string name="absence_apply">Leave Application</string>
+    <string name="apply_date">Date</string>
+
+    <string name="classroom_reservation">Reserve Classroom</string>
+    <string name="classroom_reserve_tab">Making Reservation</string>
+    <string name="classroom_query_tab">Check records</string>
+    <string name="classroom_reserve_no">Classroom No.</string>
+    <string name="classroom_reserve_date">Reservation Date</string>
+    <string name="classroom_reserve_time_start">Start At</string>
+    <string name="classroom_reserve_time_end">End At</string>
+
+    <string name="repair_apply">Repairment Require</string>
+    <string name="repair_applicant">Applicant</string>
+    <string name="repair_loc">Location</string>
+    <string name="repair_object">Object</string>
+    <string name="repair_describe">Description</string>
+    <string name="repair_note">Detail Description</string>
+    <string name="repair_note_hint">Please fill out the details.</string>
+    <string name="repair_apply_tab">Applying Requirement</string>
+    <string name="repair_query_tab">Check records</string>
+
+
+    <string name="class_info_tab">Class Informations</string>
+    <string name="class_news">Class News</string>
+    <string name="course_query">My Courses</string>
+    <string name="course_query_quick">Today\'s Schedule</string>
+    <string name="course_date">Date</string>
+    <string name="course_interval">Interval</string>
+    <string name="course_name">Course Name</string>
+    <string name="course_teacher">Teacher</string>
+    <string name="course_classroom">Classroom</string>
+
+    <string name="phonebook">PhoneBook</string>
+    <string name="seattable">Seat Table</string>
+    <string name="campusrule">Campus Regulations</string>
+    <string name="learningmap">Learning Map</string>
+
+
+    <string name="life_info_tab">life Informations</string>
+    <string name="hot_article">Popular Discussions</string>
+    <string name="discussion_board">Discussion Zone</string>
+    <string name="store_menu">Food Store Menu</string>
+    <string name="DBD_order">Order List</string>
+    <string name="rhi">Renting House</string>
+
+
+    <string name="login_title">[Instruction] \n TibaWe is for all members of iii-chungli x TibaMe. Login with your account and passwords, if you forgot your account or password, please contact with our IT administrator.  </string>
+    <string name="account_hint">Enter Account</string>
+    <string name="password_hint">Enter Passwords</string>
+    <string name="login_btn">Login</string>
+    <string name="forgot">Forgot Account/Passwords</string>
+
+
+
+    <string name="msg_InvalidUserOrPassword">Invalid user name or password</string>
+    <string name="msg_NoNetwork">No network connection available</string>
+    <string name="msg_CourseNotFound">No courses during the date.</string>
+    <string name="msg_selectAbsenceType">Please select the type of your Application.</string>
+    <string name="msg_selectRepairLoc">Please select the location of the equipments</string>
+    <string name="msg_selectRepairObject">Please select the type of equipments</string>
+    <string name="msg_selectRepairDescribe">Please select the disfunctional type</string>
+
+</resources>

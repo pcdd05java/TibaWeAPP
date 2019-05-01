@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".campuszone.RepairApplyActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="right|center_vertical"
+                android:text="@string/repair_applicant"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvRepairApplicant"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="鄭迪"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="right|center_vertical"
+                android:text="@string/repair_loc"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary" />
+
+            <Spinner
+                android:id="@+id/spRepairLoc"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="right|center_vertical"
+                android:text="@string/repair_object"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary" />
+
+            <Spinner
+                android:id="@+id/spRepairObject"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="right|center_vertical"
+                android:text="@string/repair_describe"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary" />
+            <Spinner
+                android:id="@+id/spRepairDescribe"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="right|center_vertical"
+                android:text="@string/repair_note"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp"
+                android:background="@color/colorPrimary" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edRepairNote"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:layout_gravity="center"
+            android:layout_marginLeft="34dp"
+            android:gravity="top"
+            android:minLines="4"
+            android:hint="@string/repair_note_hint"
+            android:backgroundTint="@color/colorDarkBlue"
+            android:textCursorDrawable="@drawable/darkblue_cursor"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="end|right"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnAbsenceCancel"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:gravity="end|center_vertical"
+                android:text="@string/cancel"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton" />
+            <Button
+                android:id="@+id/btnAbsenceSubmit"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:gravity="end|center_vertical"
+                android:text="@string/apply"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

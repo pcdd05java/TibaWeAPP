@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="idv.ca107g2.tibawe">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_icon_transparent"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_icon_transparent"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".BeforeMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ValidMainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".QRCodeSignInActivity"
+            android:label="@string/qrcode_signin"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".lifezone.RhiDetailActivity"
+            android:label="@string/information_detail"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".lifezone.StoreMenuDetailActivity"
+            android:label="@string/information_detail"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".campuszone.Campus_News"
+            android:label="@string/campus_news"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".classzone.Class_News"
+            android:label="@string/class_news"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".campuszone.AttendanceActivity"
+            android:label="@string/attendance"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".campuszone.AbsenceApplyActivity"
+            android:label="@string/absence_apply"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".campuszone.RepairApplyActivity"
+            android:label="@string/repair_apply"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".campuszone.ClassroomReserveActivity"
+            android:label="@string/classroom_reservation"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".classzone.CourseQueryActivity"
+            android:label="@string/course_query"
+            android:parentActivityName=".ValidMainActivity"/>
+    </application>
+
+</manifest>

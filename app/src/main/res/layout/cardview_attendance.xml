@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cvAttendance="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:id="@+id/cvAttendance"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    cvAttendance:cardCornerRadius="2dp"
+    cvAttendance:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="日期時段"
+            android:gravity="center"
+            android:background="@color/colorAccent"/>
+        <TextView
+            android:id="@+id/tvRecheckDate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="4/11"
+            android:gravity="center|bottom"/>
+        <TextView
+            android:id="@+id/tvRecheckInterval"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="上午"
+            android:gravity="center|top"/>
+
+    </LinearLayout>
+<LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="缺勤課程"
+        android:gravity="center"
+        android:background="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/tvRecheckCourse"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Java"
+        android:gravity="center|bottom"/>
+    <TextView
+        android:id="@+id/tvRecheckTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="吳冠宏"
+        android:gravity="center|top"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="申請處理"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+
+            <Button
+                android:id="@+id/btnApply"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="申請"
+                android:gravity="center"
+                android:onClick="applyOnClick"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="備註"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tvRecheckStatus"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="未處理"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

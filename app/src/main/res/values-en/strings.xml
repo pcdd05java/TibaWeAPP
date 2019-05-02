@@ -91,10 +91,14 @@
 
     <string name="msg_InvalidUserOrPassword">Invalid user name or password</string>
     <string name="msg_NoNetwork">No network connection available</string>
-    <string name="msg_CourseNotFound">No courses during the date.</string>
-    <string name="msg_selectAbsenceType">Please select the type of your Application.</string>
+    <string name="msg_CourseNotFound">No courses during the date</string>
+    <string name="msg_selectAbsenceType">Please select the type of your Application</string>
     <string name="msg_selectRepairLoc">Please select the location of the equipments</string>
     <string name="msg_selectRepairObject">Please select the type of equipments</string>
     <string name="msg_selectRepairDescribe">Please select the disfunctional type</string>
+
+    <string name="msg_loginbeforeQRCode">Please Login first</string>
+    <string name="msg_opencamera">Start scan QRCode</string>
+    <string name="msg_pleaseopencamera">Please permit for using the Camera</string>
 
 </resources>

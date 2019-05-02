@@ -1,4 +1,7 @@
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
     <string name="app_name">TibaWe</string>
     <string name="qrcode_signin">QRCode簽到</string>
     <string name="qrcode_siginin_text">開啟相機掃描QRCode</string>
@@ -92,6 +95,10 @@
     <string name="msg_selectRepairLoc">請選擇設備位置</string>
     <string name="msg_selectRepairObject">請選擇故障設備</string>
     <string name="msg_selectRepairDescribe">請選擇故障情形</string>
+
+    <string name="msg_loginbeforeQRCode">請先登入</string>
+    <string name="msg_opencamera">請掃描QRCode簽到</string>
+    <string name="msg_pleaseopencamera">請打開相機權限進行掃描</string>
 
 
 </resources>

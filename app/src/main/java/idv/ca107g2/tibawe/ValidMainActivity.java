@@ -18,6 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.qrcore.util.QRScannerHelper;
 
 import idv.ca107g2.tibawe.classzone.CourseQueryFragment;
 import idv.ca107g2.tibawe.lifezone.HotArticleFragment;
@@ -27,6 +30,9 @@ public class ValidMainActivity extends AppCompatActivity {
     SharedPreferences preferences;
 
     boolean login;
+
+    private boolean hasCameraPermission = true;
+    private QRScannerHelper mScannerHelper;
 
 
     @Override
@@ -39,6 +45,7 @@ public class ValidMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_validmain);
         Toolbar toolbar = findViewById(R.id.toolbar_validmain);
 
+        initQRScanner();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
@@ -69,6 +76,18 @@ public class ValidMainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
 
     }
+
+    private void initQRScanner() {
+        mScannerHelper = new QRScannerHelper(this);
+        mScannerHelper.setCallBack(new QRScannerHelper.OnScannerCallBack() {
+            @Override
+            public void onScannerBack(String result) {
+                Toast.makeText(ValidMainActivity.this, result, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
     public static class AlertFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
@@ -128,9 +147,23 @@ public class ValidMainActivity extends AppCompatActivity {
     }
 
     public void onClickQRCode(View view){
-        Intent intent = new Intent(this,QRCodeSignInActivity.class);
-        startActivity(intent);
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        if (!hasCameraPermission) {
+            Toast.makeText(this, R.string.msg_pleaseopencamera, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        mScannerHelper.startScanner();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (mScannerHelper != null) {
+            mScannerHelper.onActivityResult(requestCode, resultCode, data);
+            Intent intent = new Intent(this, QRCodeSignInActivity.class);
+            startActivity(intent);
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            finish();
+        }
     }
 
     private class ValidMainPagerAdapter extends FragmentPagerAdapter {

@@ -3,9 +3,7 @@ package idv.ca107g2.tibawe;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,7 +23,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import com.qrcore.util.QRScannerHelper;
 
 import java.lang.reflect.Type;
 import java.util.Map;
@@ -44,9 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private MemberVO memberVO;
     private Boolean isQRCode;
 
-    private boolean hasCameraPermission = true;
-    private QRScannerHelper mScannerHelper;
-
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
     @Override
@@ -58,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
-
-        initQRScanner();
-
 
 
         // Menu item click的監聽事件一樣要設定在setSupportActionBar之後才有作用
@@ -76,29 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1) {
-            int len = permissions.length;
-            for (int i = 0; i < len; i++) {
-                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                    hasCameraPermission = false;
-                }
-            }
-        }
-    }
-
-    private void initQRScanner() {
-        mScannerHelper = new QRScannerHelper(this);
-        mScannerHelper.setCallBack(new QRScannerHelper.OnScannerCallBack() {
-            @Override
-            public void onScannerBack(String result) {
-                Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private Dialog loginCheck(final Boolean isQRCode){
@@ -177,19 +145,22 @@ public class MainActivity extends AppCompatActivity {
                             .putString("member_ID", member_ID)
                             .putString("membername", memberVO.getMemberName())
                             .putString("class_no", memberVO.getClass_no())
+                            .putString("memberaccount", memberVO.getMemberAccount())
                             .putString("memberpass", memberpass).apply();
 
                     setResult(RESULT_OK);
                     if(!isQRCode){
                         Toast.makeText(MainActivity.this, R.string.login_success, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, ValidMainActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                    finish();
-                    loginDialog.cancel();
+                        Intent intent = new Intent(MainActivity.this, ValidMainActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        finish();
+                        loginDialog.cancel();
                     } else{
-                        Toast.makeText(MainActivity.this, R.string.msg_opencamera, Toast.LENGTH_SHORT).show();
-                        openCamera();
+                        Intent intent = new Intent(MainActivity.this, ValidMainActivity.class);
+                        intent.putExtra("isQRCode", isQRCode);
+                        startActivity(intent);
+                        finish();
                         loginDialog.cancel();
                     }
 
@@ -230,26 +201,6 @@ public class MainActivity extends AppCompatActivity {
         loginCheck(isQRCode);
     }
 
-    public void openCamera(){
-        if (!hasCameraPermission) {
-            Toast.makeText(this, R.string.msg_pleaseopencamera, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        mScannerHelper.startScanner();
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mScannerHelper != null) {
-            mScannerHelper.onActivityResult(requestCode, resultCode, data);
-            Intent intent = new Intent(this, QRCodeSignInActivity.class);
-            finish();
-            startActivity(intent);
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-        }
-    }
 
       private boolean isMember(final String member_ID, final String memberpass) {
         boolean isMember = false;

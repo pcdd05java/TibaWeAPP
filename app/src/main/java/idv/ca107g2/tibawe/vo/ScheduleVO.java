@@ -19,6 +19,7 @@ public class ScheduleVO implements java.io.Serializable {
 	private String homework;
 	private Integer signreq;
 	private String note;
+
 	public String getCourseTime_no() {
 		return courseTime_no;
 	}

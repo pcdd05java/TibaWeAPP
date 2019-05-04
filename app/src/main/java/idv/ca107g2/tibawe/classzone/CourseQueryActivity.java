@@ -37,7 +37,7 @@ import idv.ca107g2.tibawe.R;
 import idv.ca107g2.tibawe.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 
-public class CourseQueryActivity extends AppCompatActivity {
+public class    CourseQueryActivity extends AppCompatActivity {
     private static final String TAG = "CourseQueryActivity";
     private MaterialCalendarView calendarView;
     private java.util.Date date = new java.util.Date();

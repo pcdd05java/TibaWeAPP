@@ -14,26 +14,46 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.qrcore.util.QRScannerHelper;
+
+import java.lang.reflect.Type;
+import java.util.Calendar;
+import java.util.Map;
 
 import idv.ca107g2.tibawe.classzone.CourseQueryFragment;
 import idv.ca107g2.tibawe.lifezone.HotArticleFragment;
+import idv.ca107g2.tibawe.task.CommonTask;
 
 public class ValidMainActivity extends AppCompatActivity {
     Menu menu;
     SharedPreferences preferences;
+    String qrtime_date, class_no, memberaccount, nowDateString;
+    java.sql.Date nowDate;
+    int msg_code;
+
+    private static int hr,min;
+    private static final String TAG = "CourseQueryFragment";
+    private CommonTask havetoCheckTask, qrCheckTask;
+
+
+
 
     boolean login;
 
     private boolean hasCameraPermission = true;
     private QRScannerHelper mScannerHelper;
-
+    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +64,6 @@ public class ValidMainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_validmain);
         Toolbar toolbar = findViewById(R.id.toolbar_validmain);
-
-        initQRScanner();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
@@ -66,7 +84,6 @@ public class ValidMainActivity extends AppCompatActivity {
         });
 
 
-
         ValidMainPagerAdapter pagerAdapter = new ValidMainPagerAdapter(getSupportFragmentManager());
         ViewPager pager =  findViewById(R.id.vpMain);
         pager.setAdapter(pagerAdapter);
@@ -75,14 +92,19 @@ public class ValidMainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tbMain);
         tabLayout.setupWithViewPager(pager);
 
+        initQRScanner();
+
+        isQRCode();
+
     }
+
 
     private void initQRScanner() {
         mScannerHelper = new QRScannerHelper(this);
         mScannerHelper.setCallBack(new QRScannerHelper.OnScannerCallBack() {
             @Override
             public void onScannerBack(String result) {
-                Toast.makeText(ValidMainActivity.this, result, Toast.LENGTH_SHORT).show();
+                qrtime_date = result;
             }
         });
     }
@@ -146,12 +168,74 @@ public class ValidMainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void isQRCode(){
+        if(getIntent().getBooleanExtra("isQRCode", false)){
+            havetoCheckNow();
+        }
+    }
+
     public void onClickQRCode(View view){
+        havetoCheckNow();
+    }
+
+    public void havetoCheckNow(){
+        Calendar c = Calendar.getInstance();
+        hr = c.get(Calendar.HOUR_OF_DAY);
+        String url = Util.URL + "AttendanceServlet";
+        class_no =  preferences.getString("class_no", "");
+        memberaccount = preferences.getString("memberaccount","");
+        nowDate= new java.sql.Date(System.currentTimeMillis());
+        nowDateString = nowDate.toString();
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "havetoCheckNow");
+        jsonObject.addProperty("class_no", class_no);
+        jsonObject.addProperty("memberaccount", memberaccount);
+        jsonObject.addProperty("nowDateString", nowDateString);
+        jsonObject.addProperty("hr", hr);
+
+        String jsonOut = jsonObject.toString();
+//        Util.showToast(getContext(), jsonOut);
+        if (Util.networkConnected(this)) {
+            havetoCheckTask = new CommonTask(url, jsonOut);
+            try {
+                String result = havetoCheckTask.execute().get();
+
+                Type collectionType = new TypeToken<Map>() {
+                }.getType();
+                Map haveCheckNow = gson.fromJson(result, collectionType);
+
+                Boolean havetoCheckNow = Boolean.valueOf(haveCheckNow.get("havetoCheckNow").toString());
+                Boolean isChecked = Boolean.valueOf(haveCheckNow.get("isChecked").toString());
+
+                if(havetoCheckNow && !isChecked){
+                    openCamera();
+                }else if(!havetoCheckNow){
+                    msg_code = 2;
+                }else if(isChecked){
+                        msg_code = 5;
+                }
+
+                Intent intent = new Intent(this, QRCodeSignInActivity.class);
+                intent.putExtra("msg_code", msg_code);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Util.showToast(this, R.string.msg_NoNetwork);
+        }
+    }
+
+    public void openCamera(){
         if (!hasCameraPermission) {
             Toast.makeText(this, R.string.msg_pleaseopencamera, Toast.LENGTH_SHORT).show();
             return;
         }
         mScannerHelper.startScanner();
+
     }
 
     @Override
@@ -159,10 +243,44 @@ public class ValidMainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (mScannerHelper != null) {
             mScannerHelper.onActivityResult(requestCode, resultCode, data);
+
+            qrCheck();
             Intent intent = new Intent(this, QRCodeSignInActivity.class);
+            intent.putExtra("msg_code", msg_code);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            finish();
+        }
+    }
+
+
+    public void qrCheck() {
+        Calendar c = Calendar.getInstance();
+        hr = c.get(Calendar.HOUR_OF_DAY);
+        min = c.get(Calendar.MINUTE);
+        String url = Util.URL + "AttendanceServlet";
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "qrCheckIn");
+        jsonObject.addProperty("class_no", class_no);
+        jsonObject.addProperty("memberaccount", memberaccount);
+        jsonObject.addProperty("qrtime_date", qrtime_date);
+        jsonObject.addProperty("hr", hr);
+        jsonObject.addProperty("min", min);
+        String jsonOut = jsonObject.toString();
+
+        if (Util.networkConnected(this)) {
+            qrCheckTask = new CommonTask(url, jsonOut);
+            try {
+                String result = qrCheckTask.execute().get();
+
+                msg_code = Integer.valueOf(result);
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+
+        } else {
+            Util.showToast(this, R.string.msg_NoNetwork);
         }
     }
 

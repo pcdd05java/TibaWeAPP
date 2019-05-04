@@ -157,6 +157,7 @@ public class BeforeMainActivity extends AppCompatActivity {
             }
         } else {
             Util.showToast(this, R.string.msg_NoNetwork);
+            finish();
         }
         return isMember;
     }
@@ -170,4 +171,5 @@ public class BeforeMainActivity extends AppCompatActivity {
             isMemberTask.cancel(true);
         }
     }
+
 }

@@ -98,7 +98,13 @@
     <string name="msg_selectRepairDescribe">Please select the disfunctional type</string>
 
     <string name="msg_loginbeforeQRCode">Please Login first</string>
-    <string name="msg_opencamera">Start scan QRCode</string>
     <string name="msg_pleaseopencamera">Please permit for using the Camera</string>
+
+    <string name="msg_qrfailed">Failure, please contact administrator</string>
+    <string name="msg_qr_invalid_date">Your QRCode is invalid</string>
+    <string name="msg_qr_no_need">No need for sign in now</string>
+    <string name="msg_qr_invalid_delayed">You\'re late</string>
+    <string name="msg_qrsuccess">Sign in successfully</string>
+    <string name="msg_qralready">You already signed in</string>
 
 </resources>

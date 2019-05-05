@@ -21,6 +21,39 @@ public class Util {
     // 偏好設定檔案名稱
     public final static String PREF_FILE = "preference";
 
+    public static int qrmsg;
+
+
+    public static int msgCode(int msg_code){
+        switch(msg_code){
+            case 0:
+                qrmsg = R.string.msg_qrfailed;
+                break;
+            case 1:
+                qrmsg = R.string.msg_qr_invalid_date;
+                break;
+            case 2:
+                qrmsg = R.string.msg_qr_no_need;
+                break;
+            case 3:
+                qrmsg = R.string.msg_qr_invalid_delayed;
+                break;
+            case 4:
+                qrmsg = R.string.msg_qrsuccess;
+                break;
+            case 5:
+                qrmsg = R.string.msg_qralready;
+                break;
+            case 6:
+                qrmsg = R.string.msg_qr_invalid_interval;
+                break;
+            case 7:
+                qrmsg =  R.string.msg_qr_norecord;
+                break;
+        }
+        return qrmsg;
+    }
+
     // 功能分類
 //    public final static Page[] PAGES = {
 //            new Page(0, "Book", R.drawable.books, BookActivity.class),

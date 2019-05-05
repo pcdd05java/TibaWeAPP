@@ -38,7 +38,7 @@ import idv.ca107g2.tibawe.task.CommonTask;
 public class ValidMainActivity extends AppCompatActivity {
     Menu menu;
     SharedPreferences preferences;
-    String qrtime_date, class_no, memberaccount, nowDateString;
+    String qrtime_date, class_no, memberaccount, nowDateString, qrtime_interval;
     java.sql.Date nowDate;
     int msg_code;
 
@@ -104,7 +104,10 @@ public class ValidMainActivity extends AppCompatActivity {
         mScannerHelper.setCallBack(new QRScannerHelper.OnScannerCallBack() {
             @Override
             public void onScannerBack(String result) {
-                qrtime_date = result;
+
+                qrtime_interval = String.valueOf(result.charAt(11));
+                qrtime_date = result.substring(0, 10);
+
             }
         });
     }
@@ -212,14 +215,19 @@ public class ValidMainActivity extends AppCompatActivity {
                     openCamera();
                 }else if(!havetoCheckNow){
                     msg_code = 2;
+                    Intent intent = new Intent(this, QRCodeSignInActivity.class);
+                    intent.putExtra("msg_code", msg_code);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 }else if(isChecked){
-                        msg_code = 5;
+                    msg_code = 5;
+                    Intent intent = new Intent(this, QRCodeSignInActivity.class);
+                    intent.putExtra("msg_code", msg_code);
+                    startActivity(intent);
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 }
 
-                Intent intent = new Intent(this, QRCodeSignInActivity.class);
-                intent.putExtra("msg_code", msg_code);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
 
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
@@ -244,7 +252,23 @@ public class ValidMainActivity extends AppCompatActivity {
         if (mScannerHelper != null) {
             mScannerHelper.onActivityResult(requestCode, resultCode, data);
 
-            qrCheck();
+            int interval;
+            if(7<=hr && hr<11) {
+                interval=1;
+            }else if (11<=hr && hr<17) {
+                interval=2;
+            }else {
+                interval=3;
+            }
+
+
+            if (!nowDateString.equals(qrtime_date)){
+                msg_code = 1;
+            }else if((nowDateString.equals(qrtime_date)) && (!qrtime_interval.equals(String.valueOf(interval)))){
+                msg_code = 6;
+            }else if ((nowDateString.equals(qrtime_date)) && (qrtime_interval.equals(String.valueOf(interval)))){
+                qrCheck();}
+
             Intent intent = new Intent(this, QRCodeSignInActivity.class);
             intent.putExtra("msg_code", msg_code);
             startActivity(intent);

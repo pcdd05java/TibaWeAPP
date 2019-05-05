@@ -60,14 +60,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="4/11"
+                    android:text="---"
                     android:gravity="center|bottom"/>
                 <TextView
                     android:id="@+id/tvQRInterval"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="上午"
+                    android:text="---"
                     android:gravity="center|top"/>
 
             </LinearLayout>
@@ -89,7 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="Java"
+                    android:text="---"
                     android:gravity="center"/>
 
             </LinearLayout>
@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:text="2019-05-03"
+                    android:text="---"
                     android:gravity="center"
                     android:textColor="@color/colorDarkBlue" />
 

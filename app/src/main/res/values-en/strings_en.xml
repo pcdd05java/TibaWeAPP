@@ -101,10 +101,13 @@
     <string name="msg_pleaseopencamera">Please permit for using the Camera</string>
 
     <string name="msg_qrfailed">Failure, please contact administrator</string>
-    <string name="msg_qr_invalid_date">Your QRCode is invalid</string>
+    <string name="msg_qr_invalid_date">Your QRCode is invalid-Out of Date</string>
     <string name="msg_qr_no_need">No need for sign in now</string>
     <string name="msg_qr_invalid_delayed">You\'re late</string>
     <string name="msg_qrsuccess">Sign in successfully</string>
     <string name="msg_qralready">You already signed in</string>
+    <string name="msg_qr_invalid_interval">Your QRCode is invalid-Out of Interval</string>
+    <string name="msg_qr_norecord">You don\'t have any records now</string>
+
 
 </resources>

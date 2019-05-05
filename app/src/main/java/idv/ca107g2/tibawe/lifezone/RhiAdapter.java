@@ -42,7 +42,7 @@ class RhiAdapter extends RecyclerView.Adapter<RhiAdapter.ViewHolder> {
     public RhiAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         CardView cv =
-                (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_rhi, parent, false);
+                (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_info, parent, false);
         return new ViewHolder(cv);
     }
 

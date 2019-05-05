@@ -61,7 +61,42 @@ public class QRCodeSignInActivity extends AppCompatActivity{
 
     }
 
-    public void lastQRCheck(){
+    public void qrResult(){
+
+        qr_result = findViewById(R.id.qr_result);
+
+        msg_code = getIntent().getIntExtra("msg_code", 0);
+
+        switch (msg_code){
+            case 0:
+                qr_result.setText(R.string.msg_qrfailed);
+                break;
+            case 1:
+                qr_result.setText(R.string.msg_qr_invalid_date);
+                break;
+            case 2:
+                qr_result.setText(R.string.msg_qr_no_need);
+                break;
+            case 3:
+                qr_result.setText(R.string.msg_qr_invalid_delayed);
+                break;
+            case 4:
+                qr_result.setText(R.string.msg_qrsuccess);
+                break;
+            case 5:
+                qr_result.setText(R.string.msg_qralready);
+                break;
+            case 6:
+                qr_result.setText(R.string.msg_qr_invalid_interval);
+                break;
+            case 7:
+                qr_result.setText(R.string.msg_qr_norecord);
+                break;
+        }
+    }
+
+
+    public void lastQRCheck() {
         tvQRDate = findViewById(R.id.tvQRDate);
         tvQRInterval = findViewById(R.id.tvQRInterval);
         tvQRCourse = findViewById(R.id.tvQRCourse);
@@ -101,55 +136,28 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             Util.showToast(this, R.string.msg_NoNetwork);
         }
 
-        tvQRDate.setText(scheduleVO.getSdate().toString());
-        switch ((scheduleVO.getInterval())){
-            case 1:
-                tvQRInterval.setText("上午");
-                break;
-            case 2:
-                tvQRInterval.setText("下午");
-                break;
-            case 3:
-                tvQRInterval.setText("夜間");
-                break;
+        if (attendanceVO == null || scheduleVO == null) {
+            msg_code = 7;
+            qr_result.setText(R.string.msg_qr_norecord);
+        } else {
+            tvQRDate.setText(scheduleVO.getSdate().toString());
+            switch ((scheduleVO.getInterval())) {
+                case 1:
+                    tvQRInterval.setText("上午");
+                    break;
+                case 2:
+                    tvQRInterval.setText("下午");
+                    break;
+                case 3:
+                    tvQRInterval.setText("夜間");
+                    break;
+            }
+            tvQRCourse.setText(scheduleVO.getSubjectName());
+            tvQRTime.setText(attendanceVO.getQrecord().toString());
         }
-        tvQRCourse.setText(scheduleVO.getSubjectName());
-        tvQRTime.setText(attendanceVO.getQrecord().toString());
+        Util.showToast(this, Util.msgCode(msg_code));
     }
 
-    public void qrResult(){
-
-        qr_result = findViewById(R.id.qr_result);
-
-        msg_code = getIntent().getIntExtra("msg_code", 0);
-
-        switch (msg_code){
-            case 0:
-                Util.showToast(this, R.string.msg_qrfailed);
-                qr_result.setText(R.string.msg_qrfailed);
-                break;
-            case 1:
-                Util.showToast(this, R.string.msg_qr_invalid_date);
-                qr_result.setText(R.string.msg_qr_invalid_date);
-                break;
-            case 2:
-                Util.showToast(this, R.string.msg_qr_no_need);
-                qr_result.setText(R.string.msg_qr_no_need);
-                break;
-            case 3:
-                Util.showToast(this, R.string.msg_qr_invalid_delayed);
-                qr_result.setText(R.string.msg_qr_invalid_delayed);
-                break;
-            case 4:
-                Util.showToast(this, R.string.msg_qrsuccess);
-                qr_result.setText(R.string.msg_qrsuccess);
-                break;
-            case 5:
-                Util.showToast(this, R.string.msg_qralready);
-                qr_result.setText(R.string.msg_qralready);
-                break;
-        }
-    }
 
 
 

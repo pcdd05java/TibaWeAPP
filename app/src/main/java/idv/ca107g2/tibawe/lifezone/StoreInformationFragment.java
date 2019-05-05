@@ -1,4 +1,4 @@
-package idv.ca107g2.tibawe.campuszone;
+package idv.ca107g2.tibawe.lifezone;
 
 
 import android.content.Intent;
@@ -22,78 +22,70 @@ import java.util.List;
 
 import idv.ca107g2.tibawe.R;
 import idv.ca107g2.tibawe.Util;
-import idv.ca107g2.tibawe.lifezone.StoreDetailActivity;
 import idv.ca107g2.tibawe.task.CommonTask;
-import idv.ca107g2.tibawe.vo.Latest_News_VO;
-
+import idv.ca107g2.tibawe.vo.StoreInformationVO;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LatestNewsFragment extends Fragment {
-
-    private static final String TAG = "LatestNewsFragment";
-    private CommonTask getLatestNewsTask;
-    private List<Latest_News_VO> latest_news_list;
-    private RecyclerView newsRecycler;
+public class StoreInformationFragment extends Fragment {
+    private static final String TAG = "StoreInfoFragment";
+    private CommonTask getStoreTask;
+    private List<StoreInformationVO> storeInformationList;
+    private RecyclerView storeRecycler;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        newsRecycler =
+        storeRecycler =
                 (RecyclerView) inflater.inflate(R.layout.recyclerview_fragment, container, false);
 
 
-//        LatestNewsAdapter adapter = new LatestNewsAdapter(newsTitles, newsPics, newsContents);
-//        newsRecycler.setAdapter(adapter);
+//        StoreInformationAdapter adapter = new StoreInformationAdapter(storeTitles, storePics);
+//        storeRecycler.setAdapter(adapter);
         StaggeredGridLayoutManager layoutManager =
                 new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
-        newsRecycler.setLayoutManager(layoutManager);
+        storeRecycler.setLayoutManager(layoutManager);
+
+        findStore();
 
         PagerSnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(newsRecycler);
+        snapHelper.attachToRecyclerView(storeRecycler);
 
-        findNews();
 
-//        adapter.setListener(new LatestNewsAdapter.Listener() {
-//            @Override
-//            public void onClick(int position) {
-//                Intent intent = new Intent(getActivity(), RhiDetailActivity.class);
-//                intent.putExtra(RhiDetailActivity.EXTRA_INFO_ID, position);
-//                getActivity().startActivity(intent);
-//            }
-//        });
-        return newsRecycler;
+        return storeRecycler;
 
     }
 
-    public void findNews() {
+    public void findStore() {
 
-        String url = Util.URL + "Latest_News_Servlet";
+        String url = Util.URL + "StoreInformationServlet";
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("action", "getall");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
         if (Util.networkConnected(getActivity())) {
-            getLatestNewsTask = new CommonTask(url, jsonOut);
+            getStoreTask = new CommonTask(url, jsonOut);
             try {
-                String result = getLatestNewsTask.execute().get();
-                Type collectionType = new TypeToken<List<Latest_News_VO>>() {
+                String result = getStoreTask.execute().get();
+                Type collectionType = new TypeToken<List<StoreInformationVO>>() {
                 }.getType();
-                latest_news_list = gson.fromJson(result, collectionType);
+                storeInformationList = gson.fromJson(result, collectionType);
 
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
-            if (latest_news_list.isEmpty()) {
+            if (storeInformationList.isEmpty()) {
 //                view = inflater.inflate(R.layout.fragment_course_query, container, false);
                 Util.showToast(getContext(), R.string.msg_CourseNotFound);
             } else {
 
-                LatestNewsAdapter adapter = new LatestNewsAdapter(latest_news_list);
-                newsRecycler.setAdapter(adapter);
-                adapter.setListener(new LatestNewsAdapter.Listener() {
+                StoreInformationAdapter adapter = new StoreInformationAdapter(storeInformationList);
+                storeRecycler.setAdapter(adapter);
+                adapter.setListener(new StoreInformationAdapter.Listener() {
                     @Override
                     public void onClick(int position) {
                         Intent intent = new Intent(getActivity(), StoreDetailActivity.class);

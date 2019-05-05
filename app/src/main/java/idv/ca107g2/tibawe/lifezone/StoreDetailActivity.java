@@ -13,7 +13,7 @@ import com.hannesdorfmann.swipeback.SwipeBack;
 
 import idv.ca107g2.tibawe.R;
 
-public class StoreMenuDetailActivity extends AppCompatActivity {
+public class StoreDetailActivity extends AppCompatActivity {
     public static final String EXTRA_INFO_ID = "infoId";
 
     @Override
@@ -27,11 +27,11 @@ public class StoreMenuDetailActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         int infoId = (Integer)getIntent().getExtras().get(EXTRA_INFO_ID);
-        String infoTitles = StoreMenu.storeMenus[infoId].getStoreTitle();
+        String infoTitles = StoreInformation.STORE_INFORMATIONS[infoId].getStoreTitle();
         TextView textView = findViewById(R.id.tvInfoTitle);
         textView.setText(infoTitles);
 
-        int infoPics = StoreMenu.storeMenus[infoId].getStorePicId();
+        int infoPics = StoreInformation.STORE_INFORMATIONS[infoId].getStorePicId();
         ImageView imageView = findViewById(R.id.ivInfoPic1);
         imageView.setImageDrawable(ContextCompat.getDrawable(this, infoPics));
 

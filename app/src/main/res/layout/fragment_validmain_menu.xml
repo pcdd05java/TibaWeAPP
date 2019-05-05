@@ -20,6 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textSize="17dp"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/campus_info_tab" />
     </FrameLayout>
     <FrameLayout
@@ -51,6 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textSize="17dp"
+            android:textColor="@color/colorPrimaryDark"
+
             android:text="@string/class_info_tab" />
     </FrameLayout>
     <FrameLayout
@@ -82,6 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textSize="17dp"
+            android:textColor="@color/colorPrimaryDark"
             android:text="@string/life_info_tab" />
     </FrameLayout>
     <FrameLayout

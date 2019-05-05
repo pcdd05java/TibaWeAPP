@@ -21,14 +21,31 @@
             android:layout_weight="1.0"
             android:scaleType="centerCrop"
             android:id="@+id/cvivInfoPic"/>
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
             android:id="@+id/cvtvInfoTitle"
-            android:textAlignment="textStart"/>
-
+            android:textAlignment="textStart"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="15dp"
+            android:text="八方雲集"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="4dp"
+            android:id="@+id/cvtvInfoTel"
+            android:textAlignment="textEnd"
+            android:text="02-1234567"/>
+        </LinearLayout>
 
     </LinearLayout>
 

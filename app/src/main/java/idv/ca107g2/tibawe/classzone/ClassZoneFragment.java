@@ -45,7 +45,7 @@ public class ClassZoneFragment extends Fragment {
             public void onClick(int position) {
                 switch (position) {
                     case 0:
-                        Intent intent0 = new Intent(getActivity(), Class_News.class);
+                        Intent intent0 = new Intent(getActivity(), ClassInformationActivity.class);
                         getActivity().startActivity(intent0);
                         getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                         break;
@@ -54,15 +54,15 @@ public class ClassZoneFragment extends Fragment {
                         getActivity().startActivity(intent1);
                         break;
 //                    case 2:
-//                        Intent intent2 = new Intent(getActivity(), Campus_News.class);
+//                        Intent intent2 = new Intent(getActivity(), CampusNewsActivity.class);
 //                        getActivity().startActivity(intent2);
 //                        break;
 //                    case 3:
-//                        Intent intent3 = new Intent(getActivity(), Campus_News.class);
+//                        Intent intent3 = new Intent(getActivity(), CampusNewsActivity.class);
 //                        getActivity().startActivity(intent3);
 //                        break;
 //                    case 4:
-//                        Intent intent4 = new Intent(getActivity(), Campus_News.class);
+//                        Intent intent4 = new Intent(getActivity(), CampusNewsActivity.class);
 //                        getActivity().startActivity(intent4);
 //                        break;
                 }

@@ -252,7 +252,7 @@ public class    CourseQueryActivity extends AppCompatActivity {
     public void courseDetails(){
         TextView tvCourseDate = findViewById(R.id.tvCourseDate);
         if(course.get("courseDate") != null) {
-            tvCourseDate.setText((course.get("courseDate")).toString());
+            tvCourseDate.setText((course.get("courseDate")).toString().substring(5).replace("-","/"));
         }else{
             tvCourseDate.setText("---");}
 

@@ -1,21 +1,20 @@
 package idv.ca107g2.tibawe.campuszone;
 
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.PagerSnapHelper;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.hannesdorfmann.swipeback.Position;
+import com.hannesdorfmann.swipeback.SwipeBack;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -27,45 +26,30 @@ import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.vo.Latest_News_VO;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class LatestNewsFragment extends Fragment {
+public class CampusNewsActivity extends AppCompatActivity {
 
-    private static final String TAG = "LatestNewsFragment";
+    private static final String TAG = "CampusNewsActivity";
     private CommonTask getLatestNewsTask;
     private List<Latest_News_VO> latest_news_list;
     private RecyclerView newsRecycler;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        newsRecycler =
-                (RecyclerView) inflater.inflate(R.layout.recyclerview_fragment, container, false);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_campus_news);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
-//        LatestNewsAdapter adapter = new LatestNewsAdapter(newsTitles, newsPics, newsContents);
-//        newsRecycler.setAdapter(adapter);
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
-        newsRecycler.setLayoutManager(layoutManager);
-
-        PagerSnapHelper snapHelper = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(newsRecycler);
+        // Init the swipe back
+        SwipeBack.attach(this, Position.LEFT)
+                .setSwipeBackView(R.layout.swipeback_default);
 
         findNews();
-
-//        adapter.setListener(new LatestNewsAdapter.Listener() {
-//            @Override
-//            public void onClick(int position) {
-//                Intent intent = new Intent(getActivity(), RhiDetailActivity.class);
-//                intent.putExtra(RhiDetailActivity.EXTRA_INFO_ID, position);
-//                getActivity().startActivity(intent);
-//            }
-//        });
-        return newsRecycler;
-
     }
 
     public void findNews() {
@@ -75,7 +59,7 @@ public class LatestNewsFragment extends Fragment {
         jsonObject.addProperty("action", "getall");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
-        if (Util.networkConnected(getActivity())) {
+        if (Util.networkConnected(this)) {
             getLatestNewsTask = new CommonTask(url, jsonOut);
             try {
                 String result = getLatestNewsTask.execute().get();
@@ -88,27 +72,36 @@ public class LatestNewsFragment extends Fragment {
             }
             if (latest_news_list.isEmpty()) {
 //                view = inflater.inflate(R.layout.fragment_course_query, container, false);
-                Util.showToast(getContext(), R.string.msg_CourseNotFound);
+                Util.showToast(this, R.string.msg_CourseNotFound);
             } else {
+                newsRecycler = findViewById(R.id.rvCampusNews);
 
                 LatestNewsAdapter adapter = new LatestNewsAdapter(latest_news_list);
                 newsRecycler.setAdapter(adapter);
                 adapter.setListener(new LatestNewsAdapter.Listener() {
                     @Override
                     public void onClick(int position) {
-                        Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
+                        Intent intent = new Intent(CampusNewsActivity.this, StoreDetailActivity.class);
                         intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
-                        getActivity().startActivity(intent);
-                        getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        startActivity(intent);
+                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }
                 });
+                StaggeredGridLayoutManager layoutManager =
+                        new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+                newsRecycler.setLayoutManager(layoutManager);
             }
 
         } else {
 //            view = inflater.inflate(R.layout.fragment_course_query, container, false);
-            Util.showToast(getContext(), R.string.msg_NoNetwork);
+            Util.showToast(this, R.string.msg_NoNetwork);
         }
     }
 
-
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(R.anim.swipeback_stack_to_front,
+                R.anim.swipeback_stack_right_out);
+    }
 }

@@ -45,10 +45,9 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
         CardView cardView = holder.cardView;
         final Map courseMap = courseList.get(position);
 
-
         TextView tvCourseDate = cardView.findViewById(R.id.tvCourseDate);
         if(courseMap.get("courseDate") != null) {
-            tvCourseDate.setText((courseMap.get("courseDate")).toString());
+            tvCourseDate.setText((courseMap.get("courseDate")).toString().substring(5).replace("-","/"));
         }else{
             tvCourseDate.setText("---");}
 

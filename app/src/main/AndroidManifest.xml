@@ -33,15 +33,15 @@
             android:label="@string/information_detail"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".lifezone.StoreMenuDetailActivity"
+            android:name=".lifezone.StoreDetailActivity"
             android:label="@string/information_detail"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".campuszone.Campus_News"
+            android:name=".campuszone.CampusNewsActivity"
             android:label="@string/campus_news"
             android:parentActivityName=".ValidMainActivity" />
         <activity
-            android:name=".classzone.Class_News"
+            android:name=".classzone.ClassInformationActivity"
             android:label="@string/class_news"
             android:parentActivityName=".ValidMainActivity" />
         <activity

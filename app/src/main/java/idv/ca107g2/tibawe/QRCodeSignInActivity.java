@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -37,7 +38,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
 //    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-    TextView qr_result, tvQRDate, tvQRInterval, tvQRCourse, tvQRTime;
+    TextView qr_result, tvQRDate, tvQRInterval, tvQRCourse, tvQRTime, lastcheck_result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +56,13 @@ public class QRCodeSignInActivity extends AppCompatActivity{
         qrResult();
 
         lastQRCheck();
+
         // Init the swipe back
         SwipeBack.attach(this, Position.LEFT)
                 .setSwipeBackView(R.layout.swipeback_default);
 
     }
+
 
     public void qrResult(){
 
@@ -93,10 +96,11 @@ public class QRCodeSignInActivity extends AppCompatActivity{
                 qr_result.setText(R.string.msg_qr_norecord);
                 break;
         }
+        Util.showToast(this, Util.msgCode(msg_code));
     }
 
-
     public void lastQRCheck() {
+        lastcheck_result = findViewById(R.id.lastcheck_result);
         tvQRDate = findViewById(R.id.tvQRDate);
         tvQRInterval = findViewById(R.id.tvQRInterval);
         tvQRCourse = findViewById(R.id.tvQRCourse);
@@ -138,7 +142,8 @@ public class QRCodeSignInActivity extends AppCompatActivity{
 
         if (attendanceVO == null || scheduleVO == null) {
             msg_code = 7;
-            qr_result.setText(R.string.msg_qr_norecord);
+            lastcheck_result.setText(R.string.msg_qr_norecord);
+            lastcheck_result.setVisibility(View.VISIBLE);
         } else {
             tvQRDate.setText(scheduleVO.getSdate().toString());
             switch ((scheduleVO.getInterval())) {
@@ -155,11 +160,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             tvQRCourse.setText(scheduleVO.getSubjectName());
             tvQRTime.setText(attendanceVO.getQrecord().toString());
         }
-        Util.showToast(this, Util.msgCode(msg_code));
     }
-
-
-
 
     @Override
     public void onBackPressed(){

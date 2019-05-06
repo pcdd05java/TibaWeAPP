@@ -98,12 +98,12 @@
     <string name="msg_pleaseopencamera">請開啟使用相機權限</string>
 
     <string name="msg_qrfailed">掃描失敗，請洽管理人員</string>
-    <string name="msg_qr_invalid_date">您使用的QRCode日期已失效</string>
+    <string name="msg_qr_invalid_date">您使用錯誤日期的QRCode</string>
     <string name="msg_qr_no_need">目前時段查無課程須簽到</string>
     <string name="msg_qr_invalid_delayed">您已遲到，無法簽到</string>
     <string name="msg_qrsuccess">簽到成功</string>
     <string name="msg_qralready">目前課程您已完成簽到</string>
-    <string name="msg_qr_invalid_interval">您使用的QRCode時段已失效</string>
+    <string name="msg_qr_invalid_interval">您使用錯誤時段的QRCode</string>
     <string name="msg_qr_norecord">您目前無任何簽到記錄</string>
 
 </resources>

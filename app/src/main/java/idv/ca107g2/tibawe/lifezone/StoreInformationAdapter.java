@@ -6,17 +6,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
+import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.task.ImageTask;
 import idv.ca107g2.tibawe.vo.StoreInformationVO;
 
 class StoreInformationAdapter extends RecyclerView.Adapter<StoreInformationAdapter.ViewHolder> {
 
     private List<StoreInformationVO> storeInformationList;
     private Listener listener;
+    private ImageTask storeImageTask;
+    private int imageSize;
 
     interface Listener {
         void onClick(int position);
@@ -31,8 +36,10 @@ class StoreInformationAdapter extends RecyclerView.Adapter<StoreInformationAdapt
         }
     }
 
-    public StoreInformationAdapter(List<StoreInformationVO> storeInformationList){
+    public StoreInformationAdapter(List<StoreInformationVO> storeInformationList , int imageSize){
         this.storeInformationList = storeInformationList;
+        this.imageSize = imageSize;
+
     }
 
     @NonNull
@@ -41,13 +48,20 @@ class StoreInformationAdapter extends RecyclerView.Adapter<StoreInformationAdapt
 
         CardView cv =
                 (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_info, parent, false);
+
         return new ViewHolder(cv);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
+        ImageView cvivInfoPic = cardView.findViewById(R.id.cvivInfoPic);
         final StoreInformationVO storeInformationVO = storeInformationList.get(position);
+        String url = Util.URL + "StoreInformationServlet";
+        String pk_no = storeInformationVO.getStore_no();
+        storeImageTask = new ImageTask(url, pk_no, imageSize, cvivInfoPic);
+        storeImageTask.execute();
+
 
         TextView cvtvInfoTitle = cardView.findViewById(R.id.cvtvInfoTitle);
         if(!storeInformationVO.getStore_name().isEmpty()) {
@@ -59,7 +73,7 @@ class StoreInformationAdapter extends RecyclerView.Adapter<StoreInformationAdapt
             cvtvInfoTel.setText(storeInformationVO.getStore_phone()); }else{
             cvtvInfoTel.setText("---");}
 
-
+//
 //        ImageView cvivInfoPic = cardView.findViewById(R.id.cvivInfoPic);
 //        Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), imageIds[position]);
 //        cvivInfoPic.setImageDrawable(drawable);

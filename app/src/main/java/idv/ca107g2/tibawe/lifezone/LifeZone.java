@@ -9,8 +9,8 @@ public class LifeZone {
     public static final LifeZone[] LIFE_ZONES = {
             new LifeZone(R.string.hot_article, R.drawable.d),
             new LifeZone(R.string.discussion_board, R.drawable.d),
-            new LifeZone(R.string.store_menu, R.drawable.d),
             new LifeZone(R.string.DBD_order, R.drawable.d),
+            new LifeZone(R.string.store_menu, R.drawable.d),
             new LifeZone(R.string.rhi, R.drawable.d),
     };
 

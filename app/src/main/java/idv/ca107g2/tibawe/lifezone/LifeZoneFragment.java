@@ -1,6 +1,7 @@
 package idv.ca107g2.tibawe.lifezone;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -52,15 +53,15 @@ public class LifeZoneFragment extends Fragment {
     //                    case 1:
     //                        Intent intent1 = new Intent(getActivity(), CampusNewsActivity.class);
     //                        getActivity().startActivity(intent1);
-    //                        break;
-    //                    case 2:
-    //                        Intent intent2 = new Intent(getActivity(), CampusNewsActivity.class);
-    //                        getActivity().startActivity(intent2);
-    //                        break;
-    //                    case 3:
-    //                        Intent intent3 = new Intent(getActivity(), CampusNewsActivity.class);
-    //                        getActivity().startActivity(intent3);
-    //                        break;
+//    //                        break;
+//                        case 2:
+//                            Intent intent2 = new Intent(getActivity(), StoreInformationActivity.class);
+//                            getActivity().startActivity(intent2);
+//                            break;
+                        case 3:
+                            Intent intent3 = new Intent(getActivity(), StoreInformationActivity.class);
+                            getActivity().startActivity(intent3);
+                            break;
     //                    case 4:
     //                        Intent intent4 = new Intent(getActivity(), CampusNewsActivity.class);
     //                        getActivity().startActivity(intent4);

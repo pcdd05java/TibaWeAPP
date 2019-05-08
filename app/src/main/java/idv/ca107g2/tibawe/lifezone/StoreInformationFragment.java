@@ -62,9 +62,10 @@ public class StoreInformationFragment extends Fragment {
 
     public void findStore() {
 
+
         String url = Util.URL + "StoreInformationServlet";
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getall");
+        jsonObject.addProperty("action", "getallStoreInfotext");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
         if (Util.networkConnected(getActivity())) {
@@ -80,10 +81,12 @@ public class StoreInformationFragment extends Fragment {
             }
             if (storeInformationList.isEmpty()) {
 //                view = inflater.inflate(R.layout.fragment_course_query, container, false);
-                Util.showToast(getContext(), R.string.msg_CourseNotFound);
+                Util.showToast(getContext(), R.string.msg_nodata);
             } else {
 
-                StoreInformationAdapter adapter = new StoreInformationAdapter(storeInformationList);
+                int imageSize = getResources().getDisplayMetrics().widthPixels;
+
+                StoreInformationAdapter adapter = new StoreInformationAdapter(storeInformationList, imageSize);
                 storeRecycler.setAdapter(adapter);
                 adapter.setListener(new StoreInformationAdapter.Listener() {
                     @Override

@@ -88,7 +88,7 @@ public class LatestNewsFragment extends Fragment {
             }
             if (latest_news_list.isEmpty()) {
 //                view = inflater.inflate(R.layout.fragment_course_query, container, false);
-                Util.showToast(getContext(), R.string.msg_CourseNotFound);
+                Util.showToast(getContext(), R.string.msg_nodata);
             } else {
 
                 LatestNewsAdapter adapter = new LatestNewsAdapter(latest_news_list);

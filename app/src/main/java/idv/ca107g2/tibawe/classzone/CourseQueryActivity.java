@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.LineBackgroundSpan;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -65,11 +67,28 @@ public class    CourseQueryActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        setCalendarView();
+
 
         // Init the swipe back
         SwipeBack.attach(this, Position.LEFT)
-                .setSwipeBackView(R.layout.swipeback_default);
+                .setSwipeBackView(R.layout.swipeback_toolbarandtab)
+                .setOnInterceptMoveEventListener(
+                        new SwipeBack.OnInterceptMoveEventListener() {
+                            @Override
+                            public boolean isViewDraggable(View v, int dx,
+                                                           int x, int y) {
+                                if (v == calendarView) {
+                                    return (calendarView.isPagingEnabled());
+                                }
+
+                                return false;
+                            }
+                        });
+
+
+        setCalendarView();
+
+
     }
 
     public void setCalendarView(){

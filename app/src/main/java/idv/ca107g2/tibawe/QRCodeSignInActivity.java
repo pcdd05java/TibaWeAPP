@@ -20,23 +20,19 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.task.CommonTask;
-import idv.ca107g2.tibawe.vo.AttendanceVO;
-import idv.ca107g2.tibawe.vo.ScheduleVO;
 
 public class QRCodeSignInActivity extends AppCompatActivity{
 
     SharedPreferences preferences;
-    AttendanceVO attendanceVO;
-    ScheduleVO scheduleVO;
+
     int msg_code;
 
     private static final String TAG = "QRCodeSignInActivity";
     private CommonTask lastQRCheckTask;
 
 
-//
-//    Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
 
     TextView qr_result, tvQRDate, tvQRInterval, tvQRCourse, tvQRTime, lastcheck_result;
 
@@ -100,6 +96,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
     }
 
     public void lastQRCheck() {
+        Map lastCourse = null;
         lastcheck_result = findViewById(R.id.lastcheck_result);
         tvQRDate = findViewById(R.id.tvQRDate);
         tvQRInterval = findViewById(R.id.tvQRInterval);
@@ -117,20 +114,10 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             lastQRCheckTask = new CommonTask(url, jsonOut);
             try {
                 String result = lastQRCheckTask.execute().get();
+                Log.e("time", result);
                 Type collectionType = new TypeToken<Map>() {
                 }.getType();
-                Map lastCourse = gson.fromJson(result, collectionType);
-
-//                JSONObject jsonObj = new JSONObject(lastCourse.get("attendanceVO").toString());
-//		          String qrecord = jsonObj.getString("qrecord");
-//                Util.showToast(this, qrecord);
-
-                attendanceVO = gson.fromJson(lastCourse.get("attendanceVO").toString(), AttendanceVO.class);
-//                Util.showToast(this, attendanceVO.getQrecord().toString());
-
-                scheduleVO = gson.fromJson(lastCourse.get("scheduleVO").toString(), ScheduleVO.class);
-//                Util.showToast(this, scheduleVO.getSdate().toString());
-
+                lastCourse = gson.fromJson(result, collectionType);
 
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
@@ -140,25 +127,26 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             Util.showToast(this, R.string.msg_NoNetwork);
         }
 
-        if (attendanceVO == null || scheduleVO == null) {
+        if (lastCourse.get("qrecord").toString().isEmpty()) {
             msg_code = 7;
             lastcheck_result.setText(R.string.msg_qr_norecord);
             lastcheck_result.setVisibility(View.VISIBLE);
         } else {
-            tvQRDate.setText(scheduleVO.getSdate().toString());
-            switch ((scheduleVO.getInterval())) {
-                case 1:
+            tvQRDate.setText(lastCourse.get("sdate").toString());
+            String interval = (String)lastCourse.get("interval");
+            switch (interval) {
+                case "1":
                     tvQRInterval.setText("上午");
                     break;
-                case 2:
+                case "2":
                     tvQRInterval.setText("下午");
                     break;
-                case 3:
+                case "3":
                     tvQRInterval.setText("夜間");
                     break;
             }
-            tvQRCourse.setText(scheduleVO.getSubjectName());
-            tvQRTime.setText(attendanceVO.getQrecord().toString());
+            tvQRCourse.setText(lastCourse.get("subjectName").toString());
+            tvQRTime.setText(lastCourse.get("qrecord").toString());
         }
     }
 

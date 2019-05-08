@@ -54,7 +54,7 @@ public class ClassZoneFragment extends Fragment {
                         getActivity().startActivity(intent1);
                         break;
 //                    case 2:
-//                        Intent intent2 = new Intent(getActivity(), CampusNewsActivity.class);
+//                        Intent intent2 = new Intent(getActivity(), TestActivity.class);
 //                        getActivity().startActivity(intent2);
 //                        break;
 //                    case 3:

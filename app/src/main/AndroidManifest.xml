@@ -64,6 +64,11 @@
             android:name=".classzone.CourseQueryActivity"
             android:label="@string/course_query"
             android:parentActivityName=".ValidMainActivity"/>
+        <activity
+            android:name=".lifezone.StoreInformationActivity"
+            android:label="@string/store_menu"
+            android:parentActivityName=".ValidMainActivity"/>
+
     </application>
 
 </manifest>

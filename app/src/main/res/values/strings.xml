@@ -106,4 +106,6 @@
     <string name="msg_qr_invalid_interval">您使用錯誤時段的QRCode</string>
     <string name="msg_qr_norecord">您目前無任何簽到記錄</string>
 
+    <string name="msg_nodata">找不到資料</string>
+
 </resources>

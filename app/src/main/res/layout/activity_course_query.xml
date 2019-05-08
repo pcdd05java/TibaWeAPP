@@ -16,8 +16,8 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.2"
-        android:scaleX="1.1"
+        android:layout_weight="1.5"
+        android:scaleX="1"
         android:scaleY="1"
         app:mcv_showOtherDates="defaults"
         app:mcv_selectionColor="@color/colorDarkBlue"/>
@@ -297,27 +297,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-        <!--<View-->
-        <!--android:id="@+id/divide1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="2dp"-->
-        <!--android:background="?android:attr/listDivider" />-->
-
-        <!---->
-
-        <!--<View-->
-        <!--android:id="@+id/divide4"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="2dp"-->
-        <!--android:background="?android:attr/listDivider" />-->
-
-        <!---->
-        <!--<View-->
-        <!--android:id="@+id/divide5"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="2dp"-->
-        <!--android:background="?android:attr/listDivider" />-->
 
     </android.support.v7.widget.CardView>
 

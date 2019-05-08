@@ -1,4 +1,4 @@
-package idv.ca107g2.tibawe.campuszone;
+package idv.ca107g2.tibawe.lifezone;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,24 +21,22 @@ import java.util.List;
 
 import idv.ca107g2.tibawe.R;
 import idv.ca107g2.tibawe.Util;
-import idv.ca107g2.tibawe.lifezone.StoreDetailActivity;
 import idv.ca107g2.tibawe.task.CommonTask;
-import idv.ca107g2.tibawe.vo.Latest_News_VO;
+import idv.ca107g2.tibawe.vo.StoreInformationVO;
 
+public class StoreInformationActivity  extends AppCompatActivity {
 
-public class CampusNewsActivity extends AppCompatActivity {
-
-    private static final String TAG = "CampusNewsActivity";
-    private CommonTask getLatestNewsTask;
-    private List<Latest_News_VO> latest_news_list;
-    private RecyclerView newsRecycler;
+    private static final String TAG = "StoreInfoActivity";
+    private CommonTask getStoreTask;
+    private List<StoreInformationVO> storeInformationList;
+    private RecyclerView storeRecycler;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_campus_news);
+        setContentView(R.layout.activity_store_information);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,39 +47,41 @@ public class CampusNewsActivity extends AppCompatActivity {
         SwipeBack.attach(this, Position.LEFT)
                 .setSwipeBackView(R.layout.swipeback_default);
 
-        findNews();
+        findStore();
     }
 
-    public void findNews() {
+    public void findStore() {
 
-        String url = Util.URL + "Latest_News_Servlet";
+
+        String url = Util.URL + "StoreInformationServlet";
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getall");
+        jsonObject.addProperty("action", "getallStoreInfotext");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
         if (Util.networkConnected(this)) {
-            getLatestNewsTask = new CommonTask(url, jsonOut);
+            getStoreTask = new CommonTask(url, jsonOut);
             try {
-                String result = getLatestNewsTask.execute().get();
-                Type collectionType = new TypeToken<List<Latest_News_VO>>() {
+                String result = getStoreTask.execute().get();
+                Type collectionType = new TypeToken<List<StoreInformationVO>>() {
                 }.getType();
-                latest_news_list = gson.fromJson(result, collectionType);
+                storeInformationList = gson.fromJson(result, collectionType);
 
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
-            if (latest_news_list.isEmpty()) {
+            if (storeInformationList.isEmpty()) {
 //                view = inflater.inflate(R.layout.fragment_course_query, container, false);
                 Util.showToast(this, R.string.msg_nodata);
             } else {
-                newsRecycler = findViewById(R.id.rvCampusNews);
+                storeRecycler = findViewById(R.id.rvStoreInfo);
+                int imageSize = getResources().getDisplayMetrics().widthPixels;
 
-                LatestNewsAdapter adapter = new LatestNewsAdapter(latest_news_list);
-                newsRecycler.setAdapter(adapter);
-                adapter.setListener(new LatestNewsAdapter.Listener() {
+                StoreInformationAdapter adapter = new StoreInformationAdapter(storeInformationList, imageSize);
+                storeRecycler.setAdapter(adapter);
+                adapter.setListener(new StoreInformationAdapter.Listener() {
                     @Override
                     public void onClick(int position) {
-                        Intent intent = new Intent(CampusNewsActivity.this, StoreDetailActivity.class);
+                        Intent intent = new Intent(StoreInformationActivity.this, StoreDetailActivity.class);
                         intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
                         startActivity(intent);
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
@@ -89,13 +89,14 @@ public class CampusNewsActivity extends AppCompatActivity {
                 });
                 StaggeredGridLayoutManager layoutManager =
                         new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-                newsRecycler.setLayoutManager(layoutManager);
+                storeRecycler.setLayoutManager(layoutManager);
             }
 
         } else {
 //            view = inflater.inflate(R.layout.fragment_course_query, container, false);
             Util.showToast(this, R.string.msg_NoNetwork);
         }
+
     }
 
     @Override

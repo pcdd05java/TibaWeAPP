@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/rvFragment"
     android:scrollbars="vertical"
-    android:paddingHorizontal="7dp"
+    android:paddingHorizontal="3dp"
     android:paddingVertical="7dp">
 
 

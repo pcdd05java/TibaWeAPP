@@ -9,28 +9,45 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import idv.ca107g2.tibawe.R;
 import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.task.SpinnerTask;
+import idv.ca107g2.tibawe.vo.CrVO;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ClassroomReserveFragment extends Fragment {
-    private static TextView tvClassroomReserveApplicant, tvClassroomReserveDate;
+    private static final String TAG = "CrReserveFragment";
+    private static TextView tvClassroomReserveApplicant, tvClassroomReserveClassNo, tvClassroomReserveDate;
     private Spinner spClassroomNo, spClassroomReserveStart, spClassroomReserveEnd;
     private static int year, month, day;
     private FloatingActionButton fbtnSelectDate;
+    private SpinnerTask spinnerTask;
+    private ArrayAdapter<String> adapterClassroom, adapterReserveStart, adapterReserveEnd;
+    private String memberaccount, clrr_sttime, clrr_endtime, cr_no, class_no;
+    private Button btnCLRRApply, btnCLRRCancel;
+    private CommonTask applyCLRRTask;
+    private List<CrVO> crList;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,16 +58,30 @@ public class ClassroomReserveFragment extends Fragment {
         spClassroomReserveStart = view.findViewById(R.id.spClassroomReserveStart);
         spClassroomReserveEnd = view.findViewById(R.id.spClassroomReserveEnd);
         tvClassroomReserveApplicant = view.findViewById(R.id.tvClassroomReserveApplicant);
+        tvClassroomReserveClassNo = view.findViewById(R.id.tvClassroomReserveClassNo);
         tvClassroomReserveDate = view.findViewById(R.id.tvClassroomReserveDate);
         fbtnSelectDate = view.findViewById(R.id.fbtnSelectDate);
+        btnCLRRApply = view.findViewById(R.id.btnCLRRApply);
+        btnCLRRCancel = view.findViewById(R.id.btnCLRRCancel);
+        btnCLRRApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                applyCLRR();
+            }
+        });
+        btnCLRRCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetCLRR();
+            }
+        });
 
         SharedPreferences preferences = getActivity().getSharedPreferences(Util.PREF_FILE,
                 getActivity().MODE_PRIVATE);
         tvClassroomReserveApplicant.setText(preferences.getString("membername",""));
-
-        spinner();
-        showRightNow();
-
+        tvClassroomReserveClassNo.setText(preferences.getString("className",""));
+        memberaccount = preferences.getString("memberaccount","");
+        class_no = preferences.getString("class_no","");
 
         fbtnSelectDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,59 +95,117 @@ public class ClassroomReserveFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.networkConnected(getActivity())) {
+            spinnerTask = new SpinnerTask();
+            try {
+                crList = spinnerTask.execute().get();
+                List<String> CrVO = new ArrayList<>();
+                for (int i = 0; i < crList.size(); i++) {
+                    CrVO.add(crList.get(i).getCr_name());
+                }
+                adapterClassroom = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, CrVO);
+                adapterClassroom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spClassroomNo.setAdapter(adapterClassroom);
+                spClassroomNo.setSelection(0, true);
+                spClassroomNo.setOnItemSelectedListener(listener);
+                cr_no = crList.get(0).getCr_no();
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Util.showToast(getActivity(), R.string.msg_NoNetwork);
+        }
+
+        spinner();
+        showRightNow();
+    }
+
 
     public void spinner(){
-        // 直接由程式碼動態產生Spinner做法
-        String[] classroomNo = {"106會議室", "107會議室", "205教室", "206教室", "309教室"};
-        // ArrayAdapter用來管理整個選項的內容與樣式，android.R.layout.simple_spinner_item為內建預設樣式
-        ArrayAdapter<String> adapterClassroom = new ArrayAdapter<>
-                (getContext(), android.R.layout.simple_spinner_dropdown_item, classroomNo);
-        // android.R.layout.simple_spinner_dropdown_item為內建下拉選單樣式
-        adapterClassroom.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spClassroomNo.setAdapter(adapterClassroom);
-        spClassroomNo.setSelection(0, true);
-        spClassroomNo.setOnItemSelectedListener(listener);
+//        // 直接由程式碼動態產生Spinner做法
 
         String[] classroomReserveStart = {"09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"};
         // ArrayAdapter用來管理整個選項的內容與樣式，android.R.layout.simple_spinner_item為內建預設樣式
-        ArrayAdapter<String> adapterReserveStart = new ArrayAdapter<>
+        adapterReserveStart = new ArrayAdapter<>
                 (getContext(), android.R.layout.simple_spinner_dropdown_item, classroomReserveStart);
         // android.R.layout.simple_spinner_dropdown_item為內建下拉選單樣式
         adapterReserveStart.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spClassroomReserveStart.setAdapter(adapterReserveStart);
         spClassroomReserveStart.setSelection(0, true);
         spClassroomReserveStart.setOnItemSelectedListener(listener);
+        clrr_sttime = adapterReserveStart.getItem(0);
 
         String[] classroomReserveEnd = {"10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"};
         // ArrayAdapter用來管理整個選項的內容與樣式，android.R.layout.simple_spinner_item為內建預設樣式
-        ArrayAdapter<String> adapterReserveEnd = new ArrayAdapter<>
+        adapterReserveEnd = new ArrayAdapter<>
                 (getContext(), android.R.layout.simple_spinner_dropdown_item, classroomReserveEnd);
         // android.R.layout.simple_spinner_dropdown_item為內建下拉選單樣式
         adapterReserveEnd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spClassroomReserveEnd.setAdapter(adapterReserveEnd);
         spClassroomReserveEnd.setSelection(0, true);
         spClassroomReserveEnd.setOnItemSelectedListener(listener);
-
+        clrr_endtime = adapterReserveEnd.getItem(0);
 
     }
 
     private Spinner.OnItemSelectedListener listener = new Spinner.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//            ArrayAdapter<String> adapter = (ArrayAdapter<String>) parent.getAdapter();
-//            TextView tvSelected = (TextView)adapter.getDropDownView(position, view, parent);
-//            if(position == 0){
-//                Util.showToast(getActivity(), parent.getItemAtPosition(position).toString());
-//                tvSelected.setTextColor(getResources().getColor(R.color.colorDarkRed));
-//            }
+            if(parent.getAdapter().equals(adapterClassroom)){
+                cr_no = crList.get(parent.getSelectedItemPosition()).getCr_no();
+            }
+            if(parent.getAdapter().equals(adapterReserveStart)){
+                clrr_sttime = parent.getItemAtPosition(position).toString();
+            }
+            if(parent.getAdapter().equals(adapterReserveEnd)){
+                clrr_endtime = parent.getItemAtPosition(position).toString();
+            }
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
-            Util.showToast(getActivity(), R.string.msg_selectRepairLoc);
         }
     };
 
+    public void applyCLRR(){
+
+        if (Util.networkConnected(getActivity())) {
+            String url = Util.URL + "ClrrServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "applyCLRR");
+            jsonObject.addProperty("memberaccount", memberaccount);
+            jsonObject.addProperty("class_no", class_no);
+            jsonObject.addProperty("clrr_date", tvClassroomReserveDate.getText().toString());
+            jsonObject.addProperty("cr_no", cr_no);
+            jsonObject.addProperty("clrr_sttime", clrr_sttime);
+            jsonObject.addProperty("clrr_endtime", clrr_endtime);
+
+            String jsonOut = jsonObject.toString();
+            applyCLRRTask = new CommonTask(url, jsonOut);
+            try {
+                String result = applyCLRRTask.execute().get();
+
+               Util.showToast(getActivity(), result);
+                resetCLRR();
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Util.showToast(getActivity(), R.string.msg_NoNetwork);
+        }
+    }
+
+    public void resetCLRR(){
+        showRightNow();
+        spClassroomNo.setSelection(0, true);
+        spClassroomReserveStart.setSelection(0, true);
+        spClassroomReserveEnd.setSelection(0, true);
+    }
 
     private static void showRightNow() {
         Calendar c = Calendar.getInstance();

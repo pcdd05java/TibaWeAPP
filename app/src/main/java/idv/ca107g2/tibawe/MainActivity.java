@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private CommonTask isMemberTask;
     private MemberVO memberVO;
     private Boolean isQRCode;
+    private String className;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
@@ -145,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                             .putString("member_ID", member_ID)
                             .putString("membername", memberVO.getMemberName())
                             .putString("class_no", memberVO.getClass_no())
+                            .putString("className", className)
                             .putString("memberaccount", memberVO.getMemberAccount())
                             .putString("memberpass", memberpass).apply();
 
@@ -221,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 Map data = gson.fromJson(result, collectionType);
 
                 memberVO = gson.fromJson(data.get("memberVO").toString(), MemberVO.class);
-
+                className = data.get("className").toString();
                 isMember = Boolean.valueOf(data.get("isMember").toString());
             } catch (Exception e) {
                 Log.e(TAG, e.toString());

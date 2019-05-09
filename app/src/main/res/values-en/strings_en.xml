@@ -33,7 +33,7 @@
     <string name="absence_note">Note</string>
     <string name="absence_note_hint">Please fill out the reasons.</string>
     <string name="apply">APPLY</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel">RESET</string>
     <string name="teachinglog">Teaching Journals</string>
     <string name="absence_apply">Leave Application</string>
     <string name="apply_date">Date</string>

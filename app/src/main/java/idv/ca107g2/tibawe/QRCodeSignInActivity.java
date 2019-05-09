@@ -132,7 +132,8 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             lastcheck_result.setText(R.string.msg_qr_norecord);
             lastcheck_result.setVisibility(View.VISIBLE);
         } else {
-            tvQRDate.setText(lastCourse.get("sdate").toString());
+//            tvQRDate.setText(lastCourse.get("sdate").toString());
+            tvQRDate.setText((String)lastCourse.get("sdate"));
             String interval = (String)lastCourse.get("interval");
             switch (interval) {
                 case "1":
@@ -145,8 +146,8 @@ public class QRCodeSignInActivity extends AppCompatActivity{
                     tvQRInterval.setText("夜間");
                     break;
             }
-            tvQRCourse.setText(lastCourse.get("subjectName").toString());
-            tvQRTime.setText(lastCourse.get("qrecord").toString());
+            tvQRCourse.setText((String)lastCourse.get("subjectName"));
+            tvQRTime.setText((String)lastCourse.get("qrecord"));
         }
     }
 

@@ -32,7 +32,7 @@
     <string name="absence_note">事由說明</string>
     <string name="absence_note_hint">請輸入說明事由</string>
     <string name="apply">送出申請</string>
-    <string name="cancel">取消申請</string>
+    <string name="cancel">復原重填</string>
     <string name="teachinglog">教學日誌</string>
     <string name="absence_apply">申請差假</string>
     <string name="apply_date">申請日期</string>

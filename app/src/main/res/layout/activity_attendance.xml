@@ -15,7 +15,7 @@
         android:id="@+id/rvAttendance"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="7dp"
+        android:paddingHorizontal="3dp"
         android:paddingVertical="7dp"
         android:scrollbars="vertical" />
 

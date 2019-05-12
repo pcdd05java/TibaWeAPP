@@ -62,8 +62,6 @@ public class CourseQueryFragment extends Fragment {
 
         return courseRecycler;
 
-//        LinearSnapHelper snapHelper = new LinearSnapHelper();
-//        snapHelper.attachToRecyclerView(courseRecycler);
 
     }
     

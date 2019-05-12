@@ -33,10 +33,25 @@
     <string name="absence_note">Note</string>
     <string name="absence_note_hint">Please fill out the reasons.</string>
     <string name="apply">APPLY</string>
-    <string name="cancel">RESET</string>
+    <string name="cancel">CANCEL</string>
+    <string name="reset">RESET</string>
+    <string name="rck_status_review">Reviewing</string>
+    <string name="rck_status_outcome">Result</string>
+    <string name="atd_status_yes">Recheck confirmed</string>
+    <string name="atd_status_no">Absence</string>
+    <string name="btn_apply">Apply</string>
+    <string name="btn_already_apply">Already applied</string>
+    <string name="msg_applyRCK_success">Sending application</string>
+
     <string name="teachinglog">Teaching Journals</string>
     <string name="absence_apply">Leave Application</string>
-    <string name="apply_date">Date</string>
+    <string name="absence_record">Check records</string>
+
+    <string name="abs_apply_date">Date</string>
+    <string name="abs_alert_date">Notice about Date</string>
+    <string name="abs_alert_msg">You didn\'t pick the date, your leave application will be today</string>
+    <string name="abs_alert_return">Return</string>
+    <string name="abs_msg_nocourse">No courses found in this date</string>
 
     <string name="classroom_reservation">Reserve Classroom</string>
     <string name="classroom_reserve_tab">Making Reservation</string>
@@ -45,6 +60,8 @@
     <string name="classroom_reserve_date">Reservation Date</string>
     <string name="classroom_reserve_time_start">Start At</string>
     <string name="classroom_reserve_time_end">End At</string>
+    <string name="msg_clrr_norecord">You don\'t have any records now</string>
+    <string name="msg_clrr_success">Reservation success</string>
 
     <string name="repair_apply">Repairment Require</string>
     <string name="repair_applicant">Applicant</string>
@@ -55,6 +72,11 @@
     <string name="repair_note_hint">Please fill out the details.</string>
     <string name="repair_apply_tab">Applying Requirement</string>
     <string name="repair_query_tab">Check records</string>
+    <string name="msg_raf_norecord">You don\'t have any records now</string>
+    <string name="msg_raf_success">Application success</string>
+    <string name="repair_status_0_notyet">Waiting for repair</string>
+    <string name="repair_status_1_ongoing">Dealing with it</string>
+    <string name="repair_status_2_done">Case closed</string>
 
 
     <string name="class_info_tab">Class Informations</string>
@@ -100,15 +122,18 @@
     <string name="msg_loginbeforeQRCode">Please Login first</string>
     <string name="msg_pleaseopencamera">Please permit for using the Camera</string>
 
-    <string name="msg_qrfailed">Failure, please contact administrator</string>
-    <string name="msg_qr_invalid_date">Your QRCode is invalid-Out of Date</string>
-    <string name="msg_qr_no_need">No need for sign in now</string>
-    <string name="msg_qr_invalid_delayed">You\'re late</string>
-    <string name="msg_qrsuccess">Sign in successfully</string>
-    <string name="msg_qralready">You already signed in</string>
-    <string name="msg_qr_invalid_interval">Your QRCode is invalid-Out of Interval</string>
-    <string name="msg_qr_norecord">You don\'t have any records now</string>
+    <string name="msg_qr_0_failed">Failure, please contact administrator</string>
+    <string name="msg_qr_1_invalid_date">Your QRCode is invalid-Out of Date</string>
+    <string name="msg_qr_2_no_need">No need for sign in now</string>
+    <string name="msg_qr_3_invalid_delayed">You\'re late</string>
+    <string name="msg_qr_4_success">Sign in successfully</string>
+    <string name="msg_qr_5_already">You already signed in</string>
+    <string name="msg_qr_6_invalid_interval">Your QRCode is invalid-Out of Interval</string>
+    <string name="msg_qr_7_norecord">You don\'t have any records now</string>
+    <string name="msg_qr_8_cancel">Canceled</string>
 
     <string name="msg_nodata">No Data found</string>
+
+
 
 </resources>

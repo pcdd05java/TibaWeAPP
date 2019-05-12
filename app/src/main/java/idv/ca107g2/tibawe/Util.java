@@ -27,28 +27,28 @@ public class Util {
     public static int msgCode(int msg_code){
         switch(msg_code){
             case 0:
-                qrmsg = R.string.msg_qrfailed;
+                qrmsg = R.string.msg_qr_0_failed;
                 break;
             case 1:
-                qrmsg = R.string.msg_qr_invalid_date;
+                qrmsg = R.string.msg_qr_1_invalid_date;
                 break;
             case 2:
-                qrmsg = R.string.msg_qr_no_need;
+                qrmsg = R.string.msg_qr_2_no_need;
                 break;
             case 3:
-                qrmsg = R.string.msg_qr_invalid_delayed;
+                qrmsg = R.string.msg_qr_3_invalid_delayed;
                 break;
             case 4:
-                qrmsg = R.string.msg_qrsuccess;
+                qrmsg = R.string.msg_qr_4_success;
                 break;
             case 5:
-                qrmsg = R.string.msg_qralready;
+                qrmsg = R.string.msg_qr_5_already;
                 break;
             case 6:
-                qrmsg = R.string.msg_qr_invalid_interval;
+                qrmsg = R.string.msg_qr_6_invalid_interval;
                 break;
             case 7:
-                qrmsg =  R.string.msg_qr_norecord;
+                qrmsg =  R.string.msg_qr_7_norecord;
                 break;
         }
         return qrmsg;

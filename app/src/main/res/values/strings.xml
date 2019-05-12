@@ -32,10 +32,28 @@
     <string name="absence_note">事由說明</string>
     <string name="absence_note_hint">請輸入說明事由</string>
     <string name="apply">送出申請</string>
-    <string name="cancel">復原重填</string>
+    <string name="cancel">取消申請</string>
+    <string name="reset">復原重填</string>
+    <string name="rck_status_review">審核中</string>
+    <string name="rck_status_outcome">已審核</string>
+    <string name="atd_status_yes">已補簽</string>
+    <string name="atd_status_no">曠課</string>
+    <string name="btn_apply">申請</string>
+    <string name="btn_already_apply">已申請</string>
+    <string name="msg_applyRCK_success">補簽申請已送出</string>
+
+
+
     <string name="teachinglog">教學日誌</string>
     <string name="absence_apply">申請差假</string>
-    <string name="apply_date">申請日期</string>
+    <string name="absence_record">查詢差假紀錄</string>
+
+    <string name="abs_apply_date">請假時段</string>
+    <string name="abs_alert_date">日期提醒</string>
+    <string name="abs_alert_msg">您未選擇請假日期，請假日期為今天</string>
+    <string name="abs_alert_return">返回</string>
+    <string name="abs_msg_nocourse">您選擇的日期時段並無課程</string>
+
 
     <string name="classroom_reservation">教室預約</string>
     <string name="classroom_reserve_tab">我要預約</string>
@@ -44,6 +62,8 @@
     <string name="classroom_reserve_date">預約日期</string>
     <string name="classroom_reserve_time_start">開始時間</string>
     <string name="classroom_reserve_time_end">結束時間</string>
+    <string name="msg_clrr_norecord">您目前無任何預約紀錄</string>
+    <string name="msg_clrr_success">預約成功</string>
 
     <string name="repair_apply">設備報修</string>
     <string name="repair_applicant">申請人</string>
@@ -54,6 +74,12 @@
     <string name="repair_note_hint">請詳細說明設備故障情形</string>
     <string name="repair_apply_tab">我要報修</string>
     <string name="repair_query_tab">查詢報修紀錄</string>
+    <string name="msg_raf_norecord">您目前無任何報修紀錄</string>
+    <string name="msg_raf_success">報修申請已送出</string>
+    <string name="repair_status_0_notyet">未處理</string>
+    <string name="repair_status_1_ongoing">處理中</string>
+    <string name="repair_status_2_done">已結案</string>
+
 
     <string name="class_info_tab">學務專區</string>
     <string name="class_news">班級布告欄</string>
@@ -97,15 +123,17 @@
     <string name="msg_loginbeforeQRCode">請先登入</string>
     <string name="msg_pleaseopencamera">請開啟使用相機權限</string>
 
-    <string name="msg_qrfailed">掃描失敗，請洽管理人員</string>
-    <string name="msg_qr_invalid_date">您使用錯誤日期的QRCode</string>
-    <string name="msg_qr_no_need">目前時段查無課程須簽到</string>
-    <string name="msg_qr_invalid_delayed">您已遲到，無法簽到</string>
-    <string name="msg_qrsuccess">簽到成功</string>
-    <string name="msg_qralready">目前課程您已完成簽到</string>
-    <string name="msg_qr_invalid_interval">您使用錯誤時段的QRCode</string>
-    <string name="msg_qr_norecord">您目前無任何簽到記錄</string>
+    <string name="msg_qr_0_failed">掃描失敗，請洽管理人員</string>
+    <string name="msg_qr_1_invalid_date">您使用錯誤日期的QRCode</string>
+    <string name="msg_qr_2_no_need">目前時段查無課程須簽到</string>
+    <string name="msg_qr_3_invalid_delayed">您已遲到，無法簽到</string>
+    <string name="msg_qr_4_success">簽到成功</string>
+    <string name="msg_qr_5_already">目前課程您已完成簽到</string>
+    <string name="msg_qr_6_invalid_interval">您使用錯誤時段的QRCode</string>
+    <string name="msg_qr_7_norecord">您目前無任何簽到記錄</string>
+    <string name="msg_qr_8_cancel">取消掃描</string>
 
     <string name="msg_nodata">找不到資料</string>
+
 
 </resources>

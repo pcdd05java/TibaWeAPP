@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cvRepairRecords="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:id="@+id/cvRepairRecords"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    cvRepairRecords:cardCornerRadius="2dp"
+    cvRepairRecords:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="教室預約編號"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+            <TextView
+                android:id="@+id/tvClrrNo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="RAF000001"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="申請人"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tvClrrApplicant"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="鄭迪"
+                android:gravity="center"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="預約日期"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tvClrrDate"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="2019-04-11"
+                android:gravity="center"
+                android:textColor="@color/colorDarkBlue"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="預約教室"
+                android:gravity="center"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/tvClrrRoom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="106會議室"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvRepairDetailsTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="預約時段"
+            android:gravity="center_vertical"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvClassroomReserveRecordsStart"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="09:00"
+            android:gravity="end|center_vertical"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="至"
+            android:gravity="center"
+            android:textColor="@color/colorDarkBlue"/>
+        <TextView
+            android:id="@+id/tvClassroomReserveRecordsEnd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="12:00"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/colorDarkBlue"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

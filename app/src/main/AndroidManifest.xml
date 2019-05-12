@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ValidMainActivity"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".QRCodeSignInActivity"
             android:label="@string/qrcode_signin"
@@ -47,17 +48,20 @@
         <activity
             android:name=".campuszone.AttendanceActivity"
             android:label="@string/attendance"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".ValidMainActivity" />
         <activity
-            android:name=".campuszone.AbsenceApplyActivity"
+            android:name=".campuszone.AbsApplyActivity"
             android:label="@string/absence_apply"
-            android:parentActivityName=".ValidMainActivity" />
+            android:parentActivityName=".ValidMainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".campuszone.RepairApplyActivity"
+            android:name=".campuszone.RafActivity"
             android:label="@string/repair_apply"
-            android:parentActivityName=".ValidMainActivity" />
+            android:parentActivityName=".ValidMainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".campuszone.ClassroomReserveActivity"
+            android:name=".campuszone.ClrrActivity"
             android:label="@string/classroom_reservation"
             android:parentActivityName=".ValidMainActivity" />
         <activity

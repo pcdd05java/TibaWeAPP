@@ -10,6 +10,39 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
 
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_gravity="center">-->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:gravity="right|center_vertical"-->
+            <!--android:text="選擇差勤狀態"/>-->
+        <!--<View-->
+            <!--android:layout_width="1dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_margin="15dp"-->
+            <!--android:background="@color/colorPrimary" />-->
+
+        <!--<Spinner-->
+            <!--android:id="@+id/spAtdStatus"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1" />-->
+
+    <!--</LinearLayout>-->
+    <TextView
+        android:id="@+id/atd_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="7dp"
+        android:textSize="20dp"
+        android:text="查詢結果"
+        android:gravity="center"
+        android:textColor="@color/colorDarkRed" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvAttendance"

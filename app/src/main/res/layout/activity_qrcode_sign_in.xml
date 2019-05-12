@@ -128,7 +128,7 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_marginHorizontal="7dp"
         android:textSize="17dp"
-        android:text="最後一筆簽到記錄"
+        android:text="您目前無任何簽到記錄"
         android:gravity="right"
         android:textColor="@color/colorDarkBlue"
         android:visibility="gone"/>

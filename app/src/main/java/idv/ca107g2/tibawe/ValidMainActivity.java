@@ -104,9 +104,11 @@ public class ValidMainActivity extends AppCompatActivity {
         mScannerHelper.setCallBack(new QRScannerHelper.OnScannerCallBack() {
             @Override
             public void onScannerBack(String result) {
-
-                qrtime_interval = String.valueOf(result.charAt(11));
-                qrtime_date = result.substring(0, 10);
+                if(result!=null) {
+                    qrtime_interval = String.valueOf(result.charAt(11));
+                    qrtime_date = result.substring(0, 10);
+                }else {
+                    msg_code = 8;}
 
             }
         });
@@ -261,13 +263,15 @@ public class ValidMainActivity extends AppCompatActivity {
                 interval=3;
             }
 
-
-            if (!nowDateString.equals(qrtime_date)){
-                msg_code = 1;
-            }else if((nowDateString.equals(qrtime_date)) && (!qrtime_interval.equals(String.valueOf(interval)))){
-                msg_code = 6;
-            }else if ((nowDateString.equals(qrtime_date)) && (qrtime_interval.equals(String.valueOf(interval)))){
-                qrCheck();}
+            if(qrtime_date!=null) {
+                if (!nowDateString.equals(qrtime_date)) {
+                    msg_code = 1;
+                } else if ((nowDateString.equals(qrtime_date)) && (!qrtime_interval.equals(String.valueOf(interval)))) {
+                    msg_code = 6;
+                } else if ((nowDateString.equals(qrtime_date)) && (qrtime_interval.equals(String.valueOf(interval)))) {
+                    qrCheck();
+                }
+            }
 
             Intent intent = new Intent(this, QRCodeSignInActivity.class);
             intent.putExtra("msg_code", msg_code);

@@ -59,15 +59,15 @@ public class CampusZoneFragment extends Fragment {
 //                        getActivity().startActivity(intent2);
 //                      break;
                     case 3:
-                        Intent intent3 = new Intent(getActivity(), AbsenceApplyActivity.class);
+                        Intent intent3 = new Intent(getActivity(), AbsApplyActivity.class);
                         getActivity().startActivity(intent3);
                         break;
                     case 4:
-                        Intent intent4 = new Intent(getActivity(), ClassroomReserveActivity.class);
+                        Intent intent4 = new Intent(getActivity(), ClrrActivity.class);
                         getActivity().startActivity(intent4);
                         break;
                     case 5:
-                        Intent intent5 = new Intent(getActivity(), RepairApplyActivity.class);
+                        Intent intent5 = new Intent(getActivity(), RafActivity.class);
                         getActivity().startActivity(intent5);
                         break;
                 }

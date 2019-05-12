@@ -68,31 +68,34 @@ public class QRCodeSignInActivity extends AppCompatActivity{
 
         switch (msg_code){
             case 0:
-                qr_result.setText(R.string.msg_qrfailed);
+                qr_result.setText(R.string.msg_qr_0_failed);
                 break;
             case 1:
-                qr_result.setText(R.string.msg_qr_invalid_date);
+                qr_result.setText(R.string.msg_qr_1_invalid_date);
                 break;
             case 2:
-                qr_result.setText(R.string.msg_qr_no_need);
+                qr_result.setText(R.string.msg_qr_2_no_need);
                 break;
             case 3:
-                qr_result.setText(R.string.msg_qr_invalid_delayed);
+                qr_result.setText(R.string.msg_qr_3_invalid_delayed);
                 break;
             case 4:
-                qr_result.setText(R.string.msg_qrsuccess);
+                qr_result.setText(R.string.msg_qr_4_success);
                 break;
             case 5:
-                qr_result.setText(R.string.msg_qralready);
+                qr_result.setText(R.string.msg_qr_5_already);
                 break;
             case 6:
-                qr_result.setText(R.string.msg_qr_invalid_interval);
+                qr_result.setText(R.string.msg_qr_6_invalid_interval);
                 break;
             case 7:
-                qr_result.setText(R.string.msg_qr_norecord);
+                qr_result.setText(R.string.msg_qr_7_norecord);
+                break;
+            case 8:
+                qr_result.setText(R.string.msg_qr_8_cancel);
                 break;
         }
-        Util.showToast(this, Util.msgCode(msg_code));
+//        Util.showToast(this, Util.msgCode(msg_code));
     }
 
     public void lastQRCheck() {
@@ -129,7 +132,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
 
         if (lastCourse.get("qrecord").toString().isEmpty()) {
             msg_code = 7;
-            lastcheck_result.setText(R.string.msg_qr_norecord);
+            lastcheck_result.setText(R.string.msg_qr_7_norecord);
             lastcheck_result.setVisibility(View.VISIBLE);
         } else {
 //            tvQRDate.setText(lastCourse.get("sdate").toString());

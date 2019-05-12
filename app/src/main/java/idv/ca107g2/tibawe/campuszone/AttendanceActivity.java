@@ -45,7 +45,8 @@ public class AttendanceActivity extends AppCompatActivity {
     private Button btnRecheckSubmit, btnRecheckCancel, btnRecheckApply, btnAbsenceApply, btnApply;
     private EditText edRecheckNote;
     private Dialog recheckApplyDialog, optionDialog;
-    private TextView atd_result, tvATDDate,tvATDCourseNo, tvATDInterval, tvATDCourse, tvATDTeacher1,tvATDTeacher2, tvATDTeacher3, tvATDStatus, tvATDResult;
+    private TextView atd_result, tvATDDate,tvATDCourseNo, tvATDInterval, tvATDCourse, tvATDTeacher1,
+                    tvATDTeacher2, tvATDTeacher3, tvATDStatus, tvATDResult,tvAbsDate;
     private String memberaccount, class_no;
     private RecyclerView atdRecycler;
     private List<Map<String, String>> atdList;
@@ -119,6 +120,7 @@ public class AttendanceActivity extends AppCompatActivity {
         tvATDDate = (TextView) vg0.getChildAt(1);
         tvATDInterval = (TextView) vg0.getChildAt(2);
         tvATDCourseNo = (TextView) vg0.getChildAt(3);
+        tvAbsDate = (TextView) vg0.getChildAt(4);
 
         ViewGroup vg1 = (ViewGroup) vg.getChildAt(1);
         tvATDCourse = (TextView) vg1.getChildAt(1);
@@ -262,6 +264,30 @@ public class AttendanceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AttendanceActivity.this, AbsApplyActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("absCourse",tvATDCourse.getText().toString());
+                if(tvATDTeacher1!=null) {
+                    bundle.putString("absTeacher1", tvATDTeacher1.getText().toString());
+                }
+                if(tvATDTeacher2!=null) {
+                    bundle.putString("absTeacher2", tvATDTeacher2.getText().toString());
+                }
+                if(tvATDTeacher3!=null) {
+                    bundle.putString("absTeacher3", tvATDTeacher3.getText().toString());
+                }
+                switch (tvATDInterval.getText().toString()){
+                    case"上午":
+                        bundle.putInt("interval", 1);
+                        break;
+                    case"下午":
+                        bundle.putInt("interval", 2);
+                        break;
+                    case"夜間":
+                        bundle.putInt("interval", 3);
+                        break;
+                }
+                bundle.putString("absDate", tvAbsDate.getText().toString());
+                intent.putExtras(bundle);
                 startActivity(intent);
                 optionDialog.cancel();
             }

@@ -43,6 +43,11 @@
             android:layout_height="0dp"
             android:visibility="gone"
             android:id="@+id/tvATDCourseNo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:id="@+id/tvAbsDate"/>
     </LinearLayout>
 <LinearLayout
         android:layout_width="0dp"

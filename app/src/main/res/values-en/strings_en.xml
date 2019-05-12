@@ -45,6 +45,7 @@
 
     <string name="teachinglog">Teaching Journals</string>
     <string name="absence_apply">Leave Application</string>
+    <string name="absence_apply_tab">Apply for leave</string>
     <string name="absence_record">Check records</string>
 
     <string name="abs_apply_date">Date</string>
@@ -52,6 +53,8 @@
     <string name="abs_alert_msg">You didn\'t pick the date, your leave application will be today</string>
     <string name="abs_alert_return">Return</string>
     <string name="abs_msg_nocourse">No courses found in this date</string>
+    <string name="abs_msg_select_interval">Please select the interval</string>
+    <string name="abs_msg_alreadyAbs">You had already applied in the date</string>
 
     <string name="classroom_reservation">Reserve Classroom</string>
     <string name="classroom_reserve_tab">Making Reservation</string>

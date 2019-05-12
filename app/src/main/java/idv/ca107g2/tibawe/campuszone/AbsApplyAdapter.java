@@ -1,25 +1,26 @@
 package idv.ca107g2.tibawe.campuszone;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Map;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.vo.ClrrVO;
+import idv.ca107g2.tibawe.Util;
 
 class AbsApplyAdapter extends RecyclerView.Adapter<AbsApplyAdapter.ViewHolder> {
+    private List<Map<String, String>> absList;
 
-    private List<ClrrVO> clrrVOList;
-    private String membername;
-
-    interface Listener {
-        void onClick(int position);
-    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
@@ -30,72 +31,156 @@ class AbsApplyAdapter extends RecyclerView.Adapter<AbsApplyAdapter.ViewHolder> {
         }
     }
 
-    public AbsApplyAdapter(List<ClrrVO> clrrVOList, String membername){
-        this.clrrVOList = clrrVOList;
-        this.membername = membername;
-
+    public AbsApplyAdapter(List<Map<String, String>> absList) {
+        this.absList = absList;
     }
+
 
     @NonNull
     @Override
     public AbsApplyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        CardView cv =
-                (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_clrr_query, parent, false);
+        CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_abs_query, parent, false);
 
         return new ViewHolder(cv);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull AbsApplyAdapter.ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
-        final ClrrVO clrrVO = clrrVOList.get(position);
+        final Map absMap = absList.get(position);
 
-        TextView tvClrrNo = cardView.findViewById(R.id.tvClrrNo);
-        if(!clrrVO.getClrr_no().isEmpty()) {
-            tvClrrNo.setText(clrrVO.getClrr_no()); }else{
-            tvClrrNo.setText("---");}
+        TextView tvAbsqNO = cardView.findViewById(R.id.tvAbsqNO);
+        tvAbsqNO.setText((String)absMap.get("absno"));
+//
+//        TextView tvAbsqDate = cardView.findViewById(R.id.tvAbsqDate);
+//        tvAbsqDate.setText((absMap.get("absDate")).toString());
 
-        TextView tvClrrApplicant = cardView.findViewById(R.id.tvClrrApplicant);
-        if(!clrrVO.getClrr_no().isEmpty()) {
-            tvClrrApplicant.setText(membername); }else{
-            tvClrrApplicant.setText("---");}
+        TextView tvAbsqDate = cardView.findViewById(R.id.tvAbsqDate);
+        if(absMap.get("absDate") != null) {
+            tvAbsqDate.setText((absMap.get("absDate")).toString());
+        }else{
+            tvAbsqDate.setText("---");}
 
-        TextView tvClrrDate = cardView.findViewById(R.id.tvClrrDate);
-        if(!clrrVO.getClrr_no().isEmpty()) {
-            tvClrrDate.setText(clrrVO.getClrr_date().toString()); }else{
-            tvClrrDate.setText("---");}
+        //Morning
+        TextView tvAbsqInterval = cardView.findViewById(R.id.tvAbsqInterval);
+        if(absMap.get("absInterval") != null) {
+            switch((String)absMap.get("absInterval")){
+                case"1":
+                    tvAbsqInterval.setText(R.string.tvMorning);
+                    break;
+                case"2":
+                    tvAbsqInterval.setText(R.string.tvAfternoon);
+                    break;
+                case"3":
+                    tvAbsqInterval.setText(R.string.tvEvening);
+                    break;
+            }
 
-        TextView tvClrrRoom = cardView.findViewById(R.id.tvClrrRoom);
-        if(!clrrVO.getClrr_no().isEmpty()) {
-            tvClrrRoom.setText(clrrVO.getCr_no()); }else{
-            tvClrrRoom.setText("---");}
+        }else{tvAbsqInterval.setText("---");}
 
-        TextView tvClassroomReserveRecordsStart = cardView.findViewById(R.id.tvClassroomReserveRecordsStart);
-        if(!clrrVO.getClrr_no().isEmpty()) {
-            tvClassroomReserveRecordsStart.setText(parseNum(clrrVO.getClrr_sttime())+":00"); }else{
-            tvClassroomReserveRecordsStart.setText("---");}
 
-        TextView tvClassroomReserveRecordsEnd = cardView.findViewById(R.id.tvClassroomReserveRecordsEnd);
-        if(!clrrVO.getClrr_no().isEmpty()) {
-            tvClassroomReserveRecordsEnd.setText(parseNum(clrrVO.getClrr_endtime())+":00"); }else{
-            tvClassroomReserveRecordsEnd.setText("---");}
+        TextView tvAbsqCourse = cardView.findViewById(R.id.tvAbsqCourse);
+        if(absMap.get("absCourse") != null) {
+            tvAbsqCourse.setText((String) absMap.get("absCourse"));
+        }else{
+            tvAbsqCourse.setText("---");}
+
+        TextView tvAbsqTeacher1 = cardView.findViewById(R.id.tvAbsqTeacher1);
+        if(absMap.get("absTeacher1") != null) {
+            tvAbsqTeacher1.setText((String) absMap.get("absTeacher1"));
+            tvAbsqTeacher1.setVisibility(View.VISIBLE);
+        }else{
+            tvAbsqTeacher1.setVisibility(View.GONE);
+            tvAbsqCourse.setGravity(Gravity.CENTER);}
+
+        TextView tvAbsqTeacher2 = cardView.findViewById(R.id.tvAbsqTeacher2);
+        if(absMap.get("absTeacher2") != null) {
+            tvAbsqTeacher2.setText((String) absMap.get("absTeacher2"));
+            tvAbsqTeacher2.setVisibility(View.VISIBLE);
+            tvAbsqTeacher1.setGravity(Gravity.CENTER|Gravity.BOTTOM);
+            tvAbsqCourse.setGravity(Gravity.CENTER|Gravity.BOTTOM);
+        }else{
+            tvAbsqTeacher2.setVisibility(View.GONE);}
+
+
+        TextView tvAbsqTeacher3 = cardView.findViewById(R.id.tvAbsqTeacher3);
+        if(absMap.get("absTeacher3") != null) {
+            tvAbsqTeacher3.setText((String) absMap.get("absTeacher3"));
+            tvAbsqTeacher3.setVisibility(View.VISIBLE);
+            tvAbsqTeacher1.setGravity(Gravity.CENTER|Gravity.BOTTOM);
+            tvAbsqCourse.setGravity(Gravity.CENTER|Gravity.BOTTOM);
+        }else{
+            tvAbsqTeacher3.setVisibility(View.GONE);}
+
+        TextView tvAbsqReason = cardView.findViewById(R.id.tvAbsqReason);
+        if(absMap.get("absReason") != null) {
+            switch((String)absMap.get("absReason")){
+                case"1":
+                    tvAbsqReason.setText("事假");
+                    break;
+                case"2":
+                    tvAbsqReason.setText("病假");
+                    break;
+                case"3":
+                    tvAbsqReason.setText("公假");
+                    break;
+                case"4":
+                    tvAbsqReason.setText("娩假");
+                    break;
+                case"5":
+                    tvAbsqReason.setText("喪假");
+                    break;
+                case"6":
+                    tvAbsqReason.setText("其他");
+                    break;
+            }
+
+        }else{tvAbsqReason.setText("---");}
+
+
+        TextView tvAbsqOutcome = cardView.findViewById(R.id.tvAbsqOutcome);
+        Button btnAbsqUpdate = cardView.findViewById(R.id.btnAbsqUpdate);
+        if(absMap.get("absOutcome") != null) {
+            switch((String)absMap.get("absOutcome")){
+                case"0":
+                    tvAbsqOutcome.setText("審核不通過");
+                    tvAbsqOutcome.setTextColor(Color.rgb(209, 8, 55));
+                    break;
+                case"1":
+                    tvAbsqOutcome.setText("已通過");
+                    tvAbsqOutcome.setTextColor(Color.rgb(22, 82, 193));
+                    break;
+                case"2":
+                    tvAbsqOutcome.setText("審核中");
+                    btnAbsqUpdate.setVisibility(View.VISIBLE);
+                    break;
+            }
+        } else{
+            tvAbsqOutcome.setText("---");
+            btnAbsqUpdate.setVisibility(View.GONE);
+        }
+
+        TextView tvAbsqNote = cardView.findViewById(R.id.tvAbsqNote);
+        if(absMap.get("absNote") != null) {
+            tvAbsqNote.setText((absMap.get("absNote")).toString());
+        }else{
+            tvAbsqNote.setText("---");}
+
+        btnAbsqUpdate = cardView.findViewById(R.id.btnAbsqUpdate);
+        btnAbsqUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Util.showToast(v.getContext(), "功能開發中");
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return clrrVOList.size();
+        return absList.size();
     }
-
-
-    private static String parseNum(int time) {
-        if (time >= 10)
-            return String.valueOf(time);
-        else
-            return "0" + String.valueOf(time);
-    }
-
-
 
 }

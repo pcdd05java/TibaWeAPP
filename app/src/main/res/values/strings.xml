@@ -46,13 +46,17 @@
 
     <string name="teachinglog">教學日誌</string>
     <string name="absence_apply">申請差假</string>
+    <string name="absence_apply_tab">我要請假</string>
     <string name="absence_record">查詢差假紀錄</string>
 
     <string name="abs_apply_date">請假時段</string>
     <string name="abs_alert_date">日期提醒</string>
-    <string name="abs_alert_msg">您未選擇請假日期，請假日期為今天</string>
+    <string name="abs_alert_msg">您未點選日期，預設為今天</string>
     <string name="abs_alert_return">返回</string>
     <string name="abs_msg_nocourse">您選擇的日期時段並無課程</string>
+    <string name="abs_msg_select_interval">請選擇時段</string>
+    <string name="abs_msg_alreadyAbs">本時段課程您已有申請紀錄</string>
+
 
 
     <string name="classroom_reservation">教室預約</string>

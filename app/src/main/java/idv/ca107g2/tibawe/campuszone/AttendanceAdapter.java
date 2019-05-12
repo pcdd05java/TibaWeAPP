@@ -53,6 +53,8 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
 
         TextView tvATDCourseNo = cardView.findViewById(R.id.tvATDCourseNo);
         tvATDCourseNo.setText((String)atdMap.get("coursetime_no"));
+        TextView tvAbsDate = cardView.findViewById(R.id.tvAbsDate);
+        tvAbsDate.setText((atdMap.get("atdDate")).toString());
 
         TextView tvATDDate = cardView.findViewById(R.id.tvATDDate);
         if(atdMap.get("atdDate") != null) {

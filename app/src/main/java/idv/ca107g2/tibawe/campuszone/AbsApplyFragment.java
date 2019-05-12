@@ -1,12 +1,12 @@
 package idv.ca107g2.tibawe.campuszone;
 
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -47,11 +47,14 @@ public class AbsApplyFragment extends Fragment {
     private Spinner spAbsReason, spAbsInterval;
     private static int year, month, day, hour, minute;
     private FloatingActionButton fbtnSelectDate;
-    private EditText edAbsNote;
-    private int absInterval, absReason;
+    private static EditText edAbsNote;
+    private int absInterval, absReason, interval;
+    private boolean isCourseExist = false;
 
-    private ArrayAdapter<String> adapterReason, adapterInterval;
+    private ArrayAdapter<String> adapterReason;
+    private static ArrayAdapter<String> adapterInterval;
 
+    private String absCourse, absTeacher1, absTeacher2, absTeacher3, absDate;
     private static String memberaccount, cr_no, class_no;
 
     private Button btnAbsSubmit, btnAbsCancel;
@@ -77,18 +80,22 @@ public class AbsApplyFragment extends Fragment {
         edAbsNote = view.findViewById(R.id.edAbsNote);
         btnAbsSubmit = view.findViewById(R.id.btnAbsSubmit);
         btnAbsCancel = view.findViewById(R.id.btnAbsCancel);
-//        btnAbsSubmit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                applyAbs();
-//            }
-//        });
-//        btnAbsCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                resetAbsApply();
-//            }
-//        });
+        btnAbsSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isCourseExist) {
+                    applyAbs();
+                }else{
+                    Util.showToast(getActivity(), R.string.abs_msg_nocourse);
+                }
+            }
+        });
+        btnAbsCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetAbsApply();
+            }
+        });
 
         SharedPreferences preferences = getActivity().getSharedPreferences(Util.PREF_FILE,
                 getActivity().MODE_PRIVATE);
@@ -104,6 +111,7 @@ public class AbsApplyFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
@@ -112,6 +120,49 @@ public class AbsApplyFragment extends Fragment {
         super.onStart();
         spinner();
         showRightNow();
+
+        AbsApplyActivity activity = (AbsApplyActivity)getActivity();
+        Bundle results = activity.passBundle();
+        if(results.getString("absCourse")!=null) {
+            absCourse = results.getString("absCourse");
+            if (results.getString("absTeacher1") != null) {
+                absTeacher1 = results.getString("absTeacher1");
+            }
+            if (results.getString("absTeacher2") != null) {
+                absTeacher2 = results.getString("absTeacher2");
+            }
+            if (results.getString("absTeacher3") != null) {
+                absTeacher3 = results.getString("absTeacher3");
+            }
+            absDate = results.getString("absDate");
+            interval = results.getInt("interval");
+
+            tvApplyDate.setText(absDate);
+
+            absInterval = interval;
+            spAbsInterval.setSelection(absInterval, true);
+
+            tvAbsCourse.setText(absCourse);
+            if(absTeacher1!= null){
+                tvAbsTeacher1.setText(absTeacher1);
+            }else {
+                tvAbsTeacher1.setText("---");
+            }
+            if(absTeacher2 != null){
+                tvAbsTeacher2.setText(absTeacher2);
+                tvAbsTeacher2.setVisibility(View.VISIBLE);
+            }else {
+                tvAbsTeacher2.setVisibility(View.INVISIBLE);
+                tvAbsTeacher2.setText("---");
+            }
+            if(absTeacher3 != null){
+                tvAbsTeacher3.setText(absTeacher3);
+                tvAbsTeacher3.setVisibility(View.VISIBLE);
+            }else {
+                tvAbsTeacher3.setVisibility(View.INVISIBLE);
+                tvAbsTeacher3.setText("---");
+            }
+        }
     }
 
 
@@ -129,7 +180,7 @@ public class AbsApplyFragment extends Fragment {
         spAbsReason.setOnItemSelectedListener(listener);
 
         // 直接由程式碼動態產生Spinner做法
-        String[] absenceInterval = {"全天", "上午", "下午", "夜間"};
+        String[] absenceInterval = {"請選擇時段", "上午", "下午", "夜間"};
         // ArrayAdapter用來管理整個選項的內容與樣式，android.R.layout.simple_spinner_item為內建預設樣式
         adapterInterval = new ArrayAdapter<>
                 (getContext(), android.R.layout.simple_spinner_dropdown_item, absenceInterval);
@@ -145,10 +196,16 @@ public class AbsApplyFragment extends Fragment {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             if(parent.getAdapter().equals(adapterReason)){
                 absReason = parent.getSelectedItemPosition()+1;
+//                if(absReason==6){
+//                    edAbsNote.setFocusable(true);
+//                    edAbsNote.requestFocus();
+//                }
             }
             if(parent.getAdapter().equals(adapterInterval)){
-                absInterval = parent.getSelectedItemPosition()+1;
-                findAbsCourse();
+                absInterval = parent.getSelectedItemPosition();
+                if(absInterval!=0){
+                    findAbsCourse();
+                }
             }
         }
 
@@ -156,8 +213,9 @@ public class AbsApplyFragment extends Fragment {
         public void onNothingSelected(AdapterView<?> parent) {
         }
     };
-    @SuppressLint("ResourceAsColor")
+
     public void findAbsCourse(){
+        btnAbsSubmit.setVisibility(View.VISIBLE);
         java.sql.Date nowDate= new java.sql.Date(System.currentTimeMillis());
         String nowDateString = nowDate.toString();
         if((tvApplyDate.getText().toString()).equals(nowDateString)){
@@ -172,6 +230,7 @@ public class AbsApplyFragment extends Fragment {
             jsonObject.addProperty("sdate", (String)tvApplyDate.getText());
             jsonObject.addProperty("interval", absInterval);
             jsonObject.addProperty("class_no", class_no);
+            jsonObject.addProperty("memberaccount", memberaccount);
 
             String jsonOut = jsonObject.toString();
             absCourseTask = new CommonTask(url, jsonOut);
@@ -181,34 +240,49 @@ public class AbsApplyFragment extends Fragment {
                 }.getType();
                 Map<String, String> absCourseData = gson.fromJson(result, collectionType);
 
-                if(!Boolean.valueOf(absCourseData.get("isCourseExist"))){
-                    Util.showToast(getActivity(), "您選擇的日期時段並無課程");
-                    btnAbsSubmit.setClickable(false);
-                    btnAbsSubmit.setTextColor(R.color.colorDarkBlue);
-                }else{
-                    btnAbsSubmit.setClickable(true);
-                    tvAbsCourse.setText(absCourseData.get("subjectName"));
-                    if(absCourseData.get("teacherName1") != null){
-                        tvAbsTeacher1.setText(absCourseData.get("teacherName1"));
-                    }else {
-                        tvAbsTeacher1.setText("---");
+                isCourseExist = Boolean.valueOf(absCourseData.get("isCourseExist"));
+                if(!isCourseExist){
+                    isCourseExist =false;
+                    edAbsNote.setText(R.string.abs_msg_nocourse);
+                    edAbsNote.setTextColor(Color.rgb(209, 8, 55));
+//                    btnAbsSubmit.setClickable(false);
+//                    btnAbsSubmit.setTextColor(R.color.colorDarkBlue);
+                    edAbsNote.setText(null);
+                    tvAbsCourse.setText("");
+                    tvAbsTeacher1.setText("");
+                    tvAbsTeacher2.setText("");
+                    tvAbsTeacher3.setText("");
+                }else if(Boolean.valueOf(absCourseData.get("alreadyAbs"))){
+                    isCourseExist =false;
+//                    Util.showToast(getActivity(), R.string.abs_msg_alreadyAbs);
+                    btnAbsSubmit.setVisibility(View.GONE);
+                    edAbsNote.setText(R.string.abs_msg_alreadyAbs);
+                    edAbsNote.setTextColor(Color.rgb(209, 8, 55));
+                }else {
+                    edAbsNote.setText(null);
+                    edAbsNote.setTextColor(Color.rgb(0, 0, 0));
+//                    btnAbsSubmit.setClickable(true);
+                        tvAbsCourse.setText(absCourseData.get("subjectName"));
+                        if(absCourseData.get("teacherName1") != null){
+                            tvAbsTeacher1.setText(absCourseData.get("teacherName1"));
+                        }else {
+                            tvAbsTeacher1.setText("---");
+                        }
+                        if(absCourseData.get("teacherName2") != null){
+                            tvAbsTeacher2.setText(absCourseData.get("teacherName2"));
+                            tvAbsTeacher2.setVisibility(View.VISIBLE);
+                        }else {
+                            tvAbsTeacher2.setVisibility(View.INVISIBLE);
+                            tvAbsTeacher2.setText("---");
+                        }
+                        if(absCourseData.get("teacherName3") != null){
+                            tvAbsTeacher3.setText(absCourseData.get("teacherName3"));
+                            tvAbsTeacher3.setVisibility(View.VISIBLE);
+                        }else {
+                            tvAbsTeacher3.setVisibility(View.INVISIBLE);
+                            tvAbsTeacher3.setText("---");
+                        }
                     }
-                    if(absCourseData.get("teacherName2") != null){
-                        tvAbsTeacher2.setText(absCourseData.get("teacherName2"));
-                        tvAbsTeacher2.setVisibility(View.VISIBLE);
-                    }else {
-                        tvAbsTeacher2.setVisibility(View.INVISIBLE);
-                        tvAbsTeacher2.setText("---");
-                    }
-                    if(absCourseData.get("teacherName3") != null){
-                        tvAbsTeacher3.setText(absCourseData.get("teacherName3"));
-                        tvAbsTeacher3.setVisibility(View.VISIBLE);
-                    }else {
-                        tvAbsTeacher3.setVisibility(View.INVISIBLE);
-                        tvAbsTeacher3.setText("---");
-                    }
-                }
-
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
@@ -253,44 +327,55 @@ public class AbsApplyFragment extends Fragment {
         }
     }
 
-//    public void applyAbs(){
-//
-//        if (Util.networkConnected(getActivity())) {
-//            String url = Util.URL + "AbsenceServlet";
-//            JsonObject jsonObject = new JsonObject();
-//            jsonObject.addProperty("action", "applyCLRR");
-//            jsonObject.addProperty("memberaccount", memberaccount);
-//            jsonObject.addProperty("class_no", class_no);
-//            jsonObject.addProperty("clrr_date", tvClassroomReserveDate.getText().toString());
-//            jsonObject.addProperty("cr_no", cr_no);
-//            jsonObject.addProperty("clrr_sttime", clrr_sttime);
-//            jsonObject.addProperty("clrr_endtime", clrr_endtime);
-//
-//            String jsonOut = jsonObject.toString();
-//            applyCLRRTask = new CommonTask(url, jsonOut);
-//            try {
-//               applyCLRRTask.execute();
-//
-//               Util.showToast(getActivity(), R.string.msg_clrr_success);
-//               resetCLRR();
-//                ((ClrrActivity)getActivity()).pager.getAdapter().notifyDataSetChanged();
-//                ((ClrrActivity)getActivity()).pager.setCurrentItem(1);
-//
-//
-//            } catch (Exception e) {
-//                Log.e(TAG, e.toString());
-//            }
-//        } else {
-//            Util.showToast(getActivity(), R.string.msg_NoNetwork);
-//        }
-//    }
-//
-//    public void resetAbsApply(){
-//        showRightNow();
-//        spClassroomNo.setSelection(0, true);
-//        spClassroomReserveStart.setSelection(0, true);
-//        spClassroomReserveEnd.setSelection(0, true);
-//    }
+    public void applyAbs(){
+
+        if (Util.networkConnected(getActivity())) {
+            String url = Util.URL + "AbsenceServlet";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("action", "applyABS");
+            jsonObject.addProperty("memberaccount", memberaccount);
+            jsonObject.addProperty("sdate", (String)tvApplyDate.getText());
+            jsonObject.addProperty("absinterval", absInterval);
+            if(absReason==0){
+                absReason=1;
+            }
+            jsonObject.addProperty("absReason", absReason);
+            jsonObject.addProperty("note", edAbsNote.getText().toString());
+
+
+            String jsonOut = jsonObject.toString();
+            absApplyTask = new CommonTask(url, jsonOut);
+            try {
+                String result = absApplyTask.execute().get();
+
+               Util.showToast(getActivity(), result);
+                resetAbsApply();
+
+                ((AbsApplyActivity)getActivity()).pager.getAdapter().notifyDataSetChanged();
+                ((AbsApplyActivity)getActivity()).pager.setCurrentItem(1);
+
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Util.showToast(getActivity(), R.string.msg_NoNetwork);
+        }
+    }
+
+    public void resetAbsApply(){
+        btnAbsSubmit.setVisibility(View.VISIBLE);
+        showRightNow();
+        spAbsReason.setSelection(0, true);
+        spAbsInterval.setSelection(0, true);
+        edAbsNote.setText(null);
+        edAbsNote.setTextColor(Color.rgb(0, 0, 0));
+        tvAbsCourse.setText("");
+        tvAbsTeacher1.setText("");
+        tvAbsTeacher2.setText("");
+        tvAbsTeacher3.setText("");
+
+    }
 
     private static void showRightNow() {
         Calendar c = Calendar.getInstance();
@@ -338,6 +423,7 @@ public class AbsApplyFragment extends Fragment {
             month = m;
             day = d;
             updateInfo();
+            Util.showToast(getActivity(), R.string.abs_msg_select_interval);
         }
     }
 

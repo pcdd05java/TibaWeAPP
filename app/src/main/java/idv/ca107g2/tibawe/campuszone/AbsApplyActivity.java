@@ -19,8 +19,9 @@ import idv.ca107g2.tibawe.R;
 
 public class AbsApplyActivity extends AppCompatActivity {
     public static ViewPager pager;
-    private int mPagerPosition;
-    private int mPagerOffsetPixels;
+    private int mPagerPosition, mPagerOffsetPixels, interval;
+    private String absCourse, absTeacher1, absTeacher2, absTeacher3, absDate;
+    private Bundle results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,45 @@ public class AbsApplyActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(pager);
 
 
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null && bundle.containsKey("absCourse")){
+            getBundle(bundle);
+        }
 
+    }
+
+    public void getBundle(Bundle bundle){
+
+        absCourse = bundle.getString("absCourse");
+        if(bundle.getString("absTeacher1")!= null){
+            absTeacher1= bundle.getString("absTeacher1");
+        }
+        if(bundle.getString("absTeacher2")!= null){
+            absTeacher2= bundle.getString("absTeacher2");
+        }
+        if(bundle.getString("absTeacher3")!= null){
+            absTeacher3= bundle.getString("absTeacher3");
+        }
+        absDate = bundle.getString("absDate");
+        interval = bundle.getInt("interval");
+    }
+
+    public Bundle passBundle() {
+        Bundle btoFrag = new Bundle();
+        btoFrag.putString("absCourse",absCourse);
+        if(absTeacher1!= null){
+            btoFrag.putString("absTeacher1",absTeacher1);
+        }
+        if(absTeacher2!= null){
+            btoFrag.putString("absTeacher2",absTeacher2);
+        }
+        if(absTeacher3!= null){
+            btoFrag.putString("absTeacher3",absTeacher3);
+        }
+        btoFrag.putString("absDate",absDate);
+        btoFrag.putInt("interval",interval);
+
+        return btoFrag;
     }
 
 
@@ -104,7 +143,7 @@ public class AbsApplyActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return getResources().getText(R.string.absence_apply);
+                    return getResources().getText(R.string.absence_apply_tab);
                 case 1:
                     return getResources().getText(R.string.absence_record);
             }

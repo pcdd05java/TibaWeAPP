@@ -1,7 +1,9 @@
 package idv.ca107g2.tibawe.vo;
 
 
-public class StoreInformationVO {
+import java.io.Serializable;
+
+public class StoreInformationVO implements Serializable {
     private String store_no;
     private String store_name;
     private String store_phone;

@@ -82,7 +82,8 @@ public class StoreInformationActivity  extends AppCompatActivity {
                     @Override
                     public void onClick(int position) {
                         Intent intent = new Intent(StoreInformationActivity.this, StoreDetailActivity.class);
-                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
+//                        intent.putExtra(StoreDetailActivity.EXTRA_DETAIL_ID, position);
+                        Bundle bundle = new Bundle();
                         startActivity(intent);
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }

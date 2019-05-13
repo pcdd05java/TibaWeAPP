@@ -22,7 +22,7 @@ import idv.ca107g2.tibawe.R;
 public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
     private final static String TAG = "ImageTask";
     private String url, pk_no;
-    private int imageSize;
+    private int imageSize, picnum;
     /* ImageTask的屬性strong reference到BookListAdapter內的imageView不好，
      * 會導致BookListAdapter進入背景時imageView被參考到而無法被釋放，
      * 而且imageView會參考到Context，也會導致Activity無法被回收。
@@ -39,6 +39,15 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         this.pk_no = pk_no;
         this.imageSize = imageSize;
         this.imageViewWeakReference = new WeakReference<>(imageView);
+        this.picnum = 1;
+    }
+
+    public ImageTask(String url, String pk_no, int imageSize, ImageView imageView, int picnum) {
+        this.url = url;
+        this.pk_no = pk_no;
+        this.imageSize = imageSize;
+        this.imageViewWeakReference = new WeakReference<>(imageView);
+        this.picnum = picnum;
     }
 
 
@@ -48,6 +57,7 @@ public class ImageTask extends AsyncTask<Object, Integer, Bitmap> {
         jsonObject.addProperty("action", "getImage");
         jsonObject.addProperty("pk_no", pk_no);
         jsonObject.addProperty("imageSize", imageSize);
+        jsonObject.addProperty("picnum", picnum);
         return getRemoteImage(url, jsonObject.toString());
     }
 

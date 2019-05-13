@@ -1,12 +1,9 @@
 package idv.ca107g2.tibawe.lifezone;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.hannesdorfmann.swipeback.Position;
 import com.hannesdorfmann.swipeback.SwipeBack;
@@ -19,21 +16,21 @@ public class RhiDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_detail);
+        setContentView(R.layout.activity_store_detail);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        int infoId = (Integer)getIntent().getExtras().get(EXTRA_INFO_ID);
-        String infoTitles = RentingHouseInformation.rentingHouseInformations[infoId].getRhiTitle();
-        TextView textView = findViewById(R.id.tvInfoTitle);
-        textView.setText(infoTitles);
-
-        int infoPics = RentingHouseInformation.rentingHouseInformations[infoId].getRhiPicId();
-        ImageView imageView = findViewById(R.id.ivInfoPic1);
-        imageView.setImageDrawable(ContextCompat.getDrawable(this, infoPics));
+//        int infoId = (Integer)getIntent().getExtras().get(EXTRA_INFO_ID);
+//        String infoTitles = RentingHouseInformation.rentingHouseInformations[infoId].getRhiTitle();
+//        TextView textView = findViewById(R.id.tvInfoTitle);
+//        textView.setText(infoTitles);
+//
+//        int infoPics = RentingHouseInformation.rentingHouseInformations[infoId].getRhiPicId();
+//        ImageView imageView = findViewById(R.id.ivInfoPic1);
+//        imageView.setImageDrawable(ContextCompat.getDrawable(this, infoPics));
 
         // Init the swipe back
         SwipeBack.attach(this, Position.LEFT)

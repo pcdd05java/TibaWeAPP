@@ -91,8 +91,13 @@ public class StoreInformationFragment extends Fragment {
                 adapter.setListener(new StoreInformationAdapter.Listener() {
                     @Override
                     public void onClick(int position) {
+                        StoreInformationVO storeInformationVO = storeInformationList.get(position);
+
                         Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
-                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("storeInformationVO", storeInformationVO);
+                        intent.putExtras(bundle);
+//                        intent.putExtra(StoreDetailActivity.EXTRA_DETAIL_POSITION, position);
                         getActivity().startActivity(intent);
                         getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }

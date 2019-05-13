@@ -89,7 +89,7 @@ public class HotArticleFragment extends Fragment {
                     @Override
                     public void onClick(int position) {
                         Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
-                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
+//                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
                         getActivity().startActivity(intent);
                         getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }

@@ -105,6 +105,11 @@
     <string name="hot_article">熱門文章</string>
     <string name="discussion_board">討論區</string>
     <string name="store_menu">美食資訊</string>
+    <string name="store_note">店家介紹</string>
+    <string name="store_phone">連絡電話</string>
+    <string name="store_address">店家位置</string>
+    <string name="store_menu">店家菜單</string>
+
     <string name="DBD_order">便當訂單</string>
     <string name="rhi">租屋資訊</string>
 

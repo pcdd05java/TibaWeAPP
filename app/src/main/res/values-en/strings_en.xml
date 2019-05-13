@@ -102,6 +102,12 @@
     <string name="hot_article">Popular Discussions</string>
     <string name="discussion_board">Discussion Zone</string>
     <string name="store_menu">Food Store Menu</string>
+    <string name="store_note">Introduction</string>
+    <string name="store_phone">Tel</string>
+    <string name="store_address">Location</string>
+    <string name="store_menu">Menu</string>
+
+
     <string name="DBD_order">Order List</string>
     <string name="rhi">Renting House</string>
 

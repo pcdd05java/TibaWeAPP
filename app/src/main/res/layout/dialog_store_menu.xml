@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/dialog_menu_toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="3dp"
+        android:paddingVertical="7dp"
+        android:scrollbars="horizontal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+
+        <Button
+            android:id="@+id/btnSMReturn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/abs_alert_return"
+            android:textColor="@color/colorDarkBlue"
+            android:theme="@style/BorderlessButton" />
+
+    </LinearLayout>
+
+</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

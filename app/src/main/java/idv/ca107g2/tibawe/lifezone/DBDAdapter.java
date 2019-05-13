@@ -14,7 +14,7 @@ import java.util.List;
 import idv.ca107g2.tibawe.R;
 import idv.ca107g2.tibawe.vo.Latest_News_VO;
 
-public class HotArticleAdapter extends RecyclerView.Adapter<HotArticleAdapter.ViewHolder>{
+public class DBDAdapter extends RecyclerView.Adapter<DBDAdapter.ViewHolder>{
 
     private List<Latest_News_VO> latest_news_list;
     private Listener listener;
@@ -32,13 +32,13 @@ public class HotArticleAdapter extends RecyclerView.Adapter<HotArticleAdapter.Vi
         }
     }
 
-    public HotArticleAdapter(List<Latest_News_VO> latest_news_list){
+    public DBDAdapter(List<Latest_News_VO> latest_news_list){
         this.latest_news_list = latest_news_list;
     }
 
     @NonNull
     @Override
-    public HotArticleAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DBDAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_latest_news, parent, false);
 

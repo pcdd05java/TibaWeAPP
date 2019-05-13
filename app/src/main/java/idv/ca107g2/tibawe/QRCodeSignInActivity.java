@@ -20,6 +20,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.tools.Util;
 
 public class QRCodeSignInActivity extends AppCompatActivity{
 

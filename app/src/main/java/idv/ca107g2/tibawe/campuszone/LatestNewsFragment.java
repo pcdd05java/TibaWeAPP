@@ -1,12 +1,11 @@
 package idv.ca107g2.tibawe.campuszone;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +20,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
-import idv.ca107g2.tibawe.lifezone.StoreDetailActivity;
 import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.tools.CirclePagerIndicatorDecoration;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.vo.Latest_News_VO;
 
 
@@ -45,11 +44,10 @@ public class LatestNewsFragment extends Fragment {
                 (RecyclerView) inflater.inflate(R.layout.recyclerview_fragment, container, false);
 
 
-//        LatestNewsAdapter adapter = new LatestNewsAdapter(newsTitles, newsPics, newsContents);
-//        newsRecycler.setAdapter(adapter);
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         newsRecycler.setLayoutManager(layoutManager);
+        newsRecycler.addItemDecoration(new CirclePagerIndicatorDecoration());
 
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(newsRecycler);
@@ -59,8 +57,8 @@ public class LatestNewsFragment extends Fragment {
 //        adapter.setListener(new LatestNewsAdapter.Listener() {
 //            @Override
 //            public void onClick(int position) {
-//                Intent intent = new Intent(getActivity(), RhiDetailActivity.class);
-//                intent.putExtra(RhiDetailActivity.EXTRA_INFO_ID, position);
+//                Intent intent = new Intent(getActivity(), zRhiDetailActivity.class);
+//                intent.putExtra(zRhiDetailActivity.EXTRA_INFO_ID, position);
 //                getActivity().startActivity(intent);
 //            }
 //        });
@@ -72,7 +70,7 @@ public class LatestNewsFragment extends Fragment {
 
         String url = Util.URL + "Latest_News_Servlet";
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getall");
+        jsonObject.addProperty("action", "getAllin5");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
         if (Util.networkConnected(getActivity())) {
@@ -93,15 +91,15 @@ public class LatestNewsFragment extends Fragment {
 
                 LatestNewsAdapter adapter = new LatestNewsAdapter(latest_news_list);
                 newsRecycler.setAdapter(adapter);
-                adapter.setListener(new LatestNewsAdapter.Listener() {
-                    @Override
-                    public void onClick(int position) {
-                        Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
-//                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
-                        getActivity().startActivity(intent);
-                        getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                    }
-                });
+//                adapter.setListener(new LatestNewsAdapter.Listener() {
+//                    @Override
+//                    public void onClick(int position) {
+//                        Intent intent = new Intent(getActivity(), StoreDetailActivity.class);
+////                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
+//                        getActivity().startActivity(intent);
+//                        getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+//                    }
+//                });
             }
 
         } else {

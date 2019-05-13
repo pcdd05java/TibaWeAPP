@@ -32,8 +32,9 @@ import java.util.Calendar;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.classzone.CourseQueryFragment;
-import idv.ca107g2.tibawe.lifezone.HotArticleFragment;
+import idv.ca107g2.tibawe.lifezone.DBDFragment;
 import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.tools.Util;
 
 public class ValidMainActivity extends AppCompatActivity {
     Menu menu;
@@ -327,7 +328,7 @@ public class ValidMainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position){
                 case 0:
-                    return new HotArticleFragment();
+                    return new DBDFragment();
                 case 1:
                     return new ValidMainMenuFragment();
                 case 2:
@@ -339,7 +340,7 @@ public class ValidMainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return getResources().getText(R.string.hot_article);
+                    return getResources().getText(R.string.DBD_today);
                 case 1:
                     return getResources().getText(R.string.validmain_menu_tab);
                 case 2:

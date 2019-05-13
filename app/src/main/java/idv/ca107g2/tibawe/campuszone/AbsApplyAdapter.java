@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 
 class AbsApplyAdapter extends RecyclerView.Adapter<AbsApplyAdapter.ViewHolder> {
     private List<Map<String, String>> absList;

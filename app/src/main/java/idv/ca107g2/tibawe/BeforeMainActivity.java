@@ -22,6 +22,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.tools.Util;
 
 public class BeforeMainActivity extends AppCompatActivity {
     private CommonTask isMemberTask;
@@ -115,9 +116,9 @@ public class BeforeMainActivity extends AppCompatActivity {
         boolean login = preferences.getBoolean("login", false);
 
         if (login) {
-            String member_ID = preferences.getString("member_ID", "");
+            String memberaccount = preferences.getString("memberaccount", "");
             String memberpass = preferences.getString("memberpass", "");
-            if (isMember(member_ID, memberpass)) {
+            if (isMember(memberaccount, memberpass)) {
                 Util.showToast(this, R.string.login_auto);
                 setResult(RESULT_OK);
                 Intent intent = new Intent(BeforeMainActivity.this, ValidMainActivity.class);
@@ -135,13 +136,13 @@ public class BeforeMainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isMember(final String member_ID, final String memberpass) {
+    private boolean isMember(final String memberaccount, final String memberpass) {
         boolean isMember = false;
         if (Util.networkConnected(this)) {
             String url = Util.URL + "MemberServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "isMember");
-            jsonObject.addProperty("member_ID", member_ID);
+            jsonObject.addProperty("memberaccount", memberaccount);
             jsonObject.addProperty("memberpass", memberpass);
             String jsonOut = jsonObject.toString();
             isMemberTask = new CommonTask(url, jsonOut);

@@ -2,12 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+    <!--神奇小按鈕-->
+    <item
+        android:id="@+id/action_magic"
+        android:orderInCategory="1"
+        android:icon="@drawable/icons8_menu_24"
+        android:title=""
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_login"
         android:orderInCategory="2"
         android:icon="@drawable/icons8_person_24"
         android:title=""
         app:showAsAction="always" />
+
 
 </menu>

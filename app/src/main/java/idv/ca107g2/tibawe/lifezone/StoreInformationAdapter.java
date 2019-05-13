@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.ImageTask;
 import idv.ca107g2.tibawe.vo.StoreInformationVO;
 
@@ -47,7 +47,7 @@ class StoreInformationAdapter extends RecyclerView.Adapter<StoreInformationAdapt
     public StoreInformationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         CardView cv =
-                (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_info, parent, false);
+                (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_store_info, parent, false);
 
         return new ViewHolder(cv);
     }

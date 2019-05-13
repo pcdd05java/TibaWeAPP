@@ -72,6 +72,10 @@
             android:name=".lifezone.StoreInformationActivity"
             android:label="@string/store_menu"
             android:parentActivityName=".ValidMainActivity"/>
+        <activity
+            android:name=".lifezone.RhiActivity"
+            android:label="@string/rhi"
+            android:parentActivityName=".ValidMainActivity"/>
 
     </application>
 

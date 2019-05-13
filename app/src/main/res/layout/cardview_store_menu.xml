@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cvInformation="http://schemas.android.com/apk/res-auto"
+    xmlns:cvStoreMenu="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cvStoreMenu"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    cvStoreMenu:cardElevation="0dp"
+    cvStoreMenu:cardCornerRadius="1dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,26 +20,58 @@
             android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
-            android:id="@+id/cvtvInfoTitle"
-            android:textAlignment="textStart"
-            android:textColor="@color/colorDarkBlue"
-            android:textSize="15dp"
-            android:text="八方雲集"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="4dp"
-            android:layout_marginBottom="4dp"
-            android:id="@+id/cvtvInfoTel"
-            android:textAlignment="textEnd"
-            android:text="02-1234567"/>
-        </LinearLayout>
+            android:id="@+id/cvtvItemNo"
+            android:gravity="center"
+            android:text="1"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3dp"
+                android:layout_marginVertical="5dp"
+                android:background="@color/colorPrimary" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"
+                android:id="@+id/cvtvItemName"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="15dp"
+                android:text="八方雲集"/>
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:id="@+id/cvtvItemPrice"
+                android:gravity="end|center_vertical"
+                android:text="80"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="4dp"
+                android:gravity="start|center_vertical"
+
+                android:text="元"/>
+        </LinearLayout>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="10dp"/>
     </LinearLayout>
 
 

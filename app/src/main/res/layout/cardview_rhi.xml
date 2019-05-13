@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cvInformation="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:id="@+id/cvRhi"
+    android:layout_marginTop="20dp"
+    android:layout_margin="10dp"
+    cvInformation:cardElevation="2dp"
+    cvInformation:cardCornerRadius="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginVertical="8dp"
+            android:id="@+id/cvtvRhiTitle"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="20dp"
+            android:text="好房出租，錯過就沒了"/>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDarkBlue"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.0"
+            android:scaleType="centerCrop"
+            android:id="@+id/cvivRhiPic"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="4dp"
+            android:id="@+id/cvtvRhiLoc"
+            android:textAlignment="textStart"
+            android:textSize="17dp"
+            android:text="台南市仁德區"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

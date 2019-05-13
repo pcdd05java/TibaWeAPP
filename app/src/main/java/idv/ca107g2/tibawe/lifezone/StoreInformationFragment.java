@@ -4,9 +4,9 @@ package idv.ca107g2.tibawe.lifezone;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +21,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.tools.CirclePagerIndicatorDecoration;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.vo.StoreInformationVO;
 
 /**
@@ -44,11 +45,10 @@ public class StoreInformationFragment extends Fragment {
                 (RecyclerView) inflater.inflate(R.layout.recyclerview_fragment, container, false);
 
 
-//        StoreInformationAdapter adapter = new StoreInformationAdapter(storeTitles, storePics);
-//        storeRecycler.setAdapter(adapter);
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         storeRecycler.setLayoutManager(layoutManager);
+        storeRecycler.addItemDecoration(new CirclePagerIndicatorDecoration());
 
         findStore();
 
@@ -97,7 +97,6 @@ public class StoreInformationFragment extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("storeInformationVO", storeInformationVO);
                         intent.putExtras(bundle);
-//                        intent.putExtra(StoreDetailActivity.EXTRA_DETAIL_POSITION, position);
                         getActivity().startActivity(intent);
                         getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }

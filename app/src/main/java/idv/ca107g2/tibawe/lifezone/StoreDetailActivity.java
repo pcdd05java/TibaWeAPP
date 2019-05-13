@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -33,9 +34,10 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.task.ImageTask;
+import idv.ca107g2.tibawe.tools.CirclePagerIndicatorDecoration;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.vo.StoreInformationVO;
 import idv.ca107g2.tibawe.vo.StoreMenuVO;
 
@@ -72,13 +74,16 @@ public class StoreDetailActivity extends AppCompatActivity {
         storeInformationVO = (StoreInformationVO) bundle.getSerializable("storeInformationVO");
 
         rvSDetailPic = findViewById(R.id.rvSDetailPic);
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL);
+        LinearLayoutManager layoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         rvSDetailPic.setLayoutManager(layoutManager);
+        rvSDetailPic.addItemDecoration(new CirclePagerIndicatorDecoration());
         rvSDetailPic.setAdapter(new SDetailPicAdapter(this, storeInformationVO));
+        rvSDetailPic.setHorizontalScrollBarEnabled(false);
 
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(rvSDetailPic);
+
 
         getView();
 
@@ -113,44 +118,30 @@ public class StoreDetailActivity extends AppCompatActivity {
 
         tvSDetailAdress = findViewById(R.id.tvSDetailAdress);
         tvSDetailAdress.setText(storeInformationVO.getStore_adress());
+//
+//        tvSDetailNote = findViewById(R.id.tvSDetailNote);
+//        tvSDetailNote.setText(storeInformationVO.getStore_note());
 
-        tvSDetailNote = findViewById(R.id.tvSDetailNote);
-        tvSDetailNote.setText(storeInformationVO.getStore_note());
-
-        String url = Util.URL + "StoreMenuServlet";
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getStoreMenu");
-        jsonObject.addProperty("store_no", storeInformationVO.getStore_no());
-        String jsonOut = jsonObject.toString();
-//        Util.showToast(getContext(), jsonOut);
-        if (Util.networkConnected(this)) {
-            getStoreMenuTask = new CommonTask(url, jsonOut);
-            try {
-                String result = getStoreMenuTask.execute().get();
-                Type collectionType = new TypeToken<List<StoreMenuVO>>() {
-                }.getType();
-                smList = gson.fromJson(result, collectionType);
-
-            } catch (Exception e) {
-                Log.e(TAG, e.toString());
-            }
-            rvSM.setAdapter(new StoreMenuAdapter(this, smList));
-        }else {
-            Util.showToast(this, R.string.msg_NoNetwork);
-        }
     }
 
 
     public Dialog clickMenu(View view) {
 
         menuDialog = new Dialog(StoreDetailActivity.this);
-        menuDialog.setTitle(getString(R.string.store_menu));
+        menuDialog.setTitle(getString(R.string.store_detail_menu));
         // 使用者無法自行取消對話視窗，需要進行操作才行
         menuDialog.setCancelable(true);
         menuDialog.setContentView(R.layout.dialog_store_menu);
         Toolbar toolbar = menuDialog.findViewById(R.id.dialog_menu_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.store_menu);
+        getSupportActionBar().setTitle(R.string.store_detail_menu);
+
+        rvSM = menuDialog.findViewById(R.id.rvSM);
+        StaggeredGridLayoutManager smlayoutManager =
+                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        rvSM.setLayoutManager(smlayoutManager);
+
+        findMenu();
 
         // 透過myDialog.getWindow()取得這個對話視窗的Window物件
         Window dialogWindow = menuDialog.getWindow();
@@ -192,12 +183,6 @@ public class StoreDetailActivity extends AppCompatActivity {
         p.width = (int) (d.getWidth() * 0.95); // 寬度設置為螢幕的0.95 (95%)
         dialogWindow.setAttributes(p);
 
-        rvSM = menuDialog.findViewById(R.id.rvSM);
-        StaggeredGridLayoutManager layoutManager =
-                new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        rvSM.setLayoutManager(layoutManager);
-
-
         btnSMReturn = menuDialog.findViewById(R.id.btnSMReturn);
         btnSMReturn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +197,32 @@ public class StoreDetailActivity extends AppCompatActivity {
 
 
     }
+
+    public void findMenu(){
+        String url = Util.URL + "StoreMenuServlet";
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "getStoreMenu");
+        jsonObject.addProperty("store_no", storeInformationVO.getStore_no());
+        String jsonOut = jsonObject.toString();
+//        Util.showToast(getContext(), jsonOut);
+        if (Util.networkConnected(this)) {
+            getStoreMenuTask = new CommonTask(url, jsonOut);
+            try {
+                String result = getStoreMenuTask.execute().get();
+                Type collectionType = new TypeToken<List<StoreMenuVO>>() {
+                }.getType();
+                smList = gson.fromJson(result, collectionType);
+
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+            rvSM.setAdapter(new StoreMenuAdapter(this, smList));
+        }else {
+            Util.showToast(this, R.string.msg_NoNetwork);
+        }
+    }
+
+    ///////////StorePic
 
     private class SDetailPicAdapter extends RecyclerView.Adapter<SDetailPicAdapter.MyViewHolder> {
         private Context context;
@@ -228,11 +239,11 @@ public class StoreDetailActivity extends AppCompatActivity {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView cvivIDetailPic;
+            ImageView cvivDetailPic;
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                cvivIDetailPic = itemView.findViewById(R.id.cvivIDetailPic);
+                cvivDetailPic = itemView.findViewById(R.id.cvivDetailPic);
             }
         }
 
@@ -269,11 +280,11 @@ public class StoreDetailActivity extends AppCompatActivity {
             String url = Util.URL + "StoreInformationServlet";
             String pk_no = storeInformationVO.getStore_no();
             int picnum = position+1;
-            sDetailImageTask = new ImageTask(url, pk_no, imageSize, holder.cvivIDetailPic, picnum);
+            sDetailImageTask = new ImageTask(url, pk_no, imageSize, holder.cvivDetailPic, picnum);
             sDetailImageTask.execute();
         }
     }
-
+///////////StoreMenu
     private class StoreMenuAdapter extends RecyclerView.Adapter<StoreMenuAdapter.MyViewHolder> {
         private Context context;
         private LayoutInflater layoutInflater;
@@ -286,101 +297,36 @@ public class StoreDetailActivity extends AppCompatActivity {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            ImageView cvivIDetailPic;
+            TextView cvtvItemNo, cvtvItemName, cvtvItemPrice;
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                cvivIDetailPic = itemView.findViewById(R.id.cvivIDetailPic);
+                cvtvItemNo = itemView.findViewById(R.id.cvtvItemNo);
+                cvtvItemName = itemView.findViewById(R.id.cvtvItemName);
+                cvtvItemPrice = itemView.findViewById(R.id.cvtvItemPrice);
             }
         }
 
         @Override
         public int getItemCount() {
-            String url = Util.URL + "StoreInformationServlet";
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("action", "getPiccount");
-            String pk_no = storeInformationVO.getStore_no();
-            jsonObject.addProperty("pk_no", pk_no);
-            String jsonOut = jsonObject.toString();
-//        Util.showToast(getContext(), jsonOut);
-            if (Util.networkConnected(StoreDetailActivity.this)) {
-                getPiccountTask = new CommonTask(url, jsonOut);
-                try {
-                    piccount = Integer.valueOf(getPiccountTask.execute().get());
-                } catch (Exception e) {
-                    Log.e(TAG, e.toString());
-                }
-            }else {
-                Util.showToast(StoreDetailActivity.this, R.string.msg_NoNetwork);
-            }
-            return piccount;
+            return smList.size();
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = layoutInflater.inflate(R.layout.cardview_detail_pic, parent, false);
+            View itemView = layoutInflater.inflate(R.layout.cardview_store_menu, parent, false);
             return new MyViewHolder(itemView);
         }
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
-            String url = Util.URL + "StoreInformationServlet";
-            String pk_no = storeInformationVO.getStore_no();
-            int picnum = position+1;
-            sDetailImageTask = new ImageTask(url, pk_no, imageSize, holder.cvivIDetailPic, picnum);
-            sDetailImageTask.execute();
+            StoreMenuVO storeMenuVO = smList.get(position);
+            holder.cvtvItemNo.setText(String.valueOf(position+1));
+            holder.cvtvItemName.setText(storeMenuVO.getStorem_name());
+            holder.cvtvItemPrice.setText("$ ".concat(String.valueOf(storeMenuVO.getStorem_price())));
         }
     }
 
-//    public void getStoreDetail(int detailPosition) {
-//
-//
-//        String url = Util.URL + "StoreInformationServlet";
-//        JsonObject jsonObject = new JsonObject();
-//        jsonObject.addProperty("action", "getStoreDetailtext");
-//        jsonObject.addProperty("detailPosition", detailPosition);
-//        String jsonOut = jsonObject.toString();
-////        Util.showToast(getContext(), jsonOut);
-//        if (Util.networkConnected(this)) {
-//            getStoreTask = new CommonTask(url, jsonOut);
-//            try {
-//                String result = getStoreTask.execute().get();
-//                Type collectionType = new TypeToken<List<StoreInformationVO>>() {
-//                }.getType();
-//                storeInformationList = gson.fromJson(result, collectionType);
-//
-//            } catch (Exception e) {
-//                Log.e(TAG, e.toString());
-//            }
-//            if (storeInformationList.isEmpty()) {
-////                view = inflater.inflate(R.layout.fragment_course_query, container, false);
-//                Util.showToast(this, R.string.msg_nodata);
-//            } else {
-//                storeRecycler = findViewById(R.id.rvStoreInfo);
-//                int imageSize = getResources().getDisplayMetrics().widthPixels;
-//
-//                StoreInformationAdapter adapter = new StoreInformationAdapter(storeInformationList, imageSize);
-//                storeRecycler.setAdapter(adapter);
-//                adapter.setListener(new StoreInformationAdapter.Listener() {
-//                    @Override
-//                    public void onClick(int position) {
-//                        Intent intent = new Intent(StoreInformationActivity.this, StoreDetailActivity.class);
-//                        intent.putExtra(StoreDetailActivity.EXTRA_DETAIL_ID, position);
-//                        Bundle bundle = new Bundle();
-//                        startActivity(intent);
-//                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//                    }
-//                });
-//                StaggeredGridLayoutManager layoutManager =
-//                        new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-//                storeRecycler.setLayoutManager(layoutManager);
-//            }
-//
-//        } else {
-////            view = inflater.inflate(R.layout.fragment_course_query, container, false);
-//            Util.showToast(this, R.string.msg_NoNetwork);
-//        }
-//    }
 
         @Override
     public void onBackPressed(){

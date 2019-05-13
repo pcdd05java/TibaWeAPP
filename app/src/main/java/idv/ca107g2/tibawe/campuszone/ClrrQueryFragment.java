@@ -21,7 +21,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.vo.ClrrVO;
 

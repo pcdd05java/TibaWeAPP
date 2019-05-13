@@ -1,6 +1,5 @@
 package idv.ca107g2.tibawe.campuszone;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +19,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
-import idv.ca107g2.tibawe.lifezone.StoreDetailActivity;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.vo.Latest_News_VO;
 
@@ -56,7 +54,7 @@ public class CampusNewsActivity extends AppCompatActivity {
 
         String url = Util.URL + "Latest_News_Servlet";
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getall");
+        jsonObject.addProperty("action", "getAll");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
         if (Util.networkConnected(this)) {
@@ -78,15 +76,15 @@ public class CampusNewsActivity extends AppCompatActivity {
 
                 LatestNewsAdapter adapter = new LatestNewsAdapter(latest_news_list);
                 newsRecycler.setAdapter(adapter);
-                adapter.setListener(new LatestNewsAdapter.Listener() {
-                    @Override
-                    public void onClick(int position) {
-                        Intent intent = new Intent(CampusNewsActivity.this, StoreDetailActivity.class);
-//                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
-                        startActivity(intent);
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                    }
-                });
+//                adapter.setListener(new LatestNewsAdapter.Listener() {
+//                    @Override
+//                    public void onClick(int position) {
+//                        Intent intent = new Intent(CampusNewsActivity.this, StoreDetailActivity.class);
+////                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
+//                        startActivity(intent);
+//                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+//                    }
+//                });
                 StaggeredGridLayoutManager layoutManager =
                         new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
                 newsRecycler.setLayoutManager(layoutManager);

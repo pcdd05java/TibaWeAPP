@@ -6,9 +6,10 @@
     android:layout_height="80dp"
     android:id="@+id/cvValidmain"
     android:layout_margin="3dp"
-    android:background="@color/colorPrimary"
     cvInformation:cardElevation="0dp"
-    cvInformation:cardCornerRadius="1dp">
+    cvInformation:cardCornerRadius="1dp"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
 
     <FrameLayout
         android:layout_width="match_parent"

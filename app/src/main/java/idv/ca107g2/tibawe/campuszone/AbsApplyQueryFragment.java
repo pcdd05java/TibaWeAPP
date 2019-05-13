@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 
 import static android.content.Context.MODE_PRIVATE;

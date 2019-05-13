@@ -29,21 +29,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginVertical="8dp"
             android:id="@+id/cvtvInfoTitle"
             android:textAlignment="textStart"
             android:textColor="@color/colorDarkBlue"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:text="八方雲集"/>
         <TextView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="4dp"
             android:id="@+id/cvtvInfoTel"
-            android:textAlignment="textEnd"
+            android:textSize="15dp"
+            android:gravity="bottom|end"
             android:text="02-1234567"/>
         </LinearLayout>
 

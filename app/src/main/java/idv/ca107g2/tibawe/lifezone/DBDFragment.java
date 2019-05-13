@@ -20,7 +20,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.vo.Latest_News_VO;
 
@@ -28,9 +28,9 @@ import idv.ca107g2.tibawe.vo.Latest_News_VO;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HotArticleFragment extends Fragment {
+public class DBDFragment extends Fragment {
 
-    private static final String TAG = "HotArticleFragment";
+    private static final String TAG = "DBDFragment";
     private CommonTask getHotArticleTask;
     private List<Latest_News_VO> latest_news_list;
     private RecyclerView hotRecycler;
@@ -51,8 +51,8 @@ public class HotArticleFragment extends Fragment {
 //        adapter.setListener(new LatestNewsAdapter.Listener() {
 //            @Override
 //            public void onClick(int position) {
-//                Intent intent = new Intent(getActivity(), RhiDetailActivity.class);
-//                intent.putExtra(RhiDetailActivity.EXTRA_INFO_ID, position);
+//                Intent intent = new Intent(getActivity(), zRhiDetailActivity.class);
+//                intent.putExtra(zRhiDetailActivity.EXTRA_INFO_ID, position);
 //                getActivity().startActivity(intent);
 //            }
 //        });
@@ -64,7 +64,7 @@ public class HotArticleFragment extends Fragment {
 
         String url = Util.URL + "Latest_News_Servlet";
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("action", "getall");
+        jsonObject.addProperty("action", "getAll");
         String jsonOut = jsonObject.toString();
 //        Util.showToast(getContext(), jsonOut);
         if (Util.networkConnected(getActivity())) {
@@ -83,9 +83,9 @@ public class HotArticleFragment extends Fragment {
                 Util.showToast(getContext(), R.string.msg_CourseNotFound);
             } else {
 
-                HotArticleAdapter adapter = new HotArticleAdapter(latest_news_list);
+                DBDAdapter adapter = new DBDAdapter(latest_news_list);
                 hotRecycler.setAdapter(adapter);
-                adapter.setListener(new HotArticleAdapter.Listener() {
+                adapter.setListener(new DBDAdapter.Listener() {
                     @Override
                     public void onClick(int position) {
                         Intent intent = new Intent(getActivity(), StoreDetailActivity.class);

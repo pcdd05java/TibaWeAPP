@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/dialog_dbd_toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDBD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="3dp"
+        android:paddingVertical="7dp"
+        android:scrollbars="horizontal" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <ImageButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/cancel1DBD"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/icons8_cancel_24"
+            android:theme="@style/BorderlessButton" />
+    <TextView
+        android:layout_margin="10dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:id="@+id/orderDBD"
+        android:gravity="center_vertical"
+        android:text="排骨飯"
+        android:textSize="20dp"
+        android:textColor="@color/colorDarkRed"/>
+        <ImageButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/minus1DBD"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/icons8_minus_24"
+            android:theme="@style/BorderlessButton" />
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+            android:id="@+id/numDBD"
+            android:text="1"
+            android:textSize="20dp"
+            android:gravity="center"/>
+        <ImageButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/plus1DBD"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:src="@drawable/icons8_plus_math_24"
+            android:theme="@style/BorderlessButton" />
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="訂單總金額"
+                android:gravity="center"/>
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:id="@+id/ttlnumDBD"
+                android:gravity="center_vertical"
+                android:text="$80"
+                android:textSize="20dp"
+                android:textColor="@color/colorDarkRed"/>
+
+            <Button
+                android:id="@+id/btnDBDreset"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="復原"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton" />
+            <Button
+                android:id="@+id/btnDBDsubmit"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="送出"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

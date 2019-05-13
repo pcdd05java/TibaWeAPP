@@ -15,7 +15,7 @@
     <string name="latestnews_tab">校務公告</string>
     <string name="information_tab">生活資訊</string>
 
-    <string name="validmain_menu_tab">主要選單</string>
+    <string name="validmain_menu_tab">主選單</string>
 
     <string name="campus_info_tab">校務專區</string>
     <string name="campus_news">校務公告</string>
@@ -88,7 +88,7 @@
     <string name="class_info_tab">學務專區</string>
     <string name="class_news">班級布告欄</string>
     <string name="course_query">課表查詢</string>
-    <string name="course_query_quick">今日課表</string>
+    <string name="course_query_quick">看課表</string>
     <string name="course_date">日期</string>
     <string name="course_interval">時段</string>
     <string name="course_name">課程</string>
@@ -105,14 +105,20 @@
     <string name="hot_article">熱門文章</string>
     <string name="discussion_board">討論區</string>
     <string name="store_menu">美食資訊</string>
-    <string name="store_note">店家介紹</string>
+    <!--<string name="store_note">店家介紹</string>-->
     <string name="store_phone">連絡電話</string>
     <string name="store_address">店家位置</string>
-    <string name="store_menu">店家菜單</string>
+    <string name="store_detail_menu">店家菜單</string>
+    <string name="store_menu_tab">菜單</string>
 
+
+    <string name="DBD_today">訂便當</string>
     <string name="DBD_order">便當訂單</string>
     <string name="rhi">租屋資訊</string>
-
+    <string name="rhi_detail_name">房東姓名</string>
+    <string name="rhi_detail_phone">連絡電話</string>
+    <string name="rhi_detail_loc">租屋地址</string>
+    <string name="rhi_detail_intro">物件概況</string>
 
     <string name="login_title">【登入說明】本系統供資策會中壢中心xTibaMe校園師生使用，請輸入您的帳號及密碼，如忘記請聯繫資訊管理人員。</string>
     <string name="account_hint">帳號(預設為學號)</string>

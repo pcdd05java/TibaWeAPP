@@ -12,8 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.LineBackgroundSpan;
 import android.util.Log;
-import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,7 +34,7 @@ import java.util.List;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 
 public class    CourseQueryActivity extends AppCompatActivity {

@@ -1,6 +1,5 @@
 package idv.ca107g2.tibawe.classzone;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -21,8 +20,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
-import idv.ca107g2.tibawe.lifezone.StoreDetailActivity;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.vo.ClassInformationVO;
 
@@ -58,9 +56,6 @@ public class ClassInformationActivity extends AppCompatActivity {
         findInfos();
 
 
-//        LatestNewsAdapter adapter = new LatestNewsAdapter(classInformationList);
-//        infoRecycler.setAdapter(adapter);
-
     }
 
     public void findInfos() {
@@ -92,15 +87,15 @@ public class ClassInformationActivity extends AppCompatActivity {
 
                 ClassInformationAdapter adapter = new ClassInformationAdapter(classInformationList);
                 infoRecycler.setAdapter(adapter);
-                adapter.setListener(new ClassInformationAdapter.Listener() {
-                    @Override
-                    public void onClick(int position) {
-                        Intent intent = new Intent(ClassInformationActivity.this, StoreDetailActivity.class);
-//                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
-                        startActivity(intent);
-                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-                    }
-                });
+//                adapter.setListener(new ClassInformationAdapter.Listener() {
+//                    @Override
+//                    public void onClick(int position) {
+//                        Intent intent = new Intent(ClassInformationActivity.this, StoreDetailActivity.class);
+////                        intent.putExtra(StoreDetailActivity.EXTRA_INFO_ID, position);
+//                        startActivity(intent);
+//                        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+//                    }
+//                });
 
                 StaggeredGridLayoutManager layoutManager =
                         new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);

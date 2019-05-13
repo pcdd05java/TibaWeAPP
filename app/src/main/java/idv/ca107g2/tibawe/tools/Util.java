@@ -1,4 +1,4 @@
-package idv.ca107g2.tibawe;
+package idv.ca107g2.tibawe.tools;
 
 
 import android.app.Activity;
@@ -6,6 +6,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
+
+import idv.ca107g2.tibawe.R;
 
 //import idv.david.bookstoreandroid.book.BookActivity;
 //import idv.david.bookstoreandroid.member.MemberShipActivity;

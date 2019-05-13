@@ -28,6 +28,7 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 import idv.ca107g2.tibawe.task.CommonTask;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.vo.MemberVO;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_login:
                         isQRCode = false;
                         loginCheck(isQRCode);
+                        break;
                 }
                 return true;
             }
@@ -80,6 +82,23 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = loginDialog.findViewById(R.id.dialog_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.login_tab);
+        edAccount = loginDialog.findViewById(R.id.edAccount);
+        edPassword = loginDialog.findViewById(R.id.edPassword);
+
+        //神奇小按鈕
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_magic:
+                        edAccount.setText("M000009");
+                        edPassword.setText("123");
+                        break;
+                }
+                return true;
+            }
+        });
+
         tvMessage = loginDialog.findViewById(R.id.tvMessage);
 
 
@@ -130,20 +149,18 @@ public class MainActivity extends AppCompatActivity {
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edAccount = loginDialog.findViewById(R.id.edAccount);
-                edPassword = loginDialog.findViewById(R.id.edPassword);
-                String member_ID = edAccount.getText().toString().trim();
+                String memberaccount = edAccount.getText().toString().trim();
                 String memberpass = edPassword.getText().toString().trim();
-                if (member_ID.length() <= 0 || memberpass.length() <= 0) {
+                if (memberaccount.length() <= 0 || memberpass.length() <= 0) {
                     showMessage(R.string.msg_InvalidUserOrPassword);
                     return;
                 }
 
-                if (isMember(member_ID, memberpass)) {
+                if (isMember(memberaccount, memberpass)) {
                     SharedPreferences preferences = getSharedPreferences(
                             Util.PREF_FILE, MODE_PRIVATE);
                     preferences.edit().putBoolean("login", true)
-                            .putString("member_ID", member_ID)
+                            .putString("memberaccount", memberaccount)
                             .putString("membername", memberVO.getMemberName())
                             .putString("class_no", memberVO.getClass_no())
                             .putString("className", className)
@@ -204,14 +221,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-      private boolean isMember(final String member_ID, final String memberpass) {
+      private boolean isMember(final String memberaccount, final String memberpass) {
         boolean isMember = false;
 
         if (Util.networkConnected(this)) {
             String url = Util.URL + "MemberServlet";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("action", "isMember");
-            jsonObject.addProperty("member_ID", member_ID);
+            jsonObject.addProperty("memberaccount", memberaccount);
             jsonObject.addProperty("memberpass", memberpass);
             String jsonOut = jsonObject.toString();
             isMemberTask = new CommonTask(url, jsonOut);

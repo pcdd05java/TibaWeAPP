@@ -20,7 +20,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import idv.ca107g2.tibawe.R;
-import idv.ca107g2.tibawe.Util;
+import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.task.CommonTask;
 import idv.ca107g2.tibawe.vo.StoreInformationVO;
 
@@ -81,9 +81,12 @@ public class StoreInformationActivity  extends AppCompatActivity {
                 adapter.setListener(new StoreInformationAdapter.Listener() {
                     @Override
                     public void onClick(int position) {
+                        StoreInformationVO storeInformationVO = storeInformationList.get(position);
+
                         Intent intent = new Intent(StoreInformationActivity.this, StoreDetailActivity.class);
-//                        intent.putExtra(StoreDetailActivity.EXTRA_DETAIL_ID, position);
                         Bundle bundle = new Bundle();
+                        bundle.putSerializable("storeInformationVO", storeInformationVO);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }

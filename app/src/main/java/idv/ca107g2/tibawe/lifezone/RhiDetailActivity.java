@@ -74,7 +74,7 @@ public class RhiDetailActivity extends AppCompatActivity {
 
         // Init the swipe back
         SwipeBack.attach(this, Position.LEFT)
-                .setSwipeBackView(R.layout.swipeback_toolbarandtab)
+                .setSwipeBackView(R.layout.swipeback_default)
                 .setOnInterceptMoveEventListener(
                         new SwipeBack.OnInterceptMoveEventListener() {
                             @Override

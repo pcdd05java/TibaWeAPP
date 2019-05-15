@@ -53,18 +53,18 @@ public class ClassZoneFragment extends Fragment {
                         Intent intent1 = new Intent(getActivity(), CourseQueryActivity.class);
                         getActivity().startActivity(intent1);
                         break;
-//                    case 2:
-//                        Intent intent2 = new Intent(getActivity(), TestActivity.class);
-//                        getActivity().startActivity(intent2);
-//                        break;
+                    case 2:
+                        Intent intent2 = new Intent(getActivity(), PhoneBookActivity.class);
+                        getActivity().startActivity(intent2);
+                        break;
 //                    case 3:
 //                        Intent intent3 = new Intent(getActivity(), CampusNewsActivity.class);
 //                        getActivity().startActivity(intent3);
 //                        break;
-//                    case 4:
-//                        Intent intent4 = new Intent(getActivity(), CampusNewsActivity.class);
-//                        getActivity().startActivity(intent4);
-//                        break;
+                    case 4:
+                        Intent intent4 = new Intent(getActivity(), CampusRuleActivity.class);
+                        getActivity().startActivity(intent4);
+                        break;
                 }
             }
         });

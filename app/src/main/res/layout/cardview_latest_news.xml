@@ -33,8 +33,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="15dp"
-            android:text="2019-05-05" />
-
+            android:text="2019-05-05"
+            android:layout_gravity="end"/>
 
     <View
         android:id="@+id/divider"

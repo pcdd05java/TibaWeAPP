@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_dbd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ValidMainActivity">
+
+
+    <TextView
+        android:id="@+id/clrr_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="7dp"
+        android:layout_marginStart="8dp"
+        android:textSize="20dp"
+        android:text="目前開團訂單"
+        android:gravity="start"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rvDBDlist"
+        android:scrollbars="vertical"
+        android:paddingHorizontal="3dp"
+        android:paddingVertical="7dp">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/lastdbd_result"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginHorizontal="7dp"
+        android:layout_marginVertical="30dp"
+        android:textSize="17dp"
+        android:text="目前無任何訂便當開團"
+        android:gravity="center"
+        android:textColor="@color/colorDarkBlue"
+        android:visibility="visible"/>
+</LinearLayout>

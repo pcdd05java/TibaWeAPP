@@ -27,7 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:gravity="center_vertical"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:textColor="@color/colorDarkBlue"
         android:text="#1 幸福小館" />
     <TextView
@@ -36,16 +36,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical|end"
-        android:textSize="17dp"
+        android:textSize="15dp"
         android:text="CA107" />
     <TextView
         android:id="@+id/cvtvDBDhost"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:gravity="center_vertical|start"
-        android:layout_marginStart="7dp"
-        android:textSize="17dp"
+        android:gravity="center_vertical|end"
+        android:layout_marginEnd="8dp"
+        android:textSize="15dp"
         android:text="XXX" />
 
 </LinearLayout>
@@ -70,7 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="17dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp"
                 android:text="點餐排行榜" />
 
             <View
@@ -90,14 +91,14 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:textColor="@color/colorDarkRed"
                     android:text="1"/>
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="3dp"
-                    android:layout_marginVertical="5dp"
+                    android:layout_marginVertical="12dp"
                     android:background="@color/colorPrimary" />
                 <TextView
                     android:layout_width="0dp"
@@ -106,31 +107,31 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="4dp"
                     android:id="@+id/cvtvItemName1"
-                    android:gravity="center_vertical"
-                    android:textAlignment="center"
-                    android:textSize="20dp"
+                    android:gravity="center"
+                   android:layout_gravity="center"
+                    android:textSize="17dp"
                     android:textColor="@color/colorDarkRed"
                     android:text="排骨飯"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:id="@+id/cvtvItemPrice1"
-                    android:gravity="end|center_vertical"
-                    android:textColor="@color/colorDarkRed"
-                    android:text="80"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="start|center_vertical"
-                    android:textColor="@color/colorDarkRed"
-                    android:text="元"/>
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:id="@+id/cvtvItemPrice1"-->
+                    <!--android:gravity="end|center_vertical"-->
+                    <!--android:textColor="@color/colorDarkRed"-->
+                    <!--android:text="80"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:gravity="start|center_vertical"-->
+                    <!--android:textColor="@color/colorDarkRed"-->
+                    <!--android:text="元"/>-->
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -155,7 +156,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="3dp"
-                    android:layout_marginVertical="5dp"
+                    android:layout_marginVertical="12dp"
                     android:background="@color/colorPrimary" />
                 <TextView
                     android:layout_width="0dp"
@@ -169,24 +170,24 @@
                     android:textSize="17dp"
                     android:text="雞腿飯"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:id="@+id/cvtvItemPrice2"
-                    android:gravity="end|center_vertical"
-                    android:text="80"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="start|center_vertical"
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:id="@+id/cvtvItemPrice2"-->
+                    <!--android:gravity="end|center_vertical"-->
+                    <!--android:text="80"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:gravity="start|center_vertical"-->
 
-                    android:text="元"/>
+                    <!--android:text="元"/>-->
             </LinearLayout>
             <View
                 android:layout_width="match_parent"
@@ -211,7 +212,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="3dp"
-                    android:layout_marginVertical="5dp"
+                    android:layout_marginVertical="12dp"
                     android:background="@color/colorPrimary" />
                 <TextView
                     android:layout_width="0dp"
@@ -219,29 +220,29 @@
                     android:layout_weight="3"
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="4dp"
-                    android:id="@+id/cvtvItemName"
+                    android:id="@+id/cvtvItemName3"
                     android:gravity="center_vertical"
                     android:textAlignment="center"
                     android:textSize="17dp"
                     android:text="三寶飯"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:id="@+id/cvtvItemPrice"
-                    android:gravity="end|center_vertical"
-                    android:text="80"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="start|center_vertical"
-                    android:text="元"/>
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:id="@+id/cvtvItemPrice"-->
+                    <!--android:gravity="end|center_vertical"-->
+                    <!--android:text="80"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_marginRight="4dp"-->
+                    <!--android:layout_marginBottom="4dp"-->
+                    <!--android:gravity="start|center_vertical"-->
+                    <!--android:text="元"/>-->
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -249,6 +250,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15dp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -269,9 +276,9 @@
                     android:layout_weight="2"
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="4dp"
-                    android:id="@+id/cvtvDBDnowmem"
+                    android:id="@+id/cvtvDBDnowMemCount"
                     android:gravity="start|center_vertical"
-                    android:textSize="17dp"
+                    android:textSize="15dp"
                     android:text="4 人"/>
 
 
@@ -289,7 +296,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:layout_marginLeft="4dp"
                     android:layout_marginBottom="4dp"
                     android:gravity="center"
@@ -303,7 +310,7 @@
                     android:layout_marginBottom="4dp"
                     android:id="@+id/cvtvDBDcountdown"
                     android:gravity="start|center_vertical"
-                    android:textSize="23dp"
+                    android:textSize="17dp"
                     android:textColor="@color/colorDarkRed"
                     android:text="01:23:56"/>
             </LinearLayout>
@@ -330,7 +337,7 @@
 
                     <ImageButton
                         style="@style/Widget.AppCompat.Button.Borderless"
-                        android:id="@+id/joinDBD"
+                        android:id="@+id/btnJoinDBD"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="match_parent"

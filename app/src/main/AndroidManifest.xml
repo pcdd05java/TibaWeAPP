@@ -13,7 +13,6 @@
         android:roundIcon="@drawable/logo_icon_transparent"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".BeforeMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,12 +79,18 @@
             android:name=".classzone.CampusRuleActivity"
             android:label="@string/campusrule"
             android:parentActivityName=".ValidMainActivity" />
-
-        <activity android:name=".classzone.PhoneBookActivity"
+        <activity
+            android:name=".classzone.PhoneBookActivity"
             android:label="@string/phonebook"
             android:parentActivityName=".ValidMainActivity" />
-
-        <activity android:name=".lifezone.DBDOrderActivity" />
+        <activity
+            android:name=".lifezone.DBDQueryActivity"
+            android:label="@string/DBD_order"
+            android:parentActivityName=".ValidMainActivity" />
+        <activity
+            android:name=".classzone.ClassSeatActivity"
+            android:label="@string/seattable"
+            android:parentActivityName=".ValidMainActivity" />
     </application>
 
 </manifest>

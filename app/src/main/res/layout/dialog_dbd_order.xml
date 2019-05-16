@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include
-        layout="@layout/toolbar"
-        android:id="@+id/dialog_dbd_toolbar" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/dialog_dbd_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvDBD"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:paddingHorizontal="3dp"
         android:paddingVertical="7dp"
         android:scrollbars="horizontal" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:paddingTop="10dp">
 
     <LinearLayout
+        android:id="@+id/lySelectedDBD"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -43,18 +48,19 @@
         android:layout_margin="10dp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:id="@+id/orderDBD"
         android:gravity="center_vertical"
         android:text="排骨飯"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:textColor="@color/colorDarkRed"/>
+
         <ImageButton
-            style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/minus1DBD"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:src="@drawable/icons8_minus_24"
             android:theme="@style/BorderlessButton" />
         <TextView
@@ -64,7 +70,8 @@
             android:id="@+id/numDBD"
             android:text="1"
             android:textSize="20dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/colorDarkRed"/>
         <ImageButton
             style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/plus1DBD"
@@ -81,29 +88,31 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
+
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:text="訂單總金額"
-                android:gravity="center"/>
+                android:gravity="center_vertical|right"/>
             <TextView
                 android:layout_margin="10dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:id="@+id/ttlnumDBD"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:text="$80"
                 android:textSize="20dp"
-                android:textColor="@color/colorDarkRed"/>
+                android:textColor="@color/colorDarkRed"
+                android:visibility="invisible"/>
 
             <Button
                 android:id="@+id/btnDBDreset"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:text="復原"
                 android:textColor="@color/colorDarkBlue"
                 android:theme="@style/BorderlessButton" />
@@ -112,7 +121,7 @@
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:text="送出"
                 android:textColor="@color/colorDarkBlue"
                 android:theme="@style/BorderlessButton" />
@@ -122,4 +131,3 @@
 
 
 </LinearLayout>
-</android.support.v4.widget.NestedScrollView>

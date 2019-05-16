@@ -19,6 +19,9 @@ public class Util {
 //    public static String URL = "http://10.0.2.2:8081/CA107G2_APP/";
     // 手機連雲端GCP
     public static String URL = "http://34.80.134.113:8081/CA107G2_APP/";
+    // 全組GCP
+//    public static String URL = "http://ca107g2.tk/CA107G2_APP/";
+
 
     // 偏好設定檔案名稱
     public final static String PREF_FILE = "preference";

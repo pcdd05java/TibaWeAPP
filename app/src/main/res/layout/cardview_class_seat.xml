@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cvClassSeat="http://schemas.android.com/apk/res-auto"
+    android:layout_width="70dp"
+    android:layout_height="50dp"
+    android:id="@+id/cvClassSeat"
+    android:layout_margin="4dp"
+    cvClassSeat:cardElevation="2dp"
+    cvClassSeat:cardCornerRadius="20dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:scaleType="centerInside"
+            android:background="@drawable/drawback" />
+        <TextView
+            android:id="@+id/cvtvSeatName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="陳彥志"
+            android:layout_gravity="center"
+            android:textColor="@color/colorDarkBlue"/>
+
+    </FrameLayout>
+
+
+</android.support.v7.widget.CardView>

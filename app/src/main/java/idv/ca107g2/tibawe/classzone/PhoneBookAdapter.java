@@ -44,10 +44,10 @@ public class PhoneBookAdapter extends RecyclerView.Adapter<PhoneBookAdapter.View
         CardView cardView = holder.cardView;
         final MemberVO memberVO = memberVOlist.get(position);
 
-//        TextView tvpbNo = cardView.findViewById(R.id.tvpbNo);
-//        if(!memberVO.getMemberAccount().isEmpty()) {
-//            tvpbNo.setText(String.valueOf(position+1)); }else{
-//            tvpbNo.setText("-");}
+        TextView tvpbNo = cardView.findViewById(R.id.tvpbNo);
+        if(!memberVO.getMemberAccount().isEmpty()) {
+            tvpbNo.setText(String.valueOf(position+1)); }else{
+            tvpbNo.setText("-");}
 
         TextView tvpbName = cardView.findViewById(R.id.tvpbName);
         if(!memberVO.getMemberName().isEmpty()) {

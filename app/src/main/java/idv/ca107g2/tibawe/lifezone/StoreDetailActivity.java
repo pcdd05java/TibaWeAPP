@@ -179,7 +179,7 @@ public class StoreDetailActivity extends AppCompatActivity {
         WindowManager m = getWindowManager();
         Display d = m.getDefaultDisplay(); // 取得螢幕寬、高用
         WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 獲取對話視窗當前的参數值
-        p.height = (int) (d.getHeight() * 0.75); // 高度設置為螢幕的0.6 (60%)
+        p.height = (int) (d.getHeight() * 0.65); // 高度設置為螢幕的0.6 (60%)
         p.width = (int) (d.getWidth() * 0.95); // 寬度設置為螢幕的0.95 (95%)
         dialogWindow.setAttributes(p);
 

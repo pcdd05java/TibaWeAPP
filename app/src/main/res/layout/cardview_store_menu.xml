@@ -42,7 +42,6 @@
                 android:id="@+id/cvtvItemName"
                 android:gravity="center_vertical"
                 android:textAlignment="center"
-                android:textColor="@color/colorDarkBlue"
                 android:textSize="15dp"
                 android:text="八方雲集"/>
 

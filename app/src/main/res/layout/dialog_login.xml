@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <include
-        layout="@layout/toolbar"
-        android:id="@+id/dialog_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/dialog_toolbar"
+            layout="@layout/toolbar" />
 
         <TextView
             android:id="@+id/tvLogin_title"
@@ -22,7 +23,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:text="@string/login_title"
-            android:textAlignment="viewStart"/>
+            android:textAlignment="viewStart" />
 
         <EditText
             android:id="@+id/edAccount"
@@ -31,10 +32,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:hint="@string/account_hint"
             android:backgroundTint="@color/colorDarkBlue"
-            android:textCursorDrawable="@drawable/darkblue_cursor"
-            android:cursorVisible="true"/>
+            android:cursorVisible="true"
+            android:hint="@string/account_hint"
+            android:textCursorDrawable="@drawable/darkblue_cursor" />
 
         <EditText
             android:id="@+id/edPassword"
@@ -42,63 +43,64 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/colorDarkBlue"
             android:hint="@string/password_hint"
             android:inputType="textPassword"
-            android:backgroundTint="@color/colorDarkBlue"
-            android:textCursorDrawable="@drawable/darkblue_cursor"/>
+            android:textCursorDrawable="@drawable/darkblue_cursor" />
 
         <TextView
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="#D10837"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
+            android:textColor="#D10837" />
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_gravity="start"
-        android:clickable="true"
-        android:text="@string/forgot" />
-<TextView
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="2"
+                android:clickable="true"
+                android:text="@string/forgot" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
 
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/logout_cancel"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton" />
 
-        <Button
-            android:id="@+id/btnCancel"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/logout_cancel"
-            android:textColor="@color/colorDarkBlue"
-            android:theme="@style/BorderlessButton" />
+            <Button
+                android:id="@+id/btnOK"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:text="@string/login_btn"
+                android:textColor="@color/colorDarkBlue"
+                android:theme="@style/BorderlessButton" />
 
-        <Button
-            android:id="@+id/btnOK"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:text="@string/login_btn"
-            android:textColor="@color/colorDarkBlue"
-            android:theme="@style/BorderlessButton" />
 
+        </LinearLayout>
 
     </LinearLayout>
-
-</LinearLayout>
 </android.support.v4.widget.NestedScrollView>

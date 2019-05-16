@@ -111,6 +111,10 @@
 
     <string name="DBD_today">Order Meals</string>
     <string name="DBD_order">Order List</string>
+    <string name="DBD_query_attr_notpaid_0">Not paid</string>
+    <string name="DBD_query_attr_alreadypaid_1">Paid</string>
+    <string name="DBD_query_attr_denied_2">Denied</string>
+
     <string name="rhi">Renting House</string>
     <string name="rhi_detail_name">Owner</string>
     <string name="rhi_detail_phone">Tel</string>

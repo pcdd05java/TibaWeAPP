@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="7dp"
         android:layout_marginStart="8dp"
-        android:textSize="20dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="17dp"
         android:text="目前開團訂單"
         android:gravity="start"
         android:textColor="@color/colorPrimaryDark" />

@@ -21,10 +21,10 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="4dp"
-            android:id="@+id/cvtvItemNo"
+            android:id="@+id/cvtvcartItemNo"
             android:gravity="center"
             android:text="1"/>
             <View
@@ -39,38 +39,29 @@
                 android:layout_weight="2"
                 android:layout_marginLeft="4dp"
                 android:layout_marginBottom="4dp"
-                android:id="@+id/cvtvDBDitem"
+                android:id="@+id/cvtvcartDBDitem"
                 android:gravity="center_vertical"
                 android:textAlignment="center"
-                android:textColor="@color/colorDarkBlue"
                 android:textSize="15dp"
                 android:text="八方雲集"/>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
-                android:id="@+id/cvtvDBDitemprice"
+                android:id="@+id/cvtvcartDBDitemprice"
                 android:gravity="end|center_vertical"
                 android:text="80"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="4dp"
-                android:gravity="start|center_vertical"
 
-                android:text="元"/>
             <ImageButton
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:id="@+id/addDBD"
+                android:id="@+id/cartaddDBD"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:src="@drawable/icons8_plus_math_24b"
+                android:src="@drawable/icons8_plus_24"
                 android:theme="@style/BorderlessButton" />
         </LinearLayout>
         <View

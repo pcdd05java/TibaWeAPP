@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".campuszone.TeachingLogActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+    <TextView
+        android:id="@+id/tvTLDate"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="2019-05-16"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/tvTLClassName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="CA107"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="20dp"/>
+        <Spinner
+            android:id="@+id/spTLSelectInterval"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvRule"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="right|center_vertical"
+                        android:text="課程名稱" />
+
+                    <TextView
+                        android:id="@+id/tvTLCourseName"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="JAVA" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="@color/colorPrimary" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="授課教師" />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTLTeacher1"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text="吳冠宏"
+                            android:visibility="invisible" />
+
+                        <TextView
+                            android:id="@+id/tvTLTeacher2"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text="吳冠宏"
+                            android:visibility="invisible" />
+
+                        <TextView
+                            android:id="@+id/tvTLTeacher3"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text="吳冠宏"
+                            android:visibility="invisible" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="60dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@color/colorDarkBlue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="實到人數" />
+
+                    <EditText
+                        android:id="@+id/edAttendanceNum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="3"
+                        android:inputType="number" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="15dp"
+                        android:layout_marginVertical="12dp"
+                        android:background="@color/colorPrimary" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="教室" />
+
+                        <TextView
+                            android:id="@+id/tvTLClassRoom"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="206" />
+
+
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center" />
+
+
+
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="60dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@color/colorDarkBlue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:text="課程進度與內容綱要" />
+
+                    <EditText
+                        android:id="@+id/edTLRecord"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_weight="3"
+                        android:backgroundTint="@color/colorDarkBlue"
+                        android:gravity="top"
+                        android:hint="請輸入內容"
+                        android:minLines="4"
+                        android:textCursorDrawable="@drawable/darkblue_cursor" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="60dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@color/colorDarkBlue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:text="習題或上機作業" />
+
+                    <EditText
+                        android:id="@+id/edTLNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_weight="3"
+                        android:backgroundTint="@color/colorDarkBlue"
+                        android:gravity="top"
+                        android:hint="請輸入內容"
+                        android:minLines="4"
+                        android:textCursorDrawable="@drawable/darkblue_cursor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:gravity="end|right"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvLastStudent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="填寫人員　陳彥志" />
+
+                    <Button
+                        android:id="@+id/btnTLRest"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:text="@string/reset"
+                        android:textColor="@color/colorDarkBlue"
+                        android:theme="@style/BorderlessButton" />
+
+                    <Button
+                        android:id="@+id/btnTLSubmit"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:text="填妥送出"
+                        android:textColor="@color/colorDarkBlue"
+                        android:theme="@style/BorderlessButton" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtnSelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/icons8_event_24"
+        app:backgroundTint="@color/colorDarkRed" />
+    </FrameLayout>

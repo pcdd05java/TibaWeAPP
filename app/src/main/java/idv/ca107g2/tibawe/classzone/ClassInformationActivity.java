@@ -80,7 +80,7 @@ public class ClassInformationActivity extends AppCompatActivity {
             }
             if (classInformationList.isEmpty()) {
 //                view = inflater.inflate(R.layout.fragment_course_query, container, false);
-                Util.showToast(this, R.string.msg_CourseNotFound);
+                Util.showToast(this, R.string.msg_nodata);
             } else {
 
                 infoRecycler = findViewById(R.id.rvClassNews);

@@ -138,9 +138,17 @@ public class DBDAdapter extends RecyclerView.Adapter<DBDAdapter.ViewHolder>{
             TextView cvtvDBDcountdown = cardView.findViewById(R.id.cvtvDBDcountdown);
             cvtvDBDcountdown.setText("---");}
 
+        TextView tvJoinDBD = cardView.findViewById(R.id.tvJoinDBD);
+        tvJoinDBD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null){
+                    listener.onClick(position);
+                }
+            }
+        });
+
         ImageButton btnJoinDBD = cardView.findViewById(R.id.btnJoinDBD);
-
-
         btnJoinDBD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

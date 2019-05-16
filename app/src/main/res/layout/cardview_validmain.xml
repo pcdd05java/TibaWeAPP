@@ -6,8 +6,8 @@
     android:layout_height="80dp"
     android:id="@+id/cvValidmain"
     android:layout_margin="3dp"
-    cvInformation:cardElevation="0dp"
-    cvInformation:cardCornerRadius="1dp"
+    cvInformation:cardElevation="2dp"
+    cvInformation:cardCornerRadius="0dp"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackgroundBorderless">
 

@@ -54,10 +54,10 @@ public class LifeZoneFragment extends Fragment {
     //                        Intent intent1 = new Intent(getActivity(), CampusNewsActivity.class);
     //                        getActivity().startActivity(intent1);
 //    //                        break;
-//                        case 2:
-//                            Intent intent2 = new Intent(getActivity(), StoreInformationActivity.class);
-//                            getActivity().startActivity(intent2);
-//                            break;
+                        case 2:
+                            Intent intent2 = new Intent(getActivity(), DBDQueryActivity.class);
+                            getActivity().startActivity(intent2);
+                            break;
                         case 3:
                             Intent intent3 = new Intent(getActivity(), StoreInformationActivity.class);
                             getActivity().startActivity(intent3);

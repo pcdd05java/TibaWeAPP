@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".QRCodeSignInActivity">
+    tools:context=".QRCodeSignInActivity"
+    android:background="@drawable/drawback">
 
     <include
         layout="@layout/toolbar"

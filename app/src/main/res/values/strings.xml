@@ -112,6 +112,9 @@
 
     <string name="DBD_today">訂便當</string>
     <string name="DBD_order">便當訂單</string>
+    <string name="DBD_query_attr_notpaid_0">未繳費</string>
+    <string name="DBD_query_attr_alreadypaid_1">已繳費</string>
+    <string name="DBD_query_attr_denied_2">被拒絕</string>
     <string name="rhi">租屋資訊</string>
     <string name="rhi_detail_name">房東姓名</string>
     <string name="rhi_detail_phone">連絡電話</string>
@@ -145,6 +148,8 @@
     <string name="msg_qr_6_invalid_interval">您使用錯誤時段的QRCode</string>
     <string name="msg_qr_7_norecord">您目前無任何簽到記錄</string>
     <string name="msg_qr_8_cancel">取消掃描</string>
+
+    <string name="msg_DBD_success">便當訂單已送出</string>
 
     <string name="msg_nodata">找不到資料</string>
 

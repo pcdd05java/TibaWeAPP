@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/toolbar_dialog_date_check"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tlCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="1"
+        android:scaleY="1"
+        app:mcv_showOtherDates="defaults"
+        app:mcv_selectionColor="@color/colorDarkBlue"/>
+
+
+</LinearLayout>

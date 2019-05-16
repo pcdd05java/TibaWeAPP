@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".classzone.CourseQueryActivity">
+    tools:context=".classzone.CourseQueryActivity"
+    android:background="@drawable/drawback">
     <include
         layout="@layout/toolbar"
         android:id="@+id/toolbar_course_query"/>

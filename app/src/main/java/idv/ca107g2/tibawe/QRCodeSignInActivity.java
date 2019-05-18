@@ -27,6 +27,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
     SharedPreferences preferences;
 
     int msg_code;
+    String distance;
 
     private static final String TAG = "QRCodeSignInActivity";
     private CommonTask lastQRCheckTask;
@@ -35,7 +36,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 
-    TextView qr_result, tvQRDate, tvQRInterval, tvQRCourse, tvQRTime, lastcheck_result;
+    TextView qr_result, tvQRDate, tvQRInterval, tvQRCourse, tvQRTime, lastcheck_result, qr_distance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +65,10 @@ public class QRCodeSignInActivity extends AppCompatActivity{
     public void qrResult(){
 
         qr_result = findViewById(R.id.qr_result);
+        qr_distance = findViewById(R.id.qr_distance);
 
         msg_code = getIntent().getIntExtra("msg_code", 0);
+        distance = getIntent().getStringExtra("distance");
 
         switch (msg_code){
             case 0:
@@ -82,6 +85,8 @@ public class QRCodeSignInActivity extends AppCompatActivity{
                 break;
             case 4:
                 qr_result.setText(R.string.msg_qr_4_success);
+                qr_distance.setText("您目前距學校定位"+ distance+"公尺");
+                qr_distance.setVisibility(View.VISIBLE);
                 break;
             case 5:
                 qr_result.setText(R.string.msg_qr_5_already);
@@ -95,6 +100,10 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             case 8:
                 qr_result.setText(R.string.msg_qr_8_cancel);
                 break;
+            case 9:
+                qr_result.setText(R.string.msg_qr_9_toofar);
+                qr_distance.setText("您目前距學校定位"+ distance+"公尺");
+                qr_distance.setVisibility(View.VISIBLE);
         }
 //        Util.showToast(this, Util.msgCode(msg_code));
     }

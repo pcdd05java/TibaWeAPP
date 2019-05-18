@@ -24,6 +24,16 @@
         android:textColor="@color/colorDarkRed" />
 
     <TextView
+        android:id="@+id/qr_distance"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:textSize="15dp"
+        android:text="距離"
+        android:gravity="center"
+        android:textColor="@color/colorDarkBlue"
+        android:visibility="gone"/>
+
+    <TextView
         android:layout_marginTop="30dp"
         android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"

@@ -137,7 +137,7 @@
     <string name="msg_selectRepairDescribe">請選擇故障情形</string>
 
     <string name="msg_loginbeforeQRCode">請先登入</string>
-    <string name="msg_pleaseopencamera">請開啟使用相機權限</string>
+    <string name="msg_pleaseopencamera">請允許使用相機權限以掃描QRCode</string>
 
     <string name="msg_qr_0_failed">掃描失敗，請洽管理人員</string>
     <string name="msg_qr_1_invalid_date">您使用錯誤日期的QRCode</string>
@@ -148,10 +148,19 @@
     <string name="msg_qr_6_invalid_interval">您使用錯誤時段的QRCode</string>
     <string name="msg_qr_7_norecord">您目前無任何簽到記錄</string>
     <string name="msg_qr_8_cancel">取消掃描</string>
+    <string name="msg_qr_9_toofar">您距離學校太遠了，無法簽到</string>
 
     <string name="msg_DBD_success">便當訂單已送出</string>
 
     <string name="msg_nodata">找不到資料</string>
+
+    <string name="msg_LastLocationNotAvailable">無法取得您的位置，請確認GPS</string>
+    <string name="text_ShouldGrant">請開啟GPS以判斷簽到地點</string>
+    <string name="text_GPSwaiting">GPS定位中...請稍候</string>
+    <string name="text_GPSfaild">GPS定位失敗，請稍候再試</string>
+    <string name="text_noGrant">如需掃描簽到請開啟GPS</string>
+
+
 
 
 </resources>

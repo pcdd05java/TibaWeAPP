@@ -150,8 +150,15 @@
     <string name="msg_qr_6_invalid_interval">Your QRCode is invalid-Out of Interval</string>
     <string name="msg_qr_7_norecord">You don\'t have any records now</string>
     <string name="msg_qr_8_cancel">Canceled</string>
+    <string name="msg_qr_9_toofar">Your location is too far from school now</string>
 
     <string name="msg_nodata">No Data found</string>
+
+    <string name="msg_LastLocationNotAvailable">The last location is not available, please wait for a while</string>
+    <string name="text_ShouldGrant">Permission to access location should be granted</string>
+    <string name="text_GPSwaiting">Waiting GPS locating...</string>
+    <string name="text_GPSfaild">Missing GPS, please try again later</string>
+    <string name="text_noGrant">You need GPS for QRCode sign in</string>
 
 
 

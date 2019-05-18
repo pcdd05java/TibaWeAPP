@@ -119,6 +119,7 @@
             android:layout_marginStart="8dp"
             android:textSize="15dp"
             android:text="修改訂單"
+            android:visibility="invisible"
             android:gravity="bottom|center_vertical"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:theme="@style/BorderlessButton"/>

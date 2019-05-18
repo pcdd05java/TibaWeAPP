@@ -33,4 +33,5 @@ dependencies {
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
     implementation project(path: ':lib-zxingcore')
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
 }

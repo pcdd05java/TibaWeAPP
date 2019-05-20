@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="220dp"
     android:id="@+id/cvDBDQuery"
-    android:layout_marginTop="5dp"
-    android:layout_margin="5dp"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="5dp"
     cvDBDQuery:cardElevation="2dp"
     cvDBDQuery:cardCornerRadius="2dp">
     <LinearLayout

@@ -21,6 +21,7 @@
     <string name="campus_info_tab">Campus Informations</string>
     <string name="campus_news">Campus News</string>
     <string name="attendance">Attendance Records</string>
+    <string name="msg_attendance_norecord">You don\'t have any records now</string>
     <string name="tvMorning">Morning</string>
     <string name="tvAfternoon">Afternoon</string>
     <string name="tvEvening">Evening</string>
@@ -55,6 +56,8 @@
     <string name="abs_msg_nocourse">No courses found in this date</string>
     <string name="abs_msg_select_interval">Please select the interval</string>
     <string name="abs_msg_alreadyAbs">You had already applied in the date</string>
+    <string name="msg_absence_norecord">You don\'t have any records now</string>
+
 
     <string name="classroom_reservation">Reserve Classroom</string>
     <string name="classroom_reserve_tab">Making Reservation</string>
@@ -160,6 +163,7 @@
     <string name="text_GPSfaild">Missing GPS, please try again later</string>
     <string name="text_noGrant">You need GPS for QRCode sign in</string>
 
+    <string name="text_teacher_deafult">Select class from the top right corner</string>
 
 
 </resources>

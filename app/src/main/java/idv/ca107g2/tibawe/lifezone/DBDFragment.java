@@ -120,12 +120,14 @@ public class DBDFragment extends Fragment {
                 }.getType();
                 dbdMap = gson.fromJson(result, collectionTypeMap);
 
+                Type collectionTypeListDBDOderVO = new TypeToken<List<DBDOderVO>>() {
+                }.getType();
+                dbdOderVOlist = gson.fromJson(dbdMap.get("dbdOderVOlist").toString(), collectionTypeListDBDOderVO);
 
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }
-            if (dbdMap.isEmpty()) {
-//                view = inflater.inflate(R.layout.fragment_course_query, container, false);
+            if (dbdOderVOlist.size()==0) {
                 Util.showToast(getContext(), R.string.msg_nodata);
                 lastdbd_result.setVisibility(View.VISIBLE);
                 rvDBDlist.setVisibility(View.GONE);

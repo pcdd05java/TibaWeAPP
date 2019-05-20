@@ -7,7 +7,7 @@
     android:layout_height="250dp"
     android:id="@+id/cvCourseQuery"
     android:layout_marginHorizontal="7dp"
-    android:layout_marginVertical="7dp"
+    android:layout_marginVertical="5dp"
     cvInformation:cardElevation="2dp"
     cvInformation:cardCornerRadius="2dp">
 <LinearLayout

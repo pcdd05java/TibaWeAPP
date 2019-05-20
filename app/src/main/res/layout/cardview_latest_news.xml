@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:id="@+id/cvLatestNews"
-    android:layout_marginTop="20dp"
-    android:layout_margin="10dp"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="5dp"
     cvLatestNews:cardElevation="2dp"
     cvLatestNews:cardCornerRadius="2dp">
 

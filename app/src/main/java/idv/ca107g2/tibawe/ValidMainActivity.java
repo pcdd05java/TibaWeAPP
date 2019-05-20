@@ -4,12 +4,21 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
@@ -19,6 +28,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -91,7 +101,12 @@ public class ValidMainActivity extends AppCompatActivity {
     private static double tibameLocLatitude = 24.967790;
     private double tibameLocLongitude = 121.191709;
     private String distance;
-
+    int alarmhr, alarmmin;
+    long alarmmillis;
+    CountDownTimer alarm;
+    private static final String CHANNEL_ID = "id";
+    private static final String CHANNEL_NAME = "name";
+    private NotificationManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +156,129 @@ public class ValidMainActivity extends AppCompatActivity {
 
         isQRCode();
 
+        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        setAlarm();
+
+
+    }
+
+    private void setAlarm(){
+
+        Calendar c = Calendar.getInstance();
+        hr = c.get(Calendar.HOUR_OF_DAY);
+        min = c.get(Calendar.MINUTE);
+
+        String  morning, afternoon, evening;
+        morning = "上午";
+        afternoon = "下午";
+        evening = "夜間";
+
+        nowDate= new java.sql.Date(System.currentTimeMillis());
+        nowDateString = nowDate.toString();
+
+        int interval =0;
+        if(7<=hr && hr<11) {
+            interval=1;
+        }else if (11<=hr && hr<17) {
+            interval=2;
+        }else if (17<=hr && hr<20) {
+            interval=3;
+        }
+
+        String url = Util.URL + "AttendanceServlet";
+        class_no =  preferences.getString("class_no", "");
+        memberaccount = preferences.getString("memberaccount","");
+
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("action", "havetoCheckNow");
+        jsonObject.addProperty("class_no", class_no);
+        jsonObject.addProperty("memberaccount", memberaccount);
+        jsonObject.addProperty("nowDateString", nowDateString);
+        jsonObject.addProperty("hr", hr);
+
+        String jsonOut = jsonObject.toString();
+//        Util.showToast(getContext(), jsonOut);
+        if (Util.networkConnected(this)) {
+            havetoCheckTask = new CommonTask(url, jsonOut);
+            try {
+                String result = havetoCheckTask.execute().get();
+
+                Type collectionType = new TypeToken<Map>() {
+                }.getType();
+                Map haveCheckNow = gson.fromJson(result, collectionType);
+
+                Boolean havetoCheckNow = Boolean.valueOf(haveCheckNow.get("havetoCheckNow").toString());
+                Boolean isChecked = Boolean.valueOf(haveCheckNow.get("isChecked").toString());
+
+                if(havetoCheckNow && !isChecked){
+                    switch(interval) {
+                        case 1:
+                            if ((hr <= 8 && min <= 59) || (hr == 9 && min <= 20)) {
+                                if(hr<=8){
+                                    alarmhr = 8-hr;
+                                    alarmmin = 59-min;
+                                    alarmmillis = ((alarmhr*60*60) + (alarmmin*60) + (20*60))*1000;
+                                    setTimer(alarmmillis, morning);
+                                }
+                                if(hr==9){
+                                    alarmhr = 9-hr;
+                                    alarmmin = 20-min;
+                                    alarmmillis = ((alarmhr*60*60) + (alarmmin*60))*1000;
+                                    setTimer(alarmmillis, morning);
+                                }
+                            }
+                            break;
+                        case 2:
+                            if ((hr <= 13 && min <= 59)) {
+                                if(hr<=13){
+                                    alarmhr = 13-hr;
+                                    alarmmin = 49-min;
+                                    alarmmillis = ((alarmhr*60*60) + (alarmmin*60))*1000;
+                                    setTimer(alarmmillis, afternoon);
+                                }
+                            }
+                            break;
+                        case 3:
+                            if ((hr <= 18 && min <= 59) || (hr == 19 && min <= 20)) {
+                                if(hr<=18){
+                                    alarmhr = 18-hr;
+                                    alarmmin = 59-min;
+                                    alarmmillis = ((alarmhr*60*60) + (alarmmin*60) + (20*60))*1000;
+                                    setTimer(alarmmillis, evening);
+
+                                }
+                                if(hr==19){
+                                    alarmhr = 19-hr;
+                                    alarmmin = 20-min;
+                                    alarmmillis = ((alarmhr*60*60) + (alarmmin*60))*1000;
+                                    setTimer(alarmmillis, evening);
+                                }
+                            }
+                            break;
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+        } else {
+            Util.showToast(this, R.string.msg_NoNetwork);
+        }
+    }
+
+    private void setTimer(final long alarmmillis, final String alarminterval){
+        alarm = new CountDownTimer(alarmmillis, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.d("alram", String.valueOf(millisUntilFinished));
+            }
+
+            @Override
+            public void onFinish() {
+                createNotification(alarminterval);
+            }
+        }.start();
     }
 
     private void askPermissions() {
@@ -229,7 +367,14 @@ public class ValidMainActivity extends AppCompatActivity {
                 case DialogInterface.BUTTON_POSITIVE:
                     SharedPreferences pref = getActivity().getSharedPreferences(Util.PREF_FILE,
                             MODE_PRIVATE);
-                    pref.edit().putBoolean("login", false).apply();
+                    pref.edit().putBoolean("login", false)
+                            .putString("memberaccount", "")
+                            .putString("membername", "")
+                            .putString("class_no", "")
+                            .putString("className", "")
+                            .putString("memberpass", "")
+                            .putString("memberType", "")
+                            .apply();
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     startActivity(intent);
                     getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -276,11 +421,27 @@ public class ValidMainActivity extends AppCompatActivity {
                 FragmentManager fm1 = getSupportFragmentManager();
                 locationAlertFragment.show(fm1, "locationalert");
 
-                new CountDownTimer(3000, 100) {
+                new CountDownTimer(5000, 100) {
 
                     @Override
                     public void onTick(long millisUntilFinished) {
                         if (location != null) {
+                            float[] results = new float[1];
+                            // 計算自己位置與使用者輸入地點，此2點間的距離(公尺)，結果會存入results[0]
+                            Location.distanceBetween(location.getLatitude(), location.getLongitude(),
+                                    tibameLocLatitude, tibameLocLongitude, results);
+                            distance = NumberFormat.getInstance().format(results[0]);
+
+                            if (results[0] < 500f) {
+                                havetoCheckNow();
+                            } else {
+                                msg_code= 9;
+                                Intent intent = new Intent(ValidMainActivity.this, QRCodeSignInActivity.class);
+                                intent.putExtra("msg_code", msg_code);
+                                intent.putExtra("distance", distance);
+                                startActivity(intent);
+                                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                            }
                             cancel();
                         }
                     }
@@ -321,12 +482,12 @@ public class ValidMainActivity extends AppCompatActivity {
         nowDate= new java.sql.Date(System.currentTimeMillis());
         nowDateString = nowDate.toString();
 
-        int interval;
+        int interval = 0;
         if(7<=hr && hr<11) {
             interval=1;
         }else if (11<=hr && hr<17) {
             interval=2;
-        }else {
+        }else if (17<=hr && hr<20){
             interval=3;
         }
 
@@ -371,7 +532,7 @@ public class ValidMainActivity extends AppCompatActivity {
                             }
                             break;
                         case 2:
-                            if (!(hr <= 13 && min <= 59) || (hr == 14 && min == 0)) {
+                            if ((hr <= 13 && min <= 59) || (hr == 14 && min == 0)) {
                                 openCamera();
                             }else {
                                 msg_code = 3;
@@ -436,12 +597,12 @@ public class ValidMainActivity extends AppCompatActivity {
         if (mScannerHelper != null) {
             mScannerHelper.onActivityResult(requestCode, resultCode, data);
 
-            int interval;
+            int interval = 0;
             if(7<=hr && hr<11) {
                 interval=1;
             }else if (11<=hr && hr<17) {
                 interval=2;
-            }else {
+            }else if (17<=hr && hr<20){
                 interval=3;
             }
 
@@ -534,7 +695,6 @@ public class ValidMainActivity extends AppCompatActivity {
 
 
     //for Location
-
     private void createLocationCallback() {
         locationCallback = new LocationCallback() {
             @Override
@@ -615,6 +775,10 @@ public class ValidMainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         startLocationUpdates();
+        if (alarm != null){
+            alarm.cancel();
+        }
+        setAlarm();
     }
 
     @Override
@@ -623,19 +787,68 @@ public class ValidMainActivity extends AppCompatActivity {
         stopLocationUpdates();
     }
 
-    @Override
-    public void onBackPressed() {
-        if(login){
-            LogoutAlertFragment alertFragment = new LogoutAlertFragment();
-            FragmentManager fm = getSupportFragmentManager();
-            alertFragment.show(fm, "alert");
-        }else{
-            super.onBackPressed();
-            overridePendingTransition(R.anim.swipeback_stack_to_front,
-                    R.anim.swipeback_stack_right_out);}
 
+    private void createNotification(String alarminterval) {
+        Intent intent = new Intent(ValidMainActivity.this, ValidMainActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("title", "從通知訊息切換過來的");
+//        bundle.putString("content", "老師在你背後，他很火！");
+//        intent.putExtras(bundle);
 
+        /*
+            Intent指定好要幹嘛後，就去做了，如startActivity(intent);
+            而PendingIntent則是先把某個Intent包好，以後再去執行Intent要幹嘛
+         */
+        PendingIntent pendingIntent = PendingIntent.getActivity(ValidMainActivity.this
+                , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+//        Uri uri = Uri.parse(URL);
+//        Intent intent2 = new Intent(Intent.ACTION_VIEW, uri);
+//        PendingIntent pendingIntent2 = PendingIntent.getActivity(
+//                MainActivity.this, 0, intent2, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icons8_alarm_24);
+
+//        NotificationCompat.Action action = new NotificationCompat.Action.Builder(
+//                android.R.drawable.ic_menu_share, "Go!", pendingIntent2
+//        ).build();
+
+        NotificationCompat.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(channel);
+            builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        } else {
+            builder = new NotificationCompat.Builder(this);
+            builder.setPriority(Notification.PRIORITY_MAX);
+        }
+
+        Notification notification = builder
+                // 訊息面板的標題
+                .setContentTitle(alarminterval+"簽到提醒")
+                // 訊息面板的內容文字
+                .setContentText(alarminterval+"有課喔，簽到時間快截止了！")
+//                // 訊息的小圖示
+                .setSmallIcon(R.drawable.logo_icon_transparent)
+                // 訊息的大圖示
+                .setLargeIcon(bitmap)
+                // 使用者點了之後才會執行指定的Intent
+                .setContentIntent(pendingIntent)
+                // 加入音效
+                .setSound(soundUri)
+                // 點擊後會自動移除狀態列上的通知訊息
+                .setAutoCancel(true)
+//                // 加入狀態列下拉後的進一步操作
+//                .addAction(action)
+                .build();
+
+        manager.notify(1, notification);
     }
+
+
+
 
     public static class LocationAlertFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
@@ -652,7 +865,7 @@ public class ValidMainActivity extends AppCompatActivity {
             locationAlertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
-                    new CountDownTimer(3000, 100) {
+                    new CountDownTimer(5000, 100) {
 
                         @Override
                         public void onTick(long millisUntilFinished) {
@@ -713,6 +926,29 @@ public class ValidMainActivity extends AppCompatActivity {
                     break;
 
             }
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(login){
+            LogoutAlertFragment alertFragment = new LogoutAlertFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            alertFragment.show(fm, "alert");
+        }else{
+            super.onBackPressed();
+            overridePendingTransition(R.anim.swipeback_stack_to_front,
+                    R.anim.swipeback_stack_right_out);}
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (alarm != null){
+            alarm.cancel();
         }
     }
 }

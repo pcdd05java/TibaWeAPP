@@ -31,7 +31,7 @@ import idv.ca107g2.tibawe.vo.CrVO;
  */
 public class RafFragment extends Fragment {
     private static final String TAG = "RafFragment";
-    private static TextView tvRafApplicant, tvRafClassNo;
+    private static TextView tvRafApplicant, tvRafClassNo, tvRafTeacher;
     private Spinner spRafLoc, spRafType, spRafCon;
     private SpinnerTask spinnerTask;
     private CommonTask addRafTask;
@@ -70,8 +70,16 @@ public class RafFragment extends Fragment {
                 getActivity().MODE_PRIVATE);
         tvRafApplicant = view.findViewById(R.id.tvRafApplicant);
         tvRafApplicant.setText(preferences.getString("membername",""));
+
         tvRafClassNo = view.findViewById(R.id.tvRafClassNo);
-        tvRafClassNo.setText(preferences.getString("className",""));
+        tvRafTeacher = view.findViewById(R.id.tvRafTeacher);
+        if(preferences.getString("memberType", "").equals("1")) {
+            tvRafClassNo.setText(preferences.getString("className",""));
+        }else{
+            tvRafClassNo.setVisibility(View.GONE);
+            tvRafTeacher.setVisibility(View.INVISIBLE);
+        }
+
         memberaccount = preferences.getString("memberaccount","");
         class_no = preferences.getString("class_no","");
 

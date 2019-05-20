@@ -20,6 +20,7 @@
     <string name="campus_info_tab">校務專區</string>
     <string name="campus_news">校務公告</string>
     <string name="attendance">缺勤紀錄</string>
+    <string name="msg_attendance_norecord">您目前無任何缺勤紀錄</string>
     <string name="tvMorning">上午</string>
     <string name="tvAfternoon">下午</string>
     <string name="tvEvening">夜間</string>
@@ -41,6 +42,7 @@
     <string name="btn_apply">申請</string>
     <string name="btn_already_apply">已申請</string>
     <string name="msg_applyRCK_success">補簽申請已送出</string>
+    <string name="msg_absence_norecord">您目前無任何請假紀錄</string>
 
 
     <string name="teachinglog">教學日誌</string>
@@ -160,6 +162,7 @@
     <string name="text_GPSfaild">GPS定位失敗，請稍候再試</string>
     <string name="text_noGrant">如需掃描簽到請開啟GPS</string>
 
+    <string name="text_teacher_deafult">點選右上角選擇班級</string>
 
 
 

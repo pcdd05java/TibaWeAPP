@@ -169,7 +169,7 @@ public class AbsApplyFragment extends Fragment {
 
     public void spinner(){
         // 直接由程式碼動態產生Spinner做法
-        String[] absenceReason = {"事假", "病假", "公假", "娩假", "喪假","其他"};
+        String[] absenceReason = {"事假", "公假", "病假", "喪假","其他"};
         // ArrayAdapter用來管理整個選項的內容與樣式，android.R.layout.simple_spinner_item為內建預設樣式
         adapterReason = new ArrayAdapter<>
                 (getContext(), android.R.layout.simple_spinner_dropdown_item, absenceReason);

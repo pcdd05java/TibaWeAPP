@@ -102,7 +102,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 Log.e(TAG, e.toString());
             }
             if (atdList.isEmpty()) {
-                atd_result.setText(R.string.msg_clrr_norecord);
+                atd_result.setText(R.string.msg_attendance_norecord);
             } else {
                 atdRecycler.setAdapter(new AttendanceAdapter(atdList));
             }

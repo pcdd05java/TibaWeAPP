@@ -7,7 +7,7 @@
     android:layout_height="180dp"
     android:id="@+id/cvAbs"
     android:layout_marginHorizontal="7dp"
-    android:layout_marginVertical="7dp"
+    android:layout_marginVertical="5dp"
     cvAttendance:cardCornerRadius="2dp"
     cvAttendance:cardElevation="2dp">
 <LinearLayout
@@ -153,6 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
+                    android:layout_marginHorizontal="3dp"
                     android:text="備註欄"
                     android:gravity="center_vertical" />
                 <TextView

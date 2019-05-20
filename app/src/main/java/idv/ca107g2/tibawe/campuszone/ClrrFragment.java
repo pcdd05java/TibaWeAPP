@@ -37,7 +37,7 @@ import idv.ca107g2.tibawe.vo.CrVO;
  */
 public class ClrrFragment extends Fragment {
     private static final String TAG = "CrReserveFragment";
-    private static TextView tvClassroomReserveApplicant, tvClassroomReserveClassNo, tvClassroomReserveDate;
+    private static TextView tvClassroomReserveApplicant, tvClassroomReserveClassNo, tvClassroomReserveTeacher, tvClassroomReserveDate;
     private Spinner spClassroomNo, spClassroomReserveStart, spClassroomReserveEnd;
     private static int year, month, day;
     private FloatingActionButton fbtnSelectDate;
@@ -59,6 +59,7 @@ public class ClrrFragment extends Fragment {
         spClassroomReserveEnd = view.findViewById(R.id.spClassroomReserveEnd);
         tvClassroomReserveApplicant = view.findViewById(R.id.tvClassroomReserveApplicant);
         tvClassroomReserveClassNo = view.findViewById(R.id.tvClassroomReserveClassNo);
+        tvClassroomReserveTeacher = view.findViewById(R.id.tvClassroomReserveTeacher);
         tvClassroomReserveDate = view.findViewById(R.id.tvClassroomReserveDate);
         fbtnSelectDate = view.findViewById(R.id.fbtnSelectDate);
         btnCLRRApply = view.findViewById(R.id.btnCLRRApply);
@@ -79,7 +80,14 @@ public class ClrrFragment extends Fragment {
         SharedPreferences preferences = getActivity().getSharedPreferences(Util.PREF_FILE,
                 getActivity().MODE_PRIVATE);
         tvClassroomReserveApplicant.setText(preferences.getString("membername",""));
-        tvClassroomReserveClassNo.setText(preferences.getString("className",""));
+
+        if(preferences.getString("memberType", "").equals("1")) {
+            tvClassroomReserveClassNo.setText(preferences.getString("className", ""));
+        }else{
+            tvClassroomReserveClassNo.setVisibility(View.GONE);
+            tvClassroomReserveTeacher.setVisibility(View.INVISIBLE);
+        }
+
         memberaccount = preferences.getString("memberaccount","");
         class_no = preferences.getString("class_no","");
 

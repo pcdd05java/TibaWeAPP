@@ -84,8 +84,11 @@ class AbsApplyAdapter extends RecyclerView.Adapter<AbsApplyAdapter.ViewHolder> {
         TextView tvAbsqCourse = cardView.findViewById(R.id.tvAbsqCourse);
         if(absMap.get("absCourse") != null) {
             tvAbsqCourse.setText((String) absMap.get("absCourse"));
-        }else{
-            tvAbsqCourse.setText("---");}
+        }else if(Integer.valueOf(String.valueOf(absMap.get("absInterval")))== 4){
+                tvAbsqCourse.setText("全日課程");
+        } else{
+                tvAbsqCourse.setText("---");
+        }
 
         TextView tvAbsqTeacher1 = cardView.findViewById(R.id.tvAbsqTeacher1);
         if(absMap.get("absTeacher1") != null) {
@@ -121,18 +124,15 @@ class AbsApplyAdapter extends RecyclerView.Adapter<AbsApplyAdapter.ViewHolder> {
                     tvAbsqReason.setText("事假");
                     break;
                 case"2":
-                    tvAbsqReason.setText("病假");
-                    break;
-                case"3":
                     tvAbsqReason.setText("公假");
                     break;
-                case"4":
-                    tvAbsqReason.setText("娩假");
+                case"3":
+                    tvAbsqReason.setText("病假");
                     break;
-                case"5":
+                case"4":
                     tvAbsqReason.setText("喪假");
                     break;
-                case"6":
+                case"5":
                     tvAbsqReason.setText("其他");
                     break;
             }

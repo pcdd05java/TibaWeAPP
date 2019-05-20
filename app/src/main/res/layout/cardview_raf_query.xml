@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/cvRepairRecords"
-    android:layout_margin="10dp"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="5dp"
     cvRepairRecords:cardCornerRadius="2dp"
     cvRepairRecords:cardElevation="2dp">
 
@@ -22,12 +23,12 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="報修單編號"
+                android:text="報修單號"
                 android:gravity="center"
                 android:background="@color/colorAccent"/>
 
@@ -94,7 +95,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="目前狀態"
+                android:text="狀態"
                 android:gravity="center"
                 android:background="@color/colorAccent"/>
 
@@ -123,6 +124,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="3dp"
             android:text="故障情形"
             android:gravity="center_vertical"/>
         <TextView
@@ -142,6 +144,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
                 android:text="詳細說明"
                 android:gravity="center_vertical"/>
             <TextView
@@ -168,6 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
+                    android:layout_marginHorizontal="3dp"
                     android:text="維修紀錄"
                     android:gravity="center_vertical" />
                 <TextView
@@ -175,6 +179,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:layout_marginHorizontal="3dp"
                     android:text="維修人員處理中，如有問題請洽資訊設備組"
                     android:gravity="center_vertical"
                     android:textColor="@color/colorDarkRed"/>

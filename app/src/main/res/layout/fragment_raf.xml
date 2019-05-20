@@ -49,6 +49,13 @@
                 android:layout_weight="0.7"
                 android:gravity="left|center_vertical"
                 android:text="鄭迪"/>
+            <TextView
+                android:id="@+id/tvRafTeacher"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:gravity="left|center_vertical"
+                android:visibility="gone"/>
 
 
         </LinearLayout>

@@ -1,7 +1,10 @@
 package idv.ca107g2.tibawe.lifezone;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +25,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -30,6 +41,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hannesdorfmann.swipeback.Position;
 import com.hannesdorfmann.swipeback.SwipeBack;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -41,7 +53,7 @@ import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.vo.StoreInformationVO;
 import idv.ca107g2.tibawe.vo.StoreMenuVO;
 
-public class StoreDetailActivity extends AppCompatActivity {
+public class StoreDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private static final String TAG = "SDetailActivity";
 
     private Dialog menuDialog;
@@ -55,6 +67,8 @@ public class StoreDetailActivity extends AppCompatActivity {
     private ImageButton btnMenu;
     private Button btnSMReturn, btnSMSubmit;
     private List<StoreMenuVO> smList;
+
+    private GoogleMap map;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
@@ -103,6 +117,78 @@ public class StoreDetailActivity extends AppCompatActivity {
                             }
                         });
 
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager()
+                        .findFragmentById(R.id.storeMap);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        this.map = map;
+        setUpMap();
+    }
+    @SuppressLint("MissingPermission")
+    private void setUpMap() {
+        map.setMyLocationEnabled(true);
+        map.getUiSettings().setZoomControlsEnabled(true);
+
+        String locationName = tvSDetailAdress.getText().toString().trim();
+        if (locationName.length() > 0) {
+            locationNameToMarker(locationName);
+        } else {
+            Toast.makeText(this, getString(R.string.msg_nodata), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    // 將地名或地址轉成位置後在地圖打上對應標記
+    private void locationNameToMarker(String locationName) {
+        // 增加新標記前，先清除舊有標記
+        map.clear();
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> addressList = null;
+        int maxResults = 1;
+        try {
+            // 解譯地名/地址後可能產生多筆位置資訊，所以回傳List<Address>
+            // 將maxResults設為1，限定只回傳1筆
+            addressList = geocoder.getFromLocationName(locationName, maxResults);
+//            geocoder.getFromLocation()
+
+            // 如果無法連結到提供服務的伺服器，會拋出IOException
+        } catch (IOException ie) {
+            Log.e(TAG, ie.toString());
+        }
+
+        if (addressList == null || addressList.isEmpty()) {
+            Toast.makeText(this, getString(R.string.msg_nodata), Toast.LENGTH_SHORT).show();
+        } else {
+            // 因為當初限定只回傳1筆，所以只要取得第1個Address物件即可
+            Address address = addressList.get(0);
+
+            // Address物件可以取出緯經度並轉成LatLng物件
+            LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
+            // 將地址取出當作標記的描述文字
+            String snippet = address.getAddressLine(0);
+
+            String code = address.getPostalCode();
+
+
+            // 將地名或地址轉成位置後在地圖打上對應標記
+            map.addMarker(new MarkerOptions()
+                    .position(latLng)
+                    .title(code + locationName)
+                    .snippet(snippet));
+
+            // 將鏡頭焦點設定在使用者輸入的地點上
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(latLng)
+                    .zoom(17)
+                    .build();
+
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
     }
 
     public void getView(){

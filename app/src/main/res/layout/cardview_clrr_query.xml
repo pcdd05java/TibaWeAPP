@@ -7,7 +7,7 @@
     android:layout_height="150dp"
     android:id="@+id/cvRepairRecords"
     android:layout_marginHorizontal="7dp"
-    android:layout_marginVertical="7dp"
+    android:layout_marginVertical="5dp"
     cvRepairRecords:cardCornerRadius="2dp"
     cvRepairRecords:cardElevation="2dp">
 
@@ -23,12 +23,12 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="教室預約編號"
+                android:text="預約編號"
                 android:gravity="center"
                 android:background="@color/colorAccent"/>
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="RAF000001"
+                android:text="20190504001"
                 android:gravity="center"/>
 
 
@@ -123,6 +123,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginHorizontal="3dp"
             android:text="預約時段"
             android:gravity="center_vertical"/>
 

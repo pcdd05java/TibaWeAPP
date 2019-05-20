@@ -10,6 +10,16 @@
     <include
         layout="@layout/toolbar"
         android:id="@+id/toolbar"/>
+    <TextView
+        android:id="@+id/teacher_deafult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="7dp"
+        android:textSize="20dp"
+        android:text="@string/text_teacher_deafult"
+        android:gravity="center"
+        android:textColor="@color/colorDarkBlue"
+        android:visibility="gone"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvClassNews"
         android:layout_width="match_parent"

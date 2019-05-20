@@ -7,7 +7,7 @@
     android:layout_height="150dp"
     android:id="@+id/cvAttendance"
     android:layout_marginHorizontal="7dp"
-    android:layout_marginVertical="7dp"
+    android:layout_marginVertical="5dp"
     cvAttendance:cardCornerRadius="2dp"
     cvAttendance:cardElevation="2dp">
 

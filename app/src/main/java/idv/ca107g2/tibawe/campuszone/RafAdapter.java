@@ -66,7 +66,10 @@ class RafAdapter extends RecyclerView.Adapter<RafAdapter.ViewHolder> {
                     break;
                 case 2:
                     TextView tvRafRecord = cardView.findViewById(R.id.tvRafRecord);
-                    tvRafRecord.setText(rafVO.getRaf_record());
+                    String recorddate = rafVO.getRaf_record().substring(0, 19);
+                    String recordcontent = rafVO.getRaf_record().substring(20);
+                    tvRafRecord.setText(recorddate+ "\n" + recordcontent);
+//                    tvRafRecord.setText(rafVO.getRaf_record());
                     tvRafStatus.setText(R.string.repair_status_2_done);
                     break;
             }

@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                             .putString("class_no", memberVO.getClass_no())
                             .putString("className", className)
                             .putString("memberaccount", memberVO.getMemberAccount())
+                            .putString("memberType", String.valueOf(memberVO.getMemberType()))
                             .putString("memberpass", memberpass).apply();
 
                     setResult(RESULT_OK);
@@ -242,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 memberVO = gson.fromJson(data.get("memberVO").toString(), MemberVO.class);
                 className = data.get("className").toString();
                 isMember = Boolean.valueOf(data.get("isMember").toString());
+//                Util.showToast(this, String.valueOf(isMember));
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
                 isMember = false;

@@ -1,7 +1,18 @@
 package idv.ca107g2.tibawe;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,7 +42,9 @@ public class QRCodeSignInActivity extends AppCompatActivity{
 
     private static final String TAG = "QRCodeSignInActivity";
     private CommonTask lastQRCheckTask;
-
+    private static final String CHANNEL_ID = "id";
+    private static final String CHANNEL_NAME = "name";
+    private NotificationManager manager;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
@@ -46,6 +59,8 @@ public class QRCodeSignInActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
 
         preferences =this.getSharedPreferences(Util.PREF_FILE,
@@ -87,6 +102,7 @@ public class QRCodeSignInActivity extends AppCompatActivity{
                 qr_result.setText(R.string.msg_qr_4_success);
                 qr_distance.setText("您目前距學校定位"+ distance+"公尺");
                 qr_distance.setVisibility(View.VISIBLE);
+                createNotification();
                 break;
             case 5:
                 qr_result.setText(R.string.msg_qr_5_already);
@@ -162,6 +178,66 @@ public class QRCodeSignInActivity extends AppCompatActivity{
             tvQRCourse.setText((String)lastCourse.get("subjectName"));
             tvQRTime.setText((String)lastCourse.get("qrecord"));
         }
+    }
+
+
+    private void createNotification() {
+        Intent intent = new Intent(QRCodeSignInActivity.this, ValidMainActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("title", "從通知訊息切換過來的");
+//        bundle.putString("content", "老師在你背後，他很火！");
+//        intent.putExtras(bundle);
+
+        /*
+            Intent指定好要幹嘛後，就去做了，如startActivity(intent);
+            而PendingIntent則是先把某個Intent包好，以後再去執行Intent要幹嘛
+         */
+        PendingIntent pendingIntent = PendingIntent.getActivity(QRCodeSignInActivity.this
+                , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+//        Uri uri = Uri.parse(URL);
+//        Intent intent2 = new Intent(Intent.ACTION_VIEW, uri);
+//        PendingIntent pendingIntent2 = PendingIntent.getActivity(
+//                MainActivity.this, 0, intent2, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo_icon_transparent);
+
+//        NotificationCompat.Action action = new NotificationCompat.Action.Builder(
+//                android.R.drawable.ic_menu_share, "Go!", pendingIntent2
+//        ).build();
+
+        NotificationCompat.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(channel);
+            builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        } else {
+            builder = new NotificationCompat.Builder(this);
+            builder.setPriority(Notification.PRIORITY_MAX);
+        }
+
+        Notification notification = builder
+                // 訊息面板的標題
+                .setContentTitle("簽到成功")
+                // 訊息面板的內容文字
+                .setContentText("今天也很準時哪，又是活力滿滿的一天！")
+//                // 訊息的小圖示
+                .setSmallIcon(R.drawable.icons8_checked_24)
+                // 訊息的大圖示
+                .setLargeIcon(bitmap)
+                // 使用者點了之後才會執行指定的Intent
+                .setContentIntent(pendingIntent)
+                // 加入音效
+                .setSound(soundUri)
+                // 點擊後會自動移除狀態列上的通知訊息
+                .setAutoCancel(true)
+//                // 加入狀態列下拉後的進一步操作
+//                .addAction(action)
+                .build();
+
+        manager.notify(1, notification);
     }
 
     @Override

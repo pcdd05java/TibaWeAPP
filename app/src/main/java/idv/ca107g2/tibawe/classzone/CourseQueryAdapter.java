@@ -15,6 +15,7 @@ import idv.ca107g2.tibawe.R;
 
 public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.ViewHolder>{
     private List<Map> courseList;
+    private int teacherorclass;
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -26,8 +27,9 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
         }
     }
 
-    public CourseQueryAdapter(List<Map> courseList) {
+    public CourseQueryAdapter(List<Map> courseList, int teacherorclass) {
         this.courseList = courseList;
+        this.teacherorclass = teacherorclass;
     }
 
 
@@ -45,6 +47,11 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
         CardView cardView = holder.cardView;
         final Map courseMap = courseList.get(position);
 
+        if(teacherorclass==0){
+            TextView teacherorclass = cardView.findViewById(R.id.teacherorclass);
+            teacherorclass.setText("班級");
+        }
+
         TextView tvCourseDate = cardView.findViewById(R.id.tvCourseDate);
         if(courseMap.get("courseDate") != null) {
             tvCourseDate.setText((courseMap.get("courseDate")).toString().substring(5).replace("-","/"));
@@ -57,7 +64,14 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
             tvCourseMorning.setText((String) courseMap.get("courseMorning"));
         }else{tvCourseMorning.setText("---");}
 
-
+        if(teacherorclass==0){
+            TextView tvTeacherMorning1 = cardView.findViewById(R.id.tvTeacherMorning1);
+            if(courseMap.get("classMorning") != null) {
+                tvTeacherMorning1.setText((String) courseMap.get("classMorning"));
+                tvTeacherMorning1.setVisibility(View.VISIBLE);
+            }else{
+                tvTeacherMorning1.setText("---");}
+        }else{
         TextView tvTeacherMorning1 = cardView.findViewById(R.id.tvTeacherMorning1);
         if(courseMap.get("teacherMorning1") != null) {
             tvTeacherMorning1.setText((String) courseMap.get("teacherMorning1"));
@@ -86,7 +100,7 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
             tvTeacherMorning4.setVisibility(View.VISIBLE);
         }else{
             tvTeacherMorning4.setVisibility(View.GONE);}
-
+        }
 
         TextView tvClassroomMorning = cardView.findViewById(R.id.tvClassroomMorning);
         if(courseMap.get("classroomMorning") != null) {
@@ -100,36 +114,46 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
             tvCourseAfternoon.setText((String) courseMap.get("courseAfternoon"));
         }else{tvCourseAfternoon.setText("---");}
 
+        if(teacherorclass==0){
+            TextView tvTeacherAfternoon1 = cardView.findViewById(R.id.tvTeacherAfternoon1);
+            if(courseMap.get("classAfternoon") != null) {
+                tvTeacherAfternoon1.setText((String) courseMap.get("classAfternoon"));
+                tvTeacherAfternoon1.setVisibility(View.VISIBLE);
+            }else{
+                tvTeacherAfternoon1.setText("---");}
+        }else {
+            TextView tvTeacherAfternoon1 = cardView.findViewById(R.id.tvTeacherAfternoon1);
+            if (courseMap.get("teacherAfternoon1") != null) {
+                tvTeacherAfternoon1.setText((String) courseMap.get("teacherAfternoon1"));
+                tvTeacherAfternoon1.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherAfternoon1.setText("---");
+            }
 
-        TextView tvTeacherAfternoon1 = cardView.findViewById(R.id.tvTeacherAfternoon1);
-        if(courseMap.get("teacherAfternoon1") != null) {
-            tvTeacherAfternoon1.setText((String) courseMap.get("teacherAfternoon1"));
-            tvTeacherAfternoon1.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherAfternoon1.setText("---");}
+            TextView tvTeacherAfternoon2 = cardView.findViewById(R.id.tvTeacherAfternoon2);
+            if (courseMap.get("teacherAfternoon2") != null) {
+                tvTeacherAfternoon2.setText((String) courseMap.get("teacherAfternoon2"));
+                tvTeacherAfternoon2.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherAfternoon2.setVisibility(View.GONE);
+            }
 
-        TextView tvTeacherAfternoon2 = cardView.findViewById(R.id.tvTeacherAfternoon2);
-        if(courseMap.get("teacherAfternoon2") != null) {
-            tvTeacherAfternoon2.setText((String) courseMap.get("teacherAfternoon2"));
-            tvTeacherAfternoon2.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherAfternoon2.setVisibility(View.GONE);}
+            TextView tvTeacherAfternoon3 = cardView.findViewById(R.id.tvTeacherAfternoon3);
+            if (courseMap.get("teacherAfternoon3") != null) {
+                tvTeacherAfternoon3.setText((String) courseMap.get("teacherAfternoon3"));
+                tvTeacherAfternoon3.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherAfternoon3.setVisibility(View.GONE);
+            }
 
-        TextView tvTeacherAfternoon3 = cardView.findViewById(R.id.tvTeacherAfternoon3);
-        if(courseMap.get("teacherAfternoon3") != null) {
-            tvTeacherAfternoon3.setText((String) courseMap.get("teacherAfternoon3"));
-            tvTeacherAfternoon3.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherMorning3.setVisibility(View.GONE);}
-
-
-        TextView tvTeacherAfternoon4 = cardView.findViewById(R.id.tvTeacherAfternoon4);
-        if(courseMap.get("teacherAfternoon4") != null) {
-            tvTeacherAfternoon4.setText((String) courseMap.get("teacherAfternoon4"));
-            tvTeacherAfternoon4.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherAfternoon4.setVisibility(View.GONE);}
-
+            TextView tvTeacherAfternoon4 = cardView.findViewById(R.id.tvTeacherAfternoon4);
+            if (courseMap.get("teacherAfternoon4") != null) {
+                tvTeacherAfternoon4.setText((String) courseMap.get("teacherAfternoon4"));
+                tvTeacherAfternoon4.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherAfternoon4.setVisibility(View.GONE);
+            }
+        }
 
         TextView tvClassroomAfternoon = cardView.findViewById(R.id.tvClassroomAfternoon);
         if(courseMap.get("classroomAfternoon") != null) {
@@ -144,35 +168,47 @@ public class CourseQueryAdapter extends RecyclerView.Adapter<CourseQueryAdapter.
         }else{tvCourseEvening.setText("---");}
 
 
-        TextView tvTeacherEvening1 = cardView.findViewById(R.id.tvTeacherEvening1);
-        if(courseMap.get("teacherEvening1") != null) {
-            tvTeacherEvening1.setText((String) courseMap.get("teacherEvening1"));
-            tvTeacherEvening1.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherEvening1.setText("---");}
+        if(teacherorclass==0){
+            TextView tvTeacherEvening1 = cardView.findViewById(R.id.tvTeacherEvening1);
+            if(courseMap.get("classEvening") != null) {
+                tvTeacherEvening1.setText((String) courseMap.get("classEvening"));
+                tvTeacherEvening1.setVisibility(View.VISIBLE);
+            }else{
+                tvTeacherEvening1.setText("---");}
+        }else {
+            TextView tvTeacherEvening1 = cardView.findViewById(R.id.tvTeacherEvening1);
+            if (courseMap.get("teacherEvening1") != null) {
+                tvTeacherEvening1.setText((String) courseMap.get("teacherEvening1"));
+                tvTeacherEvening1.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherEvening1.setText("---");
+            }
 
-        TextView tvTeacherEvening2 = cardView.findViewById(R.id.tvTeacherEvening2);
-        if(courseMap.get("teacherEvening2") != null) {
-            tvTeacherEvening2.setText((String) courseMap.get("teacherEvening2"));
-            tvTeacherEvening2.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherEvening2.setVisibility(View.GONE);}
+            TextView tvTeacherEvening2 = cardView.findViewById(R.id.tvTeacherEvening2);
+            if (courseMap.get("teacherEvening2") != null) {
+                tvTeacherEvening2.setText((String) courseMap.get("teacherEvening2"));
+                tvTeacherEvening2.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherEvening2.setVisibility(View.GONE);
+            }
 
-        TextView tvTeacherEvening3 = cardView.findViewById(R.id.tvTeacherEvening3);
-        if(courseMap.get("teacherEvening3") != null) {
-            tvTeacherEvening3.setText((String) courseMap.get("teacherEvening3"));
-            tvTeacherEvening3.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherEvening3.setVisibility(View.GONE);}
+            TextView tvTeacherEvening3 = cardView.findViewById(R.id.tvTeacherEvening3);
+            if (courseMap.get("teacherEvening3") != null) {
+                tvTeacherEvening3.setText((String) courseMap.get("teacherEvening3"));
+                tvTeacherEvening3.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherEvening3.setVisibility(View.GONE);
+            }
 
 
-        TextView tvTeacherEvening4 = cardView.findViewById(R.id.tvTeacherEvening4);
-        if(courseMap.get("teacherEvening4") != null) {
-            tvTeacherEvening4.setText((String) courseMap.get("teacherEvening4"));
-            tvTeacherEvening4.setVisibility(View.VISIBLE);
-        }else{
-            tvTeacherEvening4.setVisibility(View.GONE);}
-
+            TextView tvTeacherEvening4 = cardView.findViewById(R.id.tvTeacherEvening4);
+            if (courseMap.get("teacherEvening4") != null) {
+                tvTeacherEvening4.setText((String) courseMap.get("teacherEvening4"));
+                tvTeacherEvening4.setVisibility(View.VISIBLE);
+            } else {
+                tvTeacherEvening4.setVisibility(View.GONE);
+            }
+        }
 
         TextView tvClassroomEvening = cardView.findViewById(R.id.tvClassroomEvening);
         if(courseMap.get("classroomEvening") != null) {

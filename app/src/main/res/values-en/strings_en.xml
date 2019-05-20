@@ -51,7 +51,7 @@
 
     <string name="abs_apply_date">Date</string>
     <string name="abs_alert_date">Notice about Date</string>
-    <string name="abs_alert_msg">You didn\'t pick the date, your leave application will be today</string>
+    <string name="abs_alert_msg">You didn\'t pick the date, please select first</string>
     <string name="abs_alert_return">Return</string>
     <string name="abs_msg_nocourse">No courses found in this date</string>
     <string name="abs_msg_select_interval">Please select the interval</string>

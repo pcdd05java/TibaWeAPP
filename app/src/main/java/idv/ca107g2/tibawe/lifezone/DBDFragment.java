@@ -128,7 +128,6 @@ public class DBDFragment extends Fragment {
                 Log.e(TAG, e.toString());
             }
             if (dbdOderVOlist.size()==0) {
-                Util.showToast(getContext(), R.string.msg_nodata);
                 lastdbd_result.setVisibility(View.VISIBLE);
                 rvDBDlist.setVisibility(View.GONE);
             } else {

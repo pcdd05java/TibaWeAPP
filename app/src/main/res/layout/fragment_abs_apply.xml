@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:gravity="left|center_vertical"
-                    android:text="04/11"/>
+                    android:text="請選擇日期"/>
 
                 <TextView
                     android:layout_width="0dp"

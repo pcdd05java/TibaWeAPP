@@ -22,6 +22,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Looper;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -30,6 +31,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -107,6 +109,10 @@ public class ValidMainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "id";
     private static final String CHANNEL_NAME = "name";
     private NotificationManager manager;
+    String memberType;
+    FloatingActionButton btnQR;
+    public static ViewPager pager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,9 +142,14 @@ public class ValidMainActivity extends AppCompatActivity {
             }
         });
 
+        memberType = preferences.getString("memberType", "");
+        btnQR = findViewById(R.id.btnQR);
+        if(!memberType.equals("1")){
+            btnQR.setVisibility(View.GONE);
+        }
 
         ValidMainPagerAdapter pagerAdapter = new ValidMainPagerAdapter(getSupportFragmentManager());
-        ViewPager pager = findViewById(R.id.vpMain);
+        pager = findViewById(R.id.vpMain);
         pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(1);
 
@@ -401,7 +412,11 @@ public class ValidMainActivity extends AppCompatActivity {
 
     public void isQRCode() {
         if (getIntent().getBooleanExtra("isQRCode", false)) {
-            getLocation();
+            if(memberType.equals("1")){
+                getLocation();
+            }else{
+                Util.showLToast(this, "QRCode掃描簽到目前僅提供學生使用");
+            }
         }
     }
 

@@ -119,7 +119,7 @@ public class AbsApplyFragment extends Fragment {
     public void onStart() {
         super.onStart();
         spinner();
-        showRightNow();
+//        showRightNow();
 
         AbsApplyActivity activity = (AbsApplyActivity)getActivity();
         Bundle results = activity.passBundle();
@@ -217,8 +217,7 @@ public class AbsApplyFragment extends Fragment {
     public void findAbsCourse(){
         btnAbsSubmit.setVisibility(View.VISIBLE);
         java.sql.Date nowDate= new java.sql.Date(System.currentTimeMillis());
-        String nowDateString = nowDate.toString();
-        if((tvApplyDate.getText().toString()).equals(nowDateString)){
+        if((tvApplyDate.getText().toString()).equals("請選擇日期")){
             AlertFragment alertFragment = new AlertFragment();
             FragmentManager fm = getFragmentManager();
             alertFragment.show(fm, "alert");

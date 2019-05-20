@@ -18,16 +18,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:orientation="horizontal">
     <TextView
         android:id="@+id/tvTLDate"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="5dp"
-        android:text="2019-05-16"
+        android:layout_marginTop="10dp"
+        android:text="請選擇日期"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/colorDarkBlue"
         android:textSize="20dp"/>
@@ -37,7 +36,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
             android:text="CA107"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorDarkBlue"
@@ -46,7 +45,8 @@
             android:id="@+id/spTLSelectInterval"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <View
         android:id="@+id/divider"
@@ -91,8 +91,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="JAVA" />
+                        android:gravity="center" />
 
                     <View
                         android:layout_width="1dp"
@@ -151,9 +150,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginHorizontal="60dp"
-                    android:layout_marginVertical="20dp"
-                    android:background="@color/colorDarkBlue" />
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,7 +163,7 @@
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:gravity="center"
                         android:text="實到人數" />
 
@@ -173,45 +171,33 @@
                         android:id="@+id/edAttendanceNum"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0.5"
                         android:ems="3"
+                        android:gravity="left|center_vertical"
                         android:inputType="number" />
 
                     <View
                         android:layout_width="1dp"
                         android:layout_height="match_parent"
                         android:layout_marginHorizontal="15dp"
-                        android:layout_marginVertical="12dp"
+                        android:layout_marginVertical="6dp"
                         android:background="@color/colorPrimary" />
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="教室" />
-
                         <TextView
                             android:id="@+id/tvTLClassRoom"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="206" />
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1" />
 
 
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center" />
 
 
 
@@ -222,9 +208,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginHorizontal="60dp"
-                    android:layout_marginVertical="20dp"
-                    android:background="@color/colorDarkBlue" />
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -237,6 +222,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
+                        android:layout_marginHorizontal="10dp"
                         android:gravity="left|center_vertical"
                         android:text="課程進度與內容綱要" />
 
@@ -259,9 +245,8 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginHorizontal="60dp"
-                    android:layout_marginVertical="20dp"
-                    android:background="@color/colorDarkBlue" />
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -271,6 +256,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_marginHorizontal="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -278,7 +264,7 @@
                         android:text="習題或上機作業" />
 
                     <EditText
-                        android:id="@+id/edTLNote"
+                        android:id="@+id/edTLHomework"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_gravity="center"
@@ -291,7 +277,11 @@
                         android:textCursorDrawable="@drawable/darkblue_cursor" />
 
                 </LinearLayout>
-
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="20dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -305,8 +295,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="填寫人員　陳彥志" />
+                        android:gravity="center" />
 
                     <Button
                         android:id="@+id/btnTLRest"
@@ -327,6 +316,16 @@
                         android:text="填妥送出"
                         android:textColor="@color/colorDarkBlue"
                         android:theme="@style/BorderlessButton" />
+                    <Button
+                        android:id="@+id/btnTLCheck"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center_vertical"
+                        android:text="審核確認"
+                        android:textColor="@color/colorDarkBlue"
+                        android:theme="@style/BorderlessButton"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -337,9 +336,9 @@
         android:id="@+id/fbtnSelectDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|top"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="200dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="56dp"
         android:src="@drawable/icons8_event_24"
         app:backgroundTint="@color/colorDarkRed" />
     </FrameLayout>

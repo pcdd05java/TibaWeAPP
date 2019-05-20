@@ -105,6 +105,11 @@
             android:name=".classzone.ClassSeatActivity"
             android:label="@string/seattable"
             android:parentActivityName=".ValidMainActivity" />
+
+        <activity
+            android:name=".campuszone.TeachingLogActivity"
+            android:label="@string/teachinglog"
+            android:parentActivityName=".ValidMainActivity" />
     </application>
 
 </manifest>

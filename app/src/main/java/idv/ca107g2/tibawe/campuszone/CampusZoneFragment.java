@@ -64,10 +64,10 @@ public class CampusZoneFragment extends Fragment {
                             getActivity().startActivity(intent1);
                             getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             break;
-//                    case 2:
-//                        Intent intent2 = new Intent(getActivity(), CampusNewsActivity.class);
-//                        getActivity().startActivity(intent2);
-//                      break;
+                    case 2:
+                        Intent intent2 = new Intent(getActivity(), TeachingLogActivity.class);
+                        getActivity().startActivity(intent2);
+                      break;
                         case 3:
                             Intent intent3 = new Intent(getActivity(), AbsApplyActivity.class);
                             getActivity().startActivity(intent3);
@@ -110,11 +110,11 @@ public class CampusZoneFragment extends Fragment {
                             getActivity().startActivity(intent0);
                             getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                             break;
-//                        case 1:
-//                            Intent intent1 = new Intent(getActivity(), AttendanceActivity.class);
-//                            getActivity().startActivity(intent1);
-//                            getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-//                            break;
+                        case 1:
+                            Intent intent1 = new Intent(getActivity(), TeachingLogActivity.class);
+                            getActivity().startActivity(intent1);
+                            getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            break;
                         case 2:
                             Intent intent2 = new Intent(getActivity(), ClrrActivity.class);
                             getActivity().startActivity(intent2);

@@ -65,7 +65,6 @@ public class ClassInformationActivity extends AppCompatActivity {
             findInfos();
 
         }else{
-
             teacher_deafult.setVisibility(View.VISIBLE);
             findClassName();
         }

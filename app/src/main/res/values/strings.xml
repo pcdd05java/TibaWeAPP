@@ -52,7 +52,7 @@
 
     <string name="abs_apply_date">請假時段</string>
     <string name="abs_alert_date">日期提醒</string>
-    <string name="abs_alert_msg">您未點選日期，預設為今天</string>
+    <string name="abs_alert_msg">您未點選日期，請先選擇日期</string>
     <string name="abs_alert_return">返回</string>
     <string name="abs_msg_nocourse">您選擇的日期時段並無課程</string>
     <string name="abs_msg_select_interval">請選擇時段</string>

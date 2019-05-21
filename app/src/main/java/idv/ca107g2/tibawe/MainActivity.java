@@ -32,13 +32,13 @@ import idv.ca107g2.tibawe.tools.Util;
 import idv.ca107g2.tibawe.vo.MemberVO;
 
 public class MainActivity extends AppCompatActivity {
-    private Dialog loginDialog;
-    private TextView tvOK, tvCancel;
-    private Button btnOK, btnCancel;
+    private Dialog loginDialog, forgetDialog;
+    private TextView tvOK, tvCancel,tvForgetMsg, tvForgetPW;
+    private Button btnOK, btnCancel,btnSend;
     private static final String TAG = "MainActivity";
     private TextView tvMessage;
-    private EditText edAccount, edPassword;
-    private CommonTask isMemberTask;
+    private EditText edAccount, edPassword, edEmail;
+    private CommonTask isMemberTask, forgetPWTask;
     private MemberVO memberVO;
     private Boolean isQRCode;
     private String className;
@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.login_tab);
         edAccount = loginDialog.findViewById(R.id.edAccount);
         edPassword = loginDialog.findViewById(R.id.edPassword);
+        tvForgetPW = loginDialog.findViewById(R.id.tvForgetPW);
 
         //神奇小按鈕
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -198,10 +199,114 @@ public class MainActivity extends AppCompatActivity {
                 loginDialog.cancel();
             }
         });
+
+        tvForgetPW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgetpw();
+
+            }
+        });
+
         // 小心！一定要記得show()
         loginDialog.show();
 
         return loginDialog;
+    }
+
+    private Dialog forgetpw(){
+
+        forgetDialog = new Dialog(MainActivity.this);
+        forgetDialog.setTitle("忘記帳號密碼");
+        // 使用者無法自行取消對話視窗，需要進行操作才行
+        forgetDialog.setCancelable(true);
+        forgetDialog.setContentView(R.layout.dialog_forgetpw);
+        edEmail = forgetDialog.findViewById(R.id.edEmail);
+        tvForgetMsg = forgetDialog.findViewById(R.id.tvForgetMsg);
+        // 透過myDialog.getWindow()取得這個對話視窗的Window物件
+        Window dialogWindow = loginDialog.getWindow();
+                /*
+                    設定對話視窗位置：
+                    當参數值包含Gravity.LEFT時，對話視窗出現在左邊
+                    當参數值包含Gravity.RIGHT時，對話視窗出現在右邊
+                    當参數值包含Gravity.TOP時，對話視窗出現在上邊,
+                    當参數值包含Gravity.BOTTOM時，對話視窗出現在下邊
+                    當参數值包含Gravity.CENTER_HORIZONTAL時，對話視窗水平居中
+                    當参數值包含Gravity.CENTER_VERTICAL時，對話視窗垂直居中
+                    gravity的默認值為Gravity.CENTER，即Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL
+                 */
+        dialogWindow.setGravity(Gravity.CENTER);
+
+                 /*
+                    設定對話視窗大小：
+                    呼叫getAttributes()，取得LayoutParams物件即可進行屬性設定
+                    相關屬性：
+                    x：X座標
+                    y：Y座標
+                    width：寬度
+                    height：高度
+                    alpha：透明度 (0.0 ～ 1.0)
+                 */
+//                        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+//                        lp.width = 1000;
+//                        lp.alpha = 1.0f;
+//                        dialogWindow.setAttributes(lp);
+
+                /*
+                    將對話視窗的大小依螢幕大小的百分比設置
+                 */
+
+        WindowManager m = getWindowManager();
+        Display d = m.getDefaultDisplay(); // 取得螢幕寬、高用
+        WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 獲取對話視窗當前的参數值
+        p.height = (int) (d.getHeight() * 0.8); // 高度設置為螢幕的0.6 (60%)
+        p.width = (int) (d.getWidth() * 0.95); // 寬度設置為螢幕的0.95 (95%)
+        dialogWindow.setAttributes(p);
+
+
+        // 取得自訂對話視窗上的所有元件都需透過myDialog才能findViewById
+        btnSend = forgetDialog.findViewById(R.id.btnSend);
+//        tvOK.setShadowLayer(2, 0, 0, Color.Gr);
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String memberemail = edEmail.getText().toString().trim();
+
+                if(memberemail.equals("")){
+                    Util.showLToast(MainActivity.this, "請確實輸入信箱");
+                }
+
+                if (Util.networkConnected(MainActivity.this)) {
+                    String url = Util.URL + "MemberServlet";
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("action", "forgetpw");
+                    jsonObject.addProperty("memberemail", memberemail);
+
+                    String jsonOut = jsonObject.toString();
+                    forgetPWTask = new CommonTask(url, jsonOut);
+                    try {
+                        String result = forgetPWTask.execute().get();
+                    if(!result.equals("\"done\"")){
+                        tvForgetMsg.setText("您輸入的信箱有誤，請輸入註冊信箱");
+                    }else{
+                        Util.showLToast(MainActivity.this, "提醒信件已寄出，請檢查您的信箱");
+                    forgetDialog.cancel();
+                    }
+
+                    } catch (Exception e) {
+                        Log.e(TAG, e.toString());
+                    }
+                } else {
+                    Util.showToast(MainActivity.this, R.string.msg_NoNetwork);
+                }
+            }
+        });
+
+        // 小心！一定要記得show()
+        forgetDialog.show();
+
+        return forgetDialog;
     }
     private void showMessage(int msgResId) {
         tvMessage.setText(msgResId);

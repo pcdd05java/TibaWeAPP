@@ -31,7 +31,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -187,12 +186,12 @@ public class ValidMainActivity extends AppCompatActivity {
         nowDate= new java.sql.Date(System.currentTimeMillis());
         nowDateString = nowDate.toString();
 
-        int interval =0;
+        int interval = 0;
         if(7<=hr && hr<11) {
             interval=1;
         }else if (11<=hr && hr<17) {
             interval=2;
-        }else if (17<=hr && hr<20) {
+        }else if (17<=hr && hr<20){
             interval=3;
         }
 

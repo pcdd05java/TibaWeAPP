@@ -38,7 +38,7 @@ public class RafFragment extends Fragment {
     private EditText edRafNote;
     ArrayAdapter<String> adapterLoc, adapterType,adapterCon;
     private String memberaccount, raf_type, raf_con, cr_no, class_no;
-    private Button btnRafApply, btnRafCancel;
+    private Button btnRafApply, btnRafCancel, btnRafMagic;
     private List<CrVO> crList;
 
 
@@ -53,6 +53,7 @@ public class RafFragment extends Fragment {
         edRafNote = view.findViewById(R.id.edRafNote);
         btnRafApply = view.findViewById(R.id.btnRafApply);
         btnRafCancel = view.findViewById(R.id.btnRafCancel);
+        btnRafMagic = view.findViewById(R.id.btnRafMagic);
         btnRafApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +64,12 @@ public class RafFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 resetRaf();
+            }
+        });
+        btnRafMagic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edRafNote.setText("我的滑鼠不會叫");
             }
         });
 

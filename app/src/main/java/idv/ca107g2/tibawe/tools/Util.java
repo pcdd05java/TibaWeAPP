@@ -21,6 +21,9 @@ public class Util {
     public static String URL = "http://34.80.134.113:8081/CA107G2_APP/";
     // 全組GCP
 //    public static String URL = "http://ca107g2.tk/CA107G2_APP/";
+    // 彥志LocalHost
+//    public static String URL = "http://192.168.196.215:8081/CA107G2_APP/";
+
 
 
     // 偏好設定檔案名稱

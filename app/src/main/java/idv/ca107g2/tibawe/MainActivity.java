@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.action_magic:
-                        edAccount.setText("M000004");
+                        edAccount.setText("M000014");
                         edPassword.setText("123456");
                         break;
                 }

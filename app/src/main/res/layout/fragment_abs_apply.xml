@@ -230,6 +230,15 @@
                 android:orientation="horizontal"
                 android:layout_marginRight="20dp">
                 <Button
+                    android:id="@+id/btnAbsMagic"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:text="@string/reset"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:textColor="@color/colorBack"
+                    android:theme="@style/BorderlessButton" />
+                <Button
                     android:id="@+id/btnAbsCancel"
                     android:layout_height="match_parent"
                     android:layout_width="wrap_content"

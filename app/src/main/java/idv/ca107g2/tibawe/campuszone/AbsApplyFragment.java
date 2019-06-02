@@ -57,7 +57,7 @@ public class AbsApplyFragment extends Fragment {
     private String absCourse, absTeacher1, absTeacher2, absTeacher3, absDate;
     private static String memberaccount, cr_no, class_no;
 
-    private Button btnAbsSubmit, btnAbsCancel;
+    private Button btnAbsSubmit, btnAbsCancel, btnAbsMagic;
     private static CommonTask absApplyTask, absCourseTask;
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -78,6 +78,7 @@ public class AbsApplyFragment extends Fragment {
         fbtnSelectDate = view.findViewById(R.id.fbtnSelectDate);
 
         edAbsNote = view.findViewById(R.id.edAbsNote);
+        btnAbsMagic = view.findViewById(R.id.btnAbsMagic);
         btnAbsSubmit = view.findViewById(R.id.btnAbsSubmit);
         btnAbsCancel = view.findViewById(R.id.btnAbsCancel);
         btnAbsSubmit.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +95,14 @@ public class AbsApplyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 resetAbsApply();
+            }
+        });
+
+        //神奇小按鈕
+        btnAbsMagic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edAbsNote.setText("今天我生日！！");
             }
         });
 
@@ -119,7 +128,7 @@ public class AbsApplyFragment extends Fragment {
     public void onStart() {
         super.onStart();
         spinner();
-//        showRightNow();
+        showRightNow();
 
         AbsApplyActivity activity = (AbsApplyActivity)getActivity();
         Bundle results = activity.passBundle();
@@ -347,7 +356,7 @@ public class AbsApplyFragment extends Fragment {
             try {
                 String result = absApplyTask.execute().get();
 
-               Util.showToast(getActivity(), result);
+               Util.showToast(getActivity(), "假單已送出");
                 resetAbsApply();
 
                 ((AbsApplyActivity)getActivity()).pager.getAdapter().notifyDataSetChanged();
@@ -381,7 +390,7 @@ public class AbsApplyFragment extends Fragment {
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
         day = c.get(Calendar.DAY_OF_MONTH);
-        updateInfo();
+//        updateInfo();
     }
 
     // 將指定的日期顯示在TextView上

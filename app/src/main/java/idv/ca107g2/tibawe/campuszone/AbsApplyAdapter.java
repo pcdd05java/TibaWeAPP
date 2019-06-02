@@ -154,7 +154,7 @@ class AbsApplyAdapter extends RecyclerView.Adapter<AbsApplyAdapter.ViewHolder> {
                     break;
                 case"2":
                     tvAbsqOutcome.setText("審核中");
-                    btnAbsqUpdate.setVisibility(View.VISIBLE);
+                    btnAbsqUpdate.setVisibility(View.INVISIBLE);//修改假單按鈕顯示
                     break;
             }
         } else{

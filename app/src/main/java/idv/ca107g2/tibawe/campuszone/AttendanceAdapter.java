@@ -122,17 +122,17 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.Vi
             btnApply.setText(R.string.btn_already_apply);
             switch((String)atdMap.get("atdStatus")){
                 case"1":
-                    tvATDStatus.setText(R.string.rck_status_review);
-                    tvATDResult.setText(R.string.atd_status_no);
+                    tvATDStatus.setText(R.string.rck_status_outcome);
+                    tvATDResult.setText(R.string.atd_status_yes);
                     tvATDResult.setTextColor(Color.rgb(209, 8, 55));
                     break;
                 case"2":
-                    tvATDStatus.setText(R.string.rck_status_outcome);
+                    tvATDStatus.setText(R.string.rck_status_review);
                     switch ((String)atdMap.get("atdResult")){
-                        case"1":
-                            tvATDResult.setText(R.string.atd_status_yes);
-                            break;
-                        case"3":
+//                        case"1":
+//                            tvATDResult.setText(R.string.atd_status_yes);
+//                            break;
+                        case"2":
                             tvATDResult.setText(R.string.atd_status_no);
                             tvATDResult.setTextColor(Color.rgb(209, 8, 55));
                             break;

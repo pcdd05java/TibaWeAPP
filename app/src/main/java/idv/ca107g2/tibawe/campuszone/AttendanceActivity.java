@@ -42,7 +42,7 @@ public class AttendanceActivity extends AppCompatActivity {
 
     private static final String TAG = "AttendanceActivity";
     private CommonTask atdTask, applyRCKTask;
-    private Button btnRecheckSubmit, btnRecheckCancel, btnRecheckApply, btnAbsenceApply, btnApply;
+    private Button btnRecheckSubmit, btnRecheckCancel, btnRecheckMagic, btnRecheckApply, btnAbsenceApply, btnApply;
     private EditText edRecheckNote;
     private Dialog recheckApplyDialog, optionDialog;
     private TextView atd_result, tvATDDate,tvATDCourseNo, tvATDInterval, tvATDCourse, tvATDTeacher1,
@@ -201,8 +201,16 @@ public class AttendanceActivity extends AppCompatActivity {
                     tvRecheckTeacher3.setVisibility(View.VISIBLE);
                 }
 
+
                 edRecheckNote = recheckApplyDialog.findViewById(R.id.edRecheckNote);
 
+                btnRecheckMagic = recheckApplyDialog.findViewById(R.id.btnRecheckMagic);
+                btnRecheckMagic.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        edRecheckNote.setText("簽到區筆沒水，下次改用QRCODE");
+                    }
+                });
                 btnRecheckSubmit = recheckApplyDialog.findViewById(R.id.btnRecheckSubmit);
                 btnRecheckSubmit.setOnClickListener(new View.OnClickListener() {
                     @SuppressLint("ResourceAsColor")
